@@ -21,11 +21,9 @@ public class UserAccessRepository {
     public LoginResponse makeLogin(String userName, String userPassword) {
         for (UserAccess user : users) {
             if (user.getName().equals(userName) && user.getPassword().equals(userPassword)) {
-                System.out.println("Login realizado com sucesso");
-                return new LoginResponse(true, user.getAccessType());
+                return new LoginResponse(true, user);
             }
         }
-        System.out.println("Falha ao realizar o login, usuário ou senha incorretos!");
         return new LoginResponse(false, null    );
     }
 }

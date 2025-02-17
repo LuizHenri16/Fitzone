@@ -1,23 +1,22 @@
 package fitzoneapp.Model;
 
-import fitzoneapp.Util.AccessType;
 
 public class LoginResponse {
-    private AccessType accessTypeResponse;
+    private UserAccess userResponse;
     private boolean loginResponse;
 
 
-    public LoginResponse(boolean loginResponse, AccessType accessTypeResponse) {
-        this.accessTypeResponse = accessTypeResponse;
+    public LoginResponse(boolean loginResponse, UserAccess accessTypeResponse) {
+        this.userResponse = accessTypeResponse;
         this.loginResponse = loginResponse;
     }
 
-    public AccessType getAccessTypeResponse() {
-        return accessTypeResponse;
+    public UserAccess getUserResponse() {
+        return userResponse;
     }
 
-    public void setAccessTypeResponse(AccessType accessTypeResponse) {
-        this.accessTypeResponse = accessTypeResponse;
+    public void setUserResponse(UserAccess accessTypeResponse) {
+        this.userResponse = accessTypeResponse;
     }
 
     public boolean isLoginResponse() {
