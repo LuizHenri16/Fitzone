@@ -1,14 +1,28 @@
 package fitzoneapp.View;
 
+import fitzoneapp.Model.LoginResponse;
+import fitzoneapp.Util.AccessType;
 import java.awt.CardLayout;
 
-
 public class mainView extends javax.swing.JFrame {
-    public mainView(String userName) {
+    
+    private LoginResponse userAdmInfo;
+    
+    public mainView(LoginResponse response) {
         initComponents();
-        userNameViewLabel.setText(userName);
+        this.userAdmInfo = response;
+        userNameViewLabel.setText(userAdmInfo.getUserResponse().getName());
+        userAccess();
+        
     }
 
+    public void userAccess() {
+      if(userAdmInfo.getUserResponse().getAccessType() == AccessType.PARCIAL) {
+          btViewCAdministrador.setEnabled(false);
+          btViewFinanceiro.setEnabled(false);
+      }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -69,6 +83,8 @@ public class mainView extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
+        cancelarBtADM = new javax.swing.JButton();
+        btCadastrarADM = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1400, 700));
@@ -79,7 +95,7 @@ public class mainView extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(243, 243, 243));
 
         btViewPrincipal.setBackground(new java.awt.Color(243, 243, 243));
-        btViewPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btViewPrincipal.setForeground(new java.awt.Color(126, 126, 126));
         btViewPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fitzoneapp/assets/icons/Group 7.png"))); // NOI18N
         btViewPrincipal.setText("Principal");
@@ -89,14 +105,9 @@ public class mainView extends javax.swing.JFrame {
         btViewPrincipal.setRolloverEnabled(false);
         btViewPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewPrincipal.setIconTextGap(10);
-        btViewPrincipal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btViewPrincipalActionPerformed(evt);
-            }
-        });
 
         btViewCAluno.setBackground(new java.awt.Color(243, 243, 243));
-        btViewCAluno.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewCAluno.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btViewCAluno.setForeground(new java.awt.Color(126, 126, 126));
         btViewCAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fitzoneapp/assets/icons/Group 6.png"))); // NOI18N
         btViewCAluno.setText("Cadastrar Aluno");
@@ -113,7 +124,7 @@ public class mainView extends javax.swing.JFrame {
         });
 
         btViewLCadastros.setBackground(new java.awt.Color(243, 243, 243));
-        btViewLCadastros.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewLCadastros.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btViewLCadastros.setForeground(new java.awt.Color(126, 126, 126));
         btViewLCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fitzoneapp/assets/icons/Vector.png"))); // NOI18N
         btViewLCadastros.setText("Lista Cadastros");
@@ -122,7 +133,7 @@ public class mainView extends javax.swing.JFrame {
         btViewLCadastros.setFocusPainted(false);
         btViewLCadastros.setRolloverEnabled(false);
         btViewLCadastros.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btViewLCadastros.setIconTextGap(10);
+        btViewLCadastros.setIconTextGap(22);
         btViewLCadastros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btViewLCadastrosActionPerformed(evt);
@@ -130,7 +141,7 @@ public class mainView extends javax.swing.JFrame {
         });
 
         btViewFinanceiro.setBackground(new java.awt.Color(243, 243, 243));
-        btViewFinanceiro.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewFinanceiro.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btViewFinanceiro.setForeground(new java.awt.Color(126, 126, 126));
         btViewFinanceiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fitzoneapp/assets/icons/Money.png"))); // NOI18N
         btViewFinanceiro.setText("Financeiro");
@@ -147,7 +158,7 @@ public class mainView extends javax.swing.JFrame {
         });
 
         btViewFTreino.setBackground(new java.awt.Color(243, 243, 243));
-        btViewFTreino.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewFTreino.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btViewFTreino.setForeground(new java.awt.Color(126, 126, 126));
         btViewFTreino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fitzoneapp/assets/icons/Notepad.png"))); // NOI18N
         btViewFTreino.setText("Ficha de Treino");
@@ -164,7 +175,7 @@ public class mainView extends javax.swing.JFrame {
         });
 
         btViewCAdministrador.setBackground(new java.awt.Color(243, 243, 243));
-        btViewCAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewCAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btViewCAdministrador.setForeground(new java.awt.Color(126, 126, 126));
         btViewCAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fitzoneapp/assets/icons/Administrator.png"))); // NOI18N
         btViewCAdministrador.setText("Cadastrar Administrador");
@@ -184,12 +195,12 @@ public class mainView extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btViewCAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btViewCAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
             .addComponent(btViewLCadastros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btViewFTreino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btViewPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btViewFinanceiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btViewCAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btViewFTreino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +228,9 @@ public class mainView extends javax.swing.JFrame {
         btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fitzoneapp/assets/icons/Logout.png"))); // NOI18N
         btSair.setText("Sair");
         btSair.setFocusPainted(false);
+        btSair.setBorder(null);
         btSair.setBorderPainted(false);
+        btSair.setFocusable(false);
         btSair.setRolloverEnabled(false);
         btSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,7 +321,7 @@ public class mainView extends javax.swing.JFrame {
         ViewPrincipal.setLayout(ViewPrincipalLayout);
         ViewPrincipalLayout.setHorizontalGroup(
             ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 951, Short.MAX_VALUE)
         );
         ViewPrincipalLayout.setVerticalGroup(
             ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,7 +444,7 @@ public class mainView extends javax.swing.JFrame {
 
         cbMatricula.setBackground(new java.awt.Color(255, 255, 255));
         cbMatricula.setForeground(new java.awt.Color(54, 54, 54));
-        cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzena" }));
         cbMatricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jPanel6.setBackground(new java.awt.Color(243, 243, 243));
@@ -441,6 +454,7 @@ public class mainView extends javax.swing.JFrame {
         btCadastrarCliente.setForeground(new java.awt.Color(255, 249, 237));
         btCadastrarCliente.setText("Confirmar");
         btCadastrarCliente.setBorderPainted(false);
+        btCadastrarCliente.setFocusable(false);
         btCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCadastrarClienteActionPerformed(evt);
@@ -452,12 +466,14 @@ public class mainView extends javax.swing.JFrame {
         btCancelarCadastro.setForeground(new java.awt.Color(107, 62, 35));
         btCancelarCadastro.setText("Cancelar");
         btCancelarCadastro.setBorderPainted(false);
+        btCancelarCadastro.setFocusable(false);
 
         btLimparCampos.setBackground(new java.awt.Color(241, 221, 183));
         btLimparCampos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btLimparCampos.setForeground(new java.awt.Color(107, 62, 35));
         btLimparCampos.setText("Limpar campos");
         btLimparCampos.setBorderPainted(false);
+        btLimparCampos.setFocusable(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -558,9 +574,9 @@ public class mainView extends javax.swing.JFrame {
                                 .addComponent(tfPesoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel9))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(cardCadastrarAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel10))
+                .addGroup(cardCadastrarAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cardCadastrarAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cardCadastrarAlunoLayout.createSequentialGroup()
@@ -596,7 +612,7 @@ public class mainView extends javax.swing.JFrame {
         ViewListaCadastro.setLayout(ViewListaCadastroLayout);
         ViewListaCadastroLayout.setHorizontalGroup(
             ViewListaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 951, Short.MAX_VALUE)
         );
         ViewListaCadastroLayout.setVerticalGroup(
             ViewListaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,7 +627,7 @@ public class mainView extends javax.swing.JFrame {
         ViewFinanceiro.setLayout(ViewFinanceiroLayout);
         ViewFinanceiroLayout.setHorizontalGroup(
             ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 951, Short.MAX_VALUE)
         );
         ViewFinanceiroLayout.setVerticalGroup(
             ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -626,7 +642,7 @@ public class mainView extends javax.swing.JFrame {
         ViewFichaTreino.setLayout(ViewFichaTreinoLayout);
         ViewFichaTreinoLayout.setHorizontalGroup(
             ViewFichaTreinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 951, Short.MAX_VALUE)
         );
         ViewFichaTreinoLayout.setVerticalGroup(
             ViewFichaTreinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,49 +651,90 @@ public class mainView extends javax.swing.JFrame {
 
         ViewsPanelCardLayout.add(ViewFichaTreino, "cardFichaTreino");
 
-        ViewCadastrarADM.setBackground(new java.awt.Color(153, 0, 153));
+        ViewCadastrarADM.setBackground(new java.awt.Color(243, 243, 243));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(85, 85, 85));
         jLabel13.setText("Usuário de Acesso");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(69, 64, 64));
+        jTextField1.setToolTipText("");
+        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(85, 85, 85));
         jLabel14.setText("Senha");
 
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(69, 64, 64));
+        jPasswordField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(85, 85, 85));
         jLabel15.setText("Confirmar Senha");
 
-        jPasswordField2.setText("jPasswordField2");
+        jPasswordField2.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jPasswordField2.setForeground(new java.awt.Color(69, 64, 64));
+        jPasswordField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(85, 85, 85));
         jLabel16.setText("Tipo acesso");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(69, 64, 64));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Parcial", "Completo" }));
+        jComboBox1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("FITZONE CADASTRO ADMINISTRADOR");
+
+        cancelarBtADM.setBackground(new java.awt.Color(241, 221, 183));
+        cancelarBtADM.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cancelarBtADM.setForeground(new java.awt.Color(107, 62, 35));
+        cancelarBtADM.setText("Cancelar");
+        cancelarBtADM.setBorder(null);
+        cancelarBtADM.setBorderPainted(false);
+        cancelarBtADM.setFocusable(false);
+
+        btCadastrarADM.setBackground(new java.awt.Color(188, 140, 74));
+        btCadastrarADM.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btCadastrarADM.setForeground(new java.awt.Color(255, 249, 237));
+        btCadastrarADM.setText("Criar");
+        btCadastrarADM.setBorder(null);
+        btCadastrarADM.setBorderPainted(false);
+        btCadastrarADM.setFocusable(false);
+        btCadastrarADM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadastrarADMActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ViewCadastrarADMLayout = new javax.swing.GroupLayout(ViewCadastrarADM);
         ViewCadastrarADM.setLayout(ViewCadastrarADMLayout);
         ViewCadastrarADMLayout.setHorizontalGroup(
             ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewCadastrarADMLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(ViewCadastrarADMLayout.createSequentialGroup()
-                .addContainerGap(219, Short.MAX_VALUE)
-                .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField1)
-                    .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13)
-                        .addComponent(jLabel15)
+                .addContainerGap(220, Short.MAX_VALUE)
+                .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField1)
+                        .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(ViewCadastrarADMLayout.createSequentialGroup()
+                            .addComponent(cancelarBtADM, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btCadastrarADM, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ViewCadastrarADMLayout.createSequentialGroup()
                             .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel14))
@@ -691,8 +748,8 @@ public class mainView extends javax.swing.JFrame {
             ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewCadastrarADMLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                .addGap(140, 140, 140)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -704,11 +761,15 @@ public class mainView extends javax.swing.JFrame {
                 .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCadastrarADM, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(cancelarBtADM, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addGap(105, 105, 105))
         );
 
         ViewsPanelCardLayout.add(ViewCadastrarADM, "cardCadastrarADM");
@@ -718,7 +779,7 @@ public class mainView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(sidebarMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sidebarMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(ViewsPanelCardLayout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -731,11 +792,6 @@ public class mainView extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1214, 708));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btViewPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btViewPrincipalActionPerformed
-        viewChange("cardPrincipal");
-        setTitle("Principal");
-    }//GEN-LAST:event_btViewPrincipalActionPerformed
 
     private void btViewCAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btViewCAlunoActionPerformed
         viewChange("cardCadastrarAluno");
@@ -770,6 +826,10 @@ public class mainView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btCadastrarClienteActionPerformed
 
+    private void btCadastrarADMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarADMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btCadastrarADMActionPerformed
+
     public void viewChange(String cardName) {
         CardLayout layout = (CardLayout) ViewsPanelCardLayout.getLayout();
         layout.show(ViewsPanelCardLayout, cardName);
@@ -783,6 +843,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JPanel ViewListaCadastro;
     private javax.swing.JPanel ViewPrincipal;
     private javax.swing.JPanel ViewsPanelCardLayout;
+    private javax.swing.JButton btCadastrarADM;
     private javax.swing.JButton btCadastrarCliente;
     private javax.swing.JButton btCancelarCadastro;
     private javax.swing.JButton btLimparCampos;
@@ -793,6 +854,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JButton btViewFinanceiro;
     private javax.swing.JButton btViewLCadastros;
     private javax.swing.JButton btViewPrincipal;
+    private javax.swing.JButton cancelarBtADM;
     private javax.swing.JPanel cardCadastrarAluno;
     private javax.swing.JComboBox<String> cbMatricula;
     private javax.swing.JComboBox<String> jComboBox1;

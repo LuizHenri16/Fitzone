@@ -6,6 +6,7 @@ import fitzoneapp.Repository.UserAccessRepository;
 import fitzoneapp.Util.AccessType;
 
 public class UserAccessService {
+
     private UserAccessRepository userAccessRepository = new UserAccessRepository();
     private UserAccess userAccess;
 
@@ -13,11 +14,10 @@ public class UserAccessService {
         userAccess = new UserAccess(userName, userPassword, accessType);
         userAccessRepository.addUser(userAccess);
     }
+
     public LoginResponse makeLogin(String userName, String userPassword) {
         return userAccessRepository.makeLogin(userName, userPassword);
     }
-    
-    
 
     public UserAccessRepository getUserAccessRepository() {
         return userAccessRepository;

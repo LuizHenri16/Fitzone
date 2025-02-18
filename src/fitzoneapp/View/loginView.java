@@ -1,8 +1,6 @@
 package fitzoneapp.View;
 
 import fitzoneapp.Controller.UserAccessController;
-import fitzoneapp.Util.AccessType;
-import javax.swing.JOptionPane;
 
 public class loginView extends javax.swing.JFrame {
 
@@ -163,15 +161,12 @@ public class loginView extends javax.swing.JFrame {
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
 
         try {
-
             UserAccessController userAccessController;
-            userAccessController = new UserAccessController(tfUserName, tfPassword);
-            userAccessController.addUser();
+            userAccessController = new UserAccessController(tfUserName, tfPassword, this); //Iniciar a tela passando os textFields e a insntância do login para poder 
+            userAccessController.addUser();                                                //fechar a mesma lá na classe Controller com dispose()             
             userAccessController.makeLogin();
-            dispose();
-
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro inesperado");
+            new messageView(e.getMessage(), "Erro inesperado").setVisible(true);
         }
 
 

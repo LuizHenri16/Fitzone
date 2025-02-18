@@ -24,6 +24,6 @@ public class UserAccessRepository {
                 return new LoginResponse(true, user);
             }
         }
-        return new LoginResponse(false, null    );
+        return new LoginResponse(false, null);
     }
 }
