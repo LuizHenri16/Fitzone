@@ -7,8 +7,7 @@ import fitzoneapp.View.loginView;
 import fitzoneapp.View.mainView;
 import fitzoneapp.View.messageView;
 
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class UserAccessController {
 
@@ -17,13 +16,56 @@ public class UserAccessController {
     private JTextField tfUserName;
     private JPasswordField tfPassword;
 
+    private JTextField tfNewUser;
+    private JPasswordField tfNewPassword;
+    private JPasswordField passwordConfirm;
+    private JComboBox cbAccessType;
+
     public UserAccessController(JTextField tfUserName, JPasswordField tfPassword, loginView loginView) {
         this.tfUserName = tfUserName;
         this.tfPassword = tfPassword;
         this.loginView = loginView;
     }
+    
+    public UserAccessController(JTextField tfNewUser, JPasswordField tfNewPassword, JPasswordField passwordConfirm, JComboBox cbAccessType) {
+        this.tfNewUser = tfNewUser;
+        this.tfNewPassword = tfNewPassword;
+        this.passwordConfirm = passwordConfirm;
+        this.cbAccessType = cbAccessType;
+    }
 
     public void addUser() {
+
+        try {
+            String newUserName = tfNewUser.getText();
+            String newPassword = new String(tfNewPassword.getPassword());
+            String newPasswordConfirm = new String(passwordConfirm.getPassword());
+
+            if (newUserName.isEmpty() || newUserName.isBlank()) {
+                new messageView("O usuário precisa ter um nome", "Erro nome usuário").setVisible(true);
+            } else if (newPassword.isEmpty() || newPassword.isBlank() || newPassword.length() < 8) {
+                new messageView("Digite uma senha válida", "Erro de senha").setVisible(true);
+            } else if (!newPasswordConfirm.equals(newPassword)) {
+                new messageView("Senhas não conferem", "Erro de senha").setVisible(true);
+            } else if (cbAccessType.getSelectedIndex() == 0) {
+                new messageView("Selecione um tipo de usuário", "Tipo Usuário").setVisible(true);
+            } else {
+                AccessType newAccessType = null;
+
+                if (cbAccessType.getSelectedIndex() == 1) {
+                    newAccessType = AccessType.PARCIAL;
+                } else if (cbAccessType.getSelectedIndex() == 2) {
+                    newAccessType = AccessType.COMPLETO;
+                }
+
+                userAccessService.addUser(newUserName, String.valueOf(passwordConfirm), newAccessType);
+
+                new messageView("Usuário cadastrado com sucesso!", "Usuário Cadastrado").setVisible(true);
+            }
+
+        } catch (Exception e) {
+
+        }
 
         userAccessService.addUser("ADM", "ADM", AccessType.COMPLETO);  //Usuário para testes
         userAccessService.addUser("ADM2", "ADM2", AccessType.PARCIAL); //Usuário para testes
