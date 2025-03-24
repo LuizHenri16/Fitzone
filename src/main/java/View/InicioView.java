@@ -653,7 +653,6 @@ public class InicioView extends javax.swing.JFrame {
         cardCadastrarAluno.setBackground(new java.awt.Color(243, 243, 243));
         cardCadastrarAluno.setPreferredSize(new java.awt.Dimension(1200, 800));
 
-        tfNomeCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfNomeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfNomeCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -661,21 +660,17 @@ public class InicioView extends javax.swing.JFrame {
         tfNomeCliente.setMaximumSize(new java.awt.Dimension(370, 40));
         tfNomeCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
-        jLabel1.setBackground(new java.awt.Color(85, 85, 85));
         jLabel1.setForeground(new java.awt.Color(85, 85, 85));
         jLabel1.setText("Nome Completo");
 
-        tfEnderecoCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfEnderecoCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfEnderecoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEnderecoCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfEnderecoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
-        jLabel2.setBackground(new java.awt.Color(85, 85, 85));
         jLabel2.setForeground(new java.awt.Color(85, 85, 85));
         jLabel2.setText("Endereço");
 
-        tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
         tfCPFCLiente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfCPFCLiente.setForeground(new java.awt.Color(54, 54, 54));
         tfCPFCLiente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -683,11 +678,9 @@ public class InicioView extends javax.swing.JFrame {
         tfCPFCLiente.setMaximumSize(new java.awt.Dimension(328, 22));
         tfCPFCLiente.setMinimumSize(new java.awt.Dimension(220, 22));
 
-        jLabel3.setBackground(new java.awt.Color(85, 85, 85));
         jLabel3.setForeground(new java.awt.Color(85, 85, 85));
         jLabel3.setText("CPF");
 
-        tfDataNascimentoCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfDataNascimentoCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfDataNascimentoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfDataNascimentoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -695,11 +688,9 @@ public class InicioView extends javax.swing.JFrame {
         tfDataNascimentoCliente.setMaximumSize(new java.awt.Dimension(328, 22));
         tfDataNascimentoCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
-        jLabel4.setBackground(new java.awt.Color(85, 85, 85));
         jLabel4.setForeground(new java.awt.Color(85, 85, 85));
         jLabel4.setText("Data de Nascimento");
 
-        tfTelefoneCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfTelefoneCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -707,11 +698,9 @@ public class InicioView extends javax.swing.JFrame {
         tfTelefoneCliente.setMaximumSize(new java.awt.Dimension(328, 22));
         tfTelefoneCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
-        jLabel5.setBackground(new java.awt.Color(85, 85, 85));
         jLabel5.setForeground(new java.awt.Color(85, 85, 85));
         jLabel5.setText("Número de Telefone");
 
-        tfTelefoneEmergenciaCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfTelefoneEmergenciaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -719,11 +708,9 @@ public class InicioView extends javax.swing.JFrame {
         tfTelefoneEmergenciaCliente.setMaximumSize(new java.awt.Dimension(328, 22));
         tfTelefoneEmergenciaCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
-        jLabel6.setBackground(new java.awt.Color(85, 85, 85));
         jLabel6.setForeground(new java.awt.Color(85, 85, 85));
         jLabel6.setText("Número de Emergência");
 
-        tfEmailCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfEmailCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEmailCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -731,35 +718,29 @@ public class InicioView extends javax.swing.JFrame {
         tfEmailCliente.setMaximumSize(new java.awt.Dimension(328, 22));
         tfEmailCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
-        jLabel7.setBackground(new java.awt.Color(85, 85, 85));
         jLabel7.setForeground(new java.awt.Color(85, 85, 85));
         jLabel7.setText("Email");
 
-        tfPesoCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfPesoCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfPesoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfPesoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfPesoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfPesoCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
-        jLabel8.setBackground(new java.awt.Color(85, 85, 85));
         jLabel8.setForeground(new java.awt.Color(85, 85, 85));
         jLabel8.setText("Peso");
 
-        tfAlturaCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfAlturaCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfAlturaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfAlturaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfAlturaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfAlturaCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
-        jLabel9.setBackground(new java.awt.Color(85, 85, 85));
         jLabel9.setForeground(new java.awt.Color(85, 85, 85));
         jLabel9.setText("Altura");
 
         jScrollPane3.setBorder(null);
 
-        tfHistoricoSaudeCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfHistoricoSaudeCliente.setColumns(20);
         tfHistoricoSaudeCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfHistoricoSaudeCliente.setForeground(new java.awt.Color(54, 54, 54));
@@ -768,15 +749,12 @@ public class InicioView extends javax.swing.JFrame {
         tfHistoricoSaudeCliente.setMinimumSize(new java.awt.Dimension(200, 22));
         jScrollPane3.setViewportView(tfHistoricoSaudeCliente);
 
-        jLabel10.setBackground(new java.awt.Color(85, 85, 85));
         jLabel10.setForeground(new java.awt.Color(85, 85, 85));
         jLabel10.setText("Histórico de Saúde");
 
-        jLabel11.setBackground(new java.awt.Color(85, 85, 85));
         jLabel11.setForeground(new java.awt.Color(85, 85, 85));
         jLabel11.setText("Matrícula");
 
-        cbMatricula.setBackground(new java.awt.Color(255, 255, 255));
         cbMatricula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbMatricula.setForeground(new java.awt.Color(51, 51, 51));
         cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzena" }));
@@ -948,7 +926,6 @@ public class InicioView extends javax.swing.JFrame {
         cadastroAlunoScrollPane.setMinimumSize(new java.awt.Dimension(300, 300));
         cadastroAlunoScrollPane.setPreferredSize(new java.awt.Dimension(850, 500));
 
-        tabelaClientes.setBackground(new java.awt.Color(255, 255, 255));
         tabelaClientes.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         tabelaClientes.setForeground(new java.awt.Color(51, 51, 51));
         tabelaClientes.getTableHeader().setBackground(new Color(240, 240,240));
@@ -1232,7 +1209,6 @@ public class InicioView extends javax.swing.JFrame {
         FinanceiroTable.getTableHeader().setReorderingAllowed(false);
         FinanceiroTable.getTableHeader().setFont( new Font("Segoe UI",Font.BOLD, 14));
         FinanceiroTable.getTableHeader().setPreferredSize(new Dimension(tabelaClientes.getTableHeader().getWidth(), 30));
-        FinanceiroTable.setBackground(new java.awt.Color(255, 255, 255));
         FinanceiroTable.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         FinanceiroTable.setForeground(new java.awt.Color(51, 51, 51));
         FinanceiroTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -1356,43 +1332,35 @@ public class InicioView extends javax.swing.JFrame {
 
         ViewCadastrarADM.setBackground(new java.awt.Color(243, 243, 243));
 
-        jLabel13.setBackground(new java.awt.Color(85, 85, 85));
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(85, 85, 85));
         jLabel13.setText("Usuário de Acesso");
 
-        tfNewUserName.setBackground(new java.awt.Color(255, 255, 255));
         tfNewUserName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tfNewUserName.setForeground(new java.awt.Color(69, 64, 64));
         tfNewUserName.setToolTipText("");
         tfNewUserName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
-        jLabel14.setBackground(new java.awt.Color(85, 85, 85));
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(85, 85, 85));
         jLabel14.setText("Senha");
 
-        tfNewPassword.setBackground(new java.awt.Color(255, 255, 255));
         tfNewPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tfNewPassword.setForeground(new java.awt.Color(69, 64, 64));
         tfNewPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
-        jLabel15.setBackground(new java.awt.Color(85, 85, 85));
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(85, 85, 85));
         jLabel15.setText("Confirmar Senha");
 
-        tfNewPasswordConfirm.setBackground(new java.awt.Color(255, 255, 255));
         tfNewPasswordConfirm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tfNewPasswordConfirm.setForeground(new java.awt.Color(69, 64, 64));
         tfNewPasswordConfirm.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
-        jLabel16.setBackground(new java.awt.Color(85, 85, 85));
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(85, 85, 85));
         jLabel16.setText("Tipo acesso");
 
-        cbAccessType.setBackground(new java.awt.Color(255, 255, 255));
         cbAccessType.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cbAccessType.setForeground(new java.awt.Color(69, 64, 64));
         cbAccessType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Parcial", "Completo" }));
