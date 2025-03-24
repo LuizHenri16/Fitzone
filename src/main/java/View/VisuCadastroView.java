@@ -54,6 +54,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(85, 85, 85));
         jLabel1.setText("Nome Completo");
 
+        tfNomeCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfNomeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfNomeCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -64,6 +65,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(85, 85, 85));
         jLabel3.setText("CPF");
 
+        tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
         tfCPFCLiente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfCPFCLiente.setForeground(new java.awt.Color(54, 54, 54));
         tfCPFCLiente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -74,6 +76,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(85, 85, 85));
         jLabel4.setText("Data de Nascimento");
 
+        tfDataNascimentoCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfDataNascimentoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfDataNascimentoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfDataNascimentoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -84,6 +87,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(85, 85, 85));
         jLabel5.setText("Número de Telefone");
 
+        tfTelefoneCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfTelefoneCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -94,6 +98,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(85, 85, 85));
         jLabel6.setText("Número de Emergência");
 
+        tfTelefoneEmergenciaCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfTelefoneEmergenciaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -104,6 +109,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(85, 85, 85));
         jLabel7.setText("Email");
 
+        tfEmailCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEmailCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEmailCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -114,6 +120,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(85, 85, 85));
         jLabel2.setText("Endereço");
 
+        tfEnderecoCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfEnderecoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEnderecoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEnderecoCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -122,6 +129,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(85, 85, 85));
         jLabel8.setText("Peso");
 
+        tfAlturaCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfAlturaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfAlturaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfAlturaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -133,6 +141,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
 
         jScrollPane3.setBorder(null);
 
+        tfHistoricoSaudeCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfHistoricoSaudeCliente.setColumns(20);
         tfHistoricoSaudeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfHistoricoSaudeCliente.setForeground(new java.awt.Color(54, 54, 54));
@@ -144,6 +153,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(85, 85, 85));
         jLabel11.setText("Matrícula");
 
+        cbMatricula.setBackground(new java.awt.Color(255, 255, 255));
         cbMatricula.setForeground(new java.awt.Color(54, 54, 54));
         cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzena" }));
         cbMatricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -151,6 +161,7 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(85, 85, 85));
         jLabel9.setText("Altura");
 
+        tfPesoCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfPesoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfPesoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfPesoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -181,10 +192,16 @@ public class VisuCadastroView extends javax.swing.JFrame {
         jCustomButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jCustomButton4.setRound(10);
         jCustomButton4.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
+        jCustomButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCustomButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel12.setForeground(new java.awt.Color(85, 85, 85));
         jLabel12.setText("Status");
 
+        cbStatus.setBackground(new java.awt.Color(255, 255, 255));
         cbStatus.setForeground(new java.awt.Color(54, 54, 54));
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inativo", "Ativo", " ", " " }));
         cbStatus.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -193,6 +210,8 @@ public class VisuCadastroView extends javax.swing.JFrame {
                 cbStatusActionPerformed(evt);
             }
         });
+
+        jPanel1.setBackground(new java.awt.Color(243, 243, 243));
 
         labelTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(43, 43, 43));
@@ -356,6 +375,10 @@ public class VisuCadastroView extends javax.swing.JFrame {
     private void cbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbStatusActionPerformed
+
+    private void jCustomButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCustomButton4ActionPerformed
+      dispose();
+    }//GEN-LAST:event_jCustomButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbMatricula;
