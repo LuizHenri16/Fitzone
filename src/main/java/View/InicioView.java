@@ -1,13 +1,16 @@
 package View;
 
+import Controller.UserAccessController;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class InicioView extends javax.swing.JFrame {
 
     public InicioView() {
         initComponents();
-        ListarCadastroClientes();
+        detectarFecharJanela();
     }
     
     
@@ -24,7 +27,22 @@ public class InicioView extends javax.swing.JFrame {
        
        tabelaClientes.setModel(modelo);
     }
+    
+    
+    public void detectarFecharJanela() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                confirmarFecharPrograma();
+            }
+            
+            
+        });
+    }
 
+    public void confirmarFecharPrograma() {
+         new SystemExitConfirm(this, rootPaneCheckingEnabled).setVisible(true);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -101,15 +119,15 @@ public class InicioView extends javax.swing.JFrame {
         ViewFinanceiro = new javax.swing.JPanel();
         labelTitle1 = new javax.swing.JLabel();
         totalMesPanel = new JCustom.JCustomPanel();
-        jCustomPanel12 = new JCustom.JCustomPanel();
+        contentPanel = new JCustom.JCustomPanel();
         jLabel22 = new javax.swing.JLabel();
         totalMesLabel = new javax.swing.JLabel();
         totalReceitasPanel = new JCustom.JCustomPanel();
-        jCustomPanel14 = new JCustom.JCustomPanel();
+        contentPanel2 = new JCustom.JCustomPanel();
         jLabel27 = new javax.swing.JLabel();
         totalReceitaLabel = new javax.swing.JLabel();
         despesasPanel = new JCustom.JCustomPanel();
-        jCustomPanel16 = new JCustom.JCustomPanel();
+        ContentPanel3 = new JCustom.JCustomPanel();
         jLabel29 = new javax.swing.JLabel();
         despesasLabel = new javax.swing.JLabel();
         FinancerioScrollPane = new javax.swing.JScrollPane();
@@ -132,7 +150,7 @@ public class InicioView extends javax.swing.JFrame {
         cancelarBtn = new JCustom.JCustomButton();
         listarADMBtn = new JCustom.JCustomButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 700));
         setResizable(false);
 
@@ -658,7 +676,7 @@ public class InicioView extends javax.swing.JFrame {
         cardCadastrarAluno.setPreferredSize(new java.awt.Dimension(1200, 800));
 
         tfNomeCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfNomeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfNomeCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfNomeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -669,7 +687,7 @@ public class InicioView extends javax.swing.JFrame {
         jLabel1.setText("Nome Completo");
 
         tfEnderecoCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfEnderecoCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfEnderecoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEnderecoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEnderecoCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfEnderecoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -678,7 +696,7 @@ public class InicioView extends javax.swing.JFrame {
         jLabel2.setText("Endereço");
 
         tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
-        tfCPFCLiente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfCPFCLiente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfCPFCLiente.setForeground(new java.awt.Color(54, 54, 54));
         tfCPFCLiente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfCPFCLiente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -689,7 +707,7 @@ public class InicioView extends javax.swing.JFrame {
         jLabel3.setText("CPF");
 
         tfDataNascimentoCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfDataNascimentoCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfDataNascimentoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfDataNascimentoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfDataNascimentoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDataNascimentoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -700,7 +718,7 @@ public class InicioView extends javax.swing.JFrame {
         jLabel4.setText("Data de Nascimento");
 
         tfTelefoneCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfTelefoneCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfTelefoneCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -711,7 +729,7 @@ public class InicioView extends javax.swing.JFrame {
         jLabel5.setText("Número de Telefone");
 
         tfTelefoneEmergenciaCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfTelefoneEmergenciaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfTelefoneEmergenciaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -722,7 +740,7 @@ public class InicioView extends javax.swing.JFrame {
         jLabel6.setText("Número de Emergência");
 
         tfEmailCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEmailCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEmailCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfEmailCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -733,7 +751,7 @@ public class InicioView extends javax.swing.JFrame {
         jLabel7.setText("Email");
 
         tfPesoCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfPesoCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfPesoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfPesoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfPesoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfPesoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -743,7 +761,7 @@ public class InicioView extends javax.swing.JFrame {
         jLabel8.setText("Peso");
 
         tfAlturaCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfAlturaCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfAlturaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfAlturaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfAlturaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfAlturaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -756,7 +774,7 @@ public class InicioView extends javax.swing.JFrame {
 
         tfHistoricoSaudeCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfHistoricoSaudeCliente.setColumns(20);
-        tfHistoricoSaudeCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        tfHistoricoSaudeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfHistoricoSaudeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfHistoricoSaudeCliente.setRows(5);
         tfHistoricoSaudeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -819,16 +837,11 @@ public class InicioView extends javax.swing.JFrame {
         panelButtonsLayout.setVerticalGroup(
             panelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelButtonsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelButtonsLayout.createSequentialGroup()
-                        .addComponent(limparCamposBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(1, 1, 1))
-                    .addGroup(panelButtonsLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelarCadastroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cadastrarAlunoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addGroup(panelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelarCadastroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadastrarAlunoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(limparCamposBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -927,7 +940,7 @@ public class InicioView extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(panelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -1061,8 +1074,8 @@ public class InicioView extends javax.swing.JFrame {
         totalMesPanel.setBackground(new java.awt.Color(183, 115, 6));
         totalMesPanel.setRound(40);
 
-        jCustomPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jCustomPanel12.setRound(30);
+        contentPanel.setBackground(new java.awt.Color(255, 255, 255));
+        contentPanel.setRound(30);
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(183, 115, 6));
@@ -1074,20 +1087,20 @@ public class InicioView extends javax.swing.JFrame {
         totalMesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalMesLabel.setText("jLabel23");
 
-        javax.swing.GroupLayout jCustomPanel12Layout = new javax.swing.GroupLayout(jCustomPanel12);
-        jCustomPanel12.setLayout(jCustomPanel12Layout);
-        jCustomPanel12Layout.setHorizontalGroup(
-            jCustomPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jCustomPanel12Layout.createSequentialGroup()
+        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
+        contentPanel.setLayout(contentPanelLayout);
+        contentPanelLayout.setHorizontalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jCustomPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(totalMesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jCustomPanel12Layout.setVerticalGroup(
-            jCustomPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jCustomPanel12Layout.createSequentialGroup()
+        contentPanelLayout.setVerticalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1101,22 +1114,22 @@ public class InicioView extends javax.swing.JFrame {
             totalMesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(totalMesPanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jCustomPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
         totalMesPanelLayout.setVerticalGroup(
             totalMesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(totalMesPanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jCustomPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
 
         totalReceitasPanel.setBackground(new java.awt.Color(17, 99, 67));
         totalReceitasPanel.setRound(40);
 
-        jCustomPanel14.setBackground(new java.awt.Color(255, 255, 255));
-        jCustomPanel14.setRound(30);
+        contentPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        contentPanel2.setRound(30);
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(17, 99, 67));
@@ -1128,20 +1141,20 @@ public class InicioView extends javax.swing.JFrame {
         totalReceitaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalReceitaLabel.setText("jLabel28");
 
-        javax.swing.GroupLayout jCustomPanel14Layout = new javax.swing.GroupLayout(jCustomPanel14);
-        jCustomPanel14.setLayout(jCustomPanel14Layout);
-        jCustomPanel14Layout.setHorizontalGroup(
-            jCustomPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jCustomPanel14Layout.createSequentialGroup()
+        javax.swing.GroupLayout contentPanel2Layout = new javax.swing.GroupLayout(contentPanel2);
+        contentPanel2.setLayout(contentPanel2Layout);
+        contentPanel2Layout.setHorizontalGroup(
+            contentPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jCustomPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(contentPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(totalReceitaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jCustomPanel14Layout.setVerticalGroup(
-            jCustomPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jCustomPanel14Layout.createSequentialGroup()
+        contentPanel2Layout.setVerticalGroup(
+            contentPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1155,22 +1168,22 @@ public class InicioView extends javax.swing.JFrame {
             totalReceitasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(totalReceitasPanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jCustomPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(contentPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
         totalReceitasPanelLayout.setVerticalGroup(
             totalReceitasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(totalReceitasPanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jCustomPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(contentPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
 
         despesasPanel.setBackground(new java.awt.Color(196, 80, 92));
         despesasPanel.setRound(40);
 
-        jCustomPanel16.setBackground(new java.awt.Color(255, 255, 255));
-        jCustomPanel16.setRound(30);
+        ContentPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        ContentPanel3.setRound(30);
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(196, 80, 92));
@@ -1182,20 +1195,20 @@ public class InicioView extends javax.swing.JFrame {
         despesasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         despesasLabel.setText("jLabel30");
 
-        javax.swing.GroupLayout jCustomPanel16Layout = new javax.swing.GroupLayout(jCustomPanel16);
-        jCustomPanel16.setLayout(jCustomPanel16Layout);
-        jCustomPanel16Layout.setHorizontalGroup(
-            jCustomPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jCustomPanel16Layout.createSequentialGroup()
+        javax.swing.GroupLayout ContentPanel3Layout = new javax.swing.GroupLayout(ContentPanel3);
+        ContentPanel3.setLayout(ContentPanel3Layout);
+        ContentPanel3Layout.setHorizontalGroup(
+            ContentPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jCustomPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ContentPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(despesasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jCustomPanel16Layout.setVerticalGroup(
-            jCustomPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jCustomPanel16Layout.createSequentialGroup()
+        ContentPanel3Layout.setVerticalGroup(
+            ContentPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1209,14 +1222,14 @@ public class InicioView extends javax.swing.JFrame {
             despesasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(despesasPanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jCustomPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ContentPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
         despesasPanelLayout.setVerticalGroup(
             despesasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(despesasPanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jCustomPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ContentPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
 
@@ -1250,7 +1263,6 @@ public class InicioView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        FinanceiroTable.setColumnSelectionAllowed(false);
         FinanceiroTable.setGridColor(new java.awt.Color(107, 62, 35));
         FinanceiroTable.setRowHeight(35);
         FinanceiroTable.setSelectionBackground(new java.awt.Color(255, 249, 237));
@@ -1367,10 +1379,11 @@ public class InicioView extends javax.swing.JFrame {
         jLabel13.setText("Usuário de Acesso");
 
         tfNewUserName.setBackground(java.awt.Color.white);
-        tfNewUserName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tfNewUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tfNewUserName.setForeground(new java.awt.Color(69, 64, 64));
         tfNewUserName.setToolTipText("");
         tfNewUserName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfNewUserName.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(85, 85, 85));
@@ -1410,6 +1423,11 @@ public class InicioView extends javax.swing.JFrame {
         cadastrarADMBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cadastrarADMBtn.setRound(10);
         cadastrarADMBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
+        cadastrarADMBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarADMBtnActionPerformed(evt);
+            }
+        });
 
         cancelarBtn.setForeground(new java.awt.Color(107, 62, 35));
         cancelarBtn.setText("Cancelar");
@@ -1471,7 +1489,7 @@ public class InicioView extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbAccessType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1508,7 +1526,7 @@ public class InicioView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed
-        System.exit(0);
+       confirmarFecharPrograma();
     }//GEN-LAST:event_sairBtnActionPerformed
 
     private void btViewPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btViewPrincipalActionPerformed
@@ -1557,6 +1575,10 @@ public class InicioView extends javax.swing.JFrame {
         new CadastroPagamentoView().setVisible(true);
     }//GEN-LAST:event_cadastroPagamentoBtnActionPerformed
 
+    private void cadastrarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarADMBtnActionPerformed
+        UserAccessController.cadastrarController(tfNewUserName, tfNewPassword, tfNewPasswordConfirm, cbAccessType);
+    }//GEN-LAST:event_cadastrarADMBtnActionPerformed
+
         public void viewChange(String cardName) {
         CardLayout layout = (CardLayout) ViewsPanelCardLayout.getLayout();
         layout.show(ViewsPanelCardLayout, cardName);
@@ -1565,6 +1587,7 @@ public class InicioView extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JCustom.JCustomPanel ContentPanel3;
     private javax.swing.JTable FinanceiroTable;
     private javax.swing.JScrollPane FinancerioScrollPane;
     private JCustom.JCustomPanel LabelEstatisticas;
@@ -1595,13 +1618,12 @@ public class InicioView extends javax.swing.JFrame {
     private javax.swing.JPanel cardCadastrarAluno;
     private javax.swing.JComboBox<String> cbAccessType;
     private javax.swing.JComboBox<String> cbMatricula;
+    private JCustom.JCustomPanel contentPanel;
+    private JCustom.JCustomPanel contentPanel2;
     private javax.swing.JLabel despesasLabel;
     private JCustom.JCustomPanel despesasPanel;
     private javax.swing.JPanel headerPanel;
     private JCustom.JCustomPanel jCustomPanel11;
-    private JCustom.JCustomPanel jCustomPanel12;
-    private JCustom.JCustomPanel jCustomPanel14;
-    private JCustom.JCustomPanel jCustomPanel16;
     private JCustom.JCustomPanel jCustomPanel4;
     private JCustom.JCustomPanel jCustomPanel5;
     private JCustom.JCustomPanel jCustomPanel6;

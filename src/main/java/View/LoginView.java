@@ -80,23 +80,26 @@ public class LoginView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 249, 237));
         jLabel2.setText("Usuário");
 
-        tfUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tfUserName.setBackground(new java.awt.Color(255, 255, 255));
+        tfUserName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfUserName.setForeground(new java.awt.Color(51, 51, 51));
-        tfUserName.setBorder(null);
+        tfUserName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         tfUserName.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 249, 237));
         jLabel3.setText("Senha");
 
-        tfPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tfPassword.setBackground(new java.awt.Color(255, 255, 255));
+        tfPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfPassword.setForeground(new java.awt.Color(51, 51, 51));
-        tfPassword.setBorder(null);
+        tfPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         tfPassword.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
         loginBtn.setForeground(new java.awt.Color(107, 62, 35));
         loginBtn.setText("Login");
         loginBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        loginBtn.setRolloverEnabled(true);
         loginBtn.setRound(10);
         loginBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
         loginBtn.addActionListener(new java.awt.event.ActionListener() {

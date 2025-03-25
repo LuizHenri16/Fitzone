@@ -1,9 +1,12 @@
 
 package View;
 
+import Controller.UserAccessController;
+import Entity.UserAccess;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class VisualizarADMView extends javax.swing.JFrame {
@@ -20,6 +23,11 @@ public class VisualizarADMView extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) VisualizarADMTable.getModel();
         modelo.setRowCount(0);
         
+        
+        
+        List<UserAccess> lista = UserAccessController.listarController();//Aqui vai receber os usuários
+        
+        //Por enquanto deixei esses dois para exemplificar
         
         String[] linha = {
             "Lucas Henrique","Total"
@@ -43,8 +51,8 @@ public class VisualizarADMView extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VisualizarADMTable = new javax.swing.JTable();
-        jCustomButton1 = new JCustom.JCustomButton();
-        jCustomButton2 = new JCustom.JCustomButton();
+        sairBtn = new JCustom.JCustomButton();
+        removerUsuarioBtn = new JCustom.JCustomButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizar Administradores");
@@ -90,22 +98,27 @@ public class VisualizarADMView extends javax.swing.JFrame {
         VisualizarADMTable.setSelectionForeground(new java.awt.Color(107, 62, 35));
         jScrollPane1.setViewportView(VisualizarADMTable);
 
-        jCustomButton1.setForeground(new java.awt.Color(107, 62, 35));
-        jCustomButton1.setText("Sair");
-        jCustomButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jCustomButton1.setRound(10);
-        jCustomButton1.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
-        jCustomButton1.addActionListener(new java.awt.event.ActionListener() {
+        sairBtn.setForeground(new java.awt.Color(107, 62, 35));
+        sairBtn.setText("Sair");
+        sairBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        sairBtn.setRound(10);
+        sairBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
+        sairBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCustomButton1ActionPerformed(evt);
+                sairBtnActionPerformed(evt);
             }
         });
 
-        jCustomButton2.setForeground(new java.awt.Color(255, 249, 237));
-        jCustomButton2.setText("Remover");
-        jCustomButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jCustomButton2.setRound(10);
-        jCustomButton2.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
+        removerUsuarioBtn.setForeground(new java.awt.Color(255, 249, 237));
+        removerUsuarioBtn.setText("Remover");
+        removerUsuarioBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        removerUsuarioBtn.setRound(10);
+        removerUsuarioBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
+        removerUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerUsuarioBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,9 +135,9 @@ public class VisualizarADMView extends javax.swing.JFrame {
                         .addContainerGap(8, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCustomButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(removerUsuarioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jCustomButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,8 +149,8 @@ public class VisualizarADMView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCustomButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCustomButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removerUsuarioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -156,17 +169,21 @@ public class VisualizarADMView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCustomButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCustomButton1ActionPerformed
+    private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed
         dispose();
-    }//GEN-LAST:event_jCustomButton1ActionPerformed
+    }//GEN-LAST:event_sairBtnActionPerformed
+
+    private void removerUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerUsuarioBtnActionPerformed
+       
+    }//GEN-LAST:event_removerUsuarioBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable VisualizarADMTable;
-    private JCustom.JCustomButton jCustomButton1;
-    private JCustom.JCustomButton jCustomButton2;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private JCustom.JCustomButton removerUsuarioBtn;
+    private JCustom.JCustomButton sairBtn;
     // End of variables declaration//GEN-END:variables
 }
