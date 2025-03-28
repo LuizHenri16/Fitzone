@@ -2,6 +2,7 @@ package Controller;
 
 import Entity.Despesa;
 import Service.FinanceiroSerivce;
+import Validation.DIALOG;
 import View.AvisoForm;
 
 import javax.swing.*;
@@ -11,13 +12,13 @@ public class FinanceiroController {
     public static void cadastrarDespesaController(JTextField descricaoField,JTextField valorField, JTextField dataField ) {
 
         if (descricaoField.getText().isBlank() && valorField.getText().isBlank() && dataField.getText().isBlank()) {
-            new AvisoForm(null, true, "Preencha os campos para adicionar uma despesa").setVisible(true);
+            DIALOG.exbirMensagem(null, "Preencha os campos para adicionar uma despesa");
         } else if (descricaoField.getText().isBlank()) {
-            new AvisoForm(null, true, "Digite a descrição da despesa").setVisible(true);
+            DIALOG.exbirMensagem(null, "Digite a descrição da despesa");
         } else if (valorField.getText().isBlank()) {
-            new AvisoForm(null, true, "Digite o valor da despesa").setVisible(true);
+            DIALOG.exbirMensagem(null, "Digite o valor da despesa");
         } else if (dataField.getText().isBlank()) {
-            new AvisoForm(null, true, "Digite a data em que ocorreu a despesa").setVisible(true);
+            DIALOG.exbirMensagem(null, "Digite a data em que ocorreu a despesa");
         } else {
             FinanceiroSerivce.cadastrarDespesaService();
         }

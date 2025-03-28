@@ -2,6 +2,7 @@ package Controller;
 
 import Entity.Cliente;
 import Service.ClienteService;
+import Validation.DIALOG;
 import Validation.FORMAT;
 import View.AvisoForm;
 import View.InicioView;
@@ -36,34 +37,33 @@ public class ClienteController {
         }
 
         if (camposVazio && camposTelefoneVazio && tfHistoricoSaudeCliente.getText().isBlank() && cbMatricula.getSelectedIndex() == 0 ) {
-            new AvisoForm(null, true, "Preencha as informações necessárias").setVisible(true);
+            DIALOG.exbirMensagem(null, "Preencha as informações necessárias");
         } else if (tfNomeCliente.getText().isBlank()) {
-            new AvisoForm(parent, true, "Digite o nome do aluno").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite o nome do aluno");
         } else if (FORMAT.formatarCPF(tfCPFCLiente.getText()).isBlank()) {
-            new AvisoForm(parent, true, "Digite o CPF do aluno").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite o CPF do aluno");
         } else if (FORMAT.formatarData(tfdataNascimento.getText()).isBlank()) {
-            new AvisoForm(parent, true, "Digite a data de nascimento").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite a data de nascimento");
         }   else if (FORMAT.formatarNumero(tfTelefoneCliente.getText()).isBlank()) {
-            new AvisoForm(parent, true, "Digite o telefone do aluno").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite o telefone do aluno");
         } else if (FORMAT.formatarNumero(tfTelefoneEmergenciaCliente.getText()).isBlank()) {
-            new AvisoForm(parent, true, "Digite um telefone de emergência ").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite um telefone de emergência ");
         } else if (tfEmailCliente.getText().isBlank()) {
-            new AvisoForm(parent, true, "Digite o email do aluno").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite o email do aluno");
         } else if (tfEnderecoCliente.getText().isBlank()) {
-            new AvisoForm(parent, true, "Digite o endereço do aluno").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite o endereço do aluno");
         } else if (tfPesoCliente.getText().trim().isBlank()) {
-            new AvisoForm(parent, true, "Digite o peso do aluno").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite o peso do aluno");
         } else if (tfAlturaCliente.getText().trim().isBlank()) {
-            new AvisoForm(parent, true, "Digite a altura do aluno").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite a altura do aluno");
         } else if (tfHistoricoSaudeCliente.getText().isBlank()) {
-            new AvisoForm(parent, true, "Digite o histórico de saúde do aluno").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Digite o histórico de saúde do aluno");
         } else if (cbMatricula.getSelectedIndex() == 0) {
-            new AvisoForm(parent, true, "Escolha o tipo de matrícula").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Escolha o tipo de matrícula");
         } else {
-            new AvisoForm(parent, true, "Cadastro realizado com sucesso").setVisible(true);
+            DIALOG.exbirMensagem(parent, "Cadastro realizado com sucesso");
         }
     }
-
     public static void editarController(Integer idCliente) {
     }
 

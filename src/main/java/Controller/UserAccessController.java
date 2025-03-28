@@ -2,6 +2,7 @@ package Controller;
 
 import Entity.UserAccess;
 import Service.UserAccessService;
+import Validation.DIALOG;
 import View.AvisoForm;
 
 import javax.swing.*;
@@ -15,6 +16,11 @@ public class UserAccessController {
     public static UserAccess login(JTextField userNameLogin, JPasswordField passwordFieldLogin) {
         UserAccess usuario = null;
 
+        if (userNameLogin.getText().isBlank()) {
+            DIALOG.exbirMensagem(null, "Preencha os campos para adicionar um novo usuário");
+        }
+
+
         return usuario;
     }
 
@@ -25,25 +31,25 @@ public class UserAccessController {
             String passwordConfirm = new String(passwordConfirmFieldLogin.getPassword());
 
             if (userNameLogin.getText().isBlank() && password.isBlank() && passwordConfirm.isBlank()) {
-                new AvisoForm(null, true, "Preencha os campos para adicionar um novo usuário").setVisible(true);
+                DIALOG.exbirMensagem(null, "Preencha os campos para adicionar um novo usuário");
             } else if (userNameLogin.getText().isBlank()) {
-                new AvisoForm(null, true, "Digite o nome de usuário").setVisible(true);
+                DIALOG.exbirMensagem(null, "Digite o nome de usuário");
             } else if (password.isBlank()) {
-                new AvisoForm(null, true, "Digite a senha do usuário").setVisible(true);
+                DIALOG.exbirMensagem(null, "Digite a senha do usuário");
             } else if (password.length() < 8) {
-                new AvisoForm(null, true, "A senha deve conter ao menos 8 caracteres").setVisible(true);
+                DIALOG.exbirMensagem(null, "A senha deve conter ao menos 8 caracteres");
             } else if (passwordConfirm.isBlank()) {
-                new AvisoForm(null, true, "Digite a senha de confirmação").setVisible(true);
+                DIALOG.exbirMensagem(null, "Digite a senha de confirmação");
             } else if (!passwordConfirm.equals(password)) {
-                new AvisoForm(null, true, "As senhas não conferem").setVisible(true);
+                DIALOG.exbirMensagem(null, "As senhas não conferem");
             } else if (tipoUsuarioCombobox.getSelectedIndex() == 0) {
-                new AvisoForm(null, true, "Selecione um tipo de acesso").setVisible(true);
+                DIALOG.exbirMensagem(null, "Selecione um tipo de acesso");
             } else {
                   UserAccessService.cadastrarService(userNameLogin.getText(), passwordConfirm, (String) tipoUsuarioCombobox.getSelectedItem());
             }
 
         } catch (Exception e) {
-            new AvisoForm(null, true, "Ocorreu algum erro ao tentar adicionar o usuário").setVisible(true);
+            DIALOG.exbirMensagem(null, "Ocorreu algum erro ao tentar adicionar o usuário");
         }
     }
 

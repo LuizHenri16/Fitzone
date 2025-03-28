@@ -2,12 +2,19 @@ package Service;
 
 import Entity.UserAccess;
 import Repository.UserAccessRepository;
+import Validation.DIALOG;
 import Validation.MD5;
 import View.AvisoForm;
 import java.util.List;
 
 public class UserAccessService {
-    
+
+    public static UserAccess loginService() {
+        UserAccess usuario = UserAccessRepository.loginRepository();
+            //Validação do login e retorno o usuário
+        return usuario;
+    }
+
     public static void cadastrarService(String userName, String passwordConfirm, String accessType) {
            try {
                UserAccess newUser = new UserAccess();
@@ -19,7 +26,7 @@ public class UserAccessService {
                UserAccessRepository.cadastrarRepository(newUser);
                
         } catch (Exception e) {
-             new AvisoForm(null, true, "Ocorreu um erro no cadastro!").setVisible(true);
+               DIALOG.exbirMensagem(null, "Ocorreu um erro no cadastro!");
         }
     }
     

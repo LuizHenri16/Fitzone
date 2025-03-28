@@ -1,10 +1,19 @@
 package Repository;
 
 import Entity.UserAccess;
+import Service.UserAccessService;
+
 import java.util.List;
 
 public class UserAccessRepository {
-    
+
+    public static UserAccess loginRepository() {
+        UserAccess usuario = UserAccessService.loginService();
+
+
+        return usuario;
+    }
+
     public static void cadastrarRepository(UserAccess usuario) {
         
     }
@@ -17,4 +26,6 @@ public class UserAccessRepository {
     public static void apagarRepository() {
 
     }
+
+
 }
