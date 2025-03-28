@@ -20,7 +20,6 @@ public class SystemExitConfirm extends java.awt.Dialog {
         sairBtn = new JCustom.JCustomButton();
         continuarBtn = new JCustom.JCustomButton();
 
-        setAlwaysOnTop(true);
         setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

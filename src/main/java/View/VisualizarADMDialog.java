@@ -1,49 +1,17 @@
-
 package View;
 
-import Controller.UserAccessController;
-import Entity.UserAccess;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
-public class VisualizarADMView extends javax.swing.JFrame {
+public class VisualizarADMDialog extends java.awt.Dialog {
 
 
-    public VisualizarADMView() {
+    public VisualizarADMDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        listarAdministradores();
-    }
-    
-    
-    
-    public void listarAdministradores() {
-        DefaultTableModel modelo = (DefaultTableModel) VisualizarADMTable.getModel();
-        modelo.setRowCount(0);
-        
-        
-        
-        List<UserAccess> lista = UserAccessController.listarController();//Aqui vai receber os usuários
-        
-        //Por enquanto deixei esses dois para exemplificar
-        
-        String[] linha = {
-            "Lucas Henrique","Total"
-        };
-        String[] linha2 = {
-            "Vitória Rodrigues","Parcial"
-        };
-        
-        modelo.addRow(linha);
-        modelo.addRow(linha2);
-        
-        
-        VisualizarADMTable.setModel(modelo);
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -54,9 +22,14 @@ public class VisualizarADMView extends javax.swing.JFrame {
         sairBtn = new JCustom.JCustomButton();
         removerUsuarioBtn = new JCustom.JCustomButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Visualizar Administradores");
         setResizable(false);
+        setTitle("Visualizar Administradores");
+        setType(java.awt.Window.Type.POPUP);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeDialog(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(243, 243, 243));
 
@@ -138,7 +111,7 @@ public class VisualizarADMView extends javax.swing.JFrame {
                 .addComponent(removerUsuarioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,36 +120,31 @@ public class VisualizarADMView extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removerUsuarioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                    .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removerUsuarioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_closeDialog
 
     private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed
         dispose();
     }//GEN-LAST:event_sairBtnActionPerformed
 
     private void removerUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerUsuarioBtnActionPerformed
-       
-    }//GEN-LAST:event_removerUsuarioBtnActionPerformed
 
+    }//GEN-LAST:event_removerUsuarioBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable VisualizarADMTable;

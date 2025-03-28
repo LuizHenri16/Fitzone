@@ -1,25 +1,24 @@
-
 package View;
 
+import Controller.FinanceiroController;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-public class CadastroDespesaView extends javax.swing.JFrame {
+public class CadastroDespesaDialog extends java.awt.Dialog {
 
-
-    public CadastroDespesaView() {
+    public CadastroDespesaDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
- 
-    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         panel = new javax.swing.JPanel();
-        jCustomButton1 = new JCustom.JCustomButton();
-        jCustomButton2 = new JCustom.JCustomButton();
+        cadastrarDespesaBtn = new JCustom.JCustomButton();
+        sairBtn = new JCustom.JCustomButton();
         tfDescricaoDespesa = new javax.swing.JTextField();
         tfDataPagamentoDespesa = new javax.swing.JTextField();
         tfValorDespesa = new javax.swing.JTextField();
@@ -29,27 +28,37 @@ public class CadastroDespesaView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         despesaTabela = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastrar Despesa");
         setResizable(false);
+        setTitle("Cadastro de Despesa");
+        setType(java.awt.Window.Type.POPUP);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeDialog(evt);
+            }
+        });
 
         panel.setBackground(new java.awt.Color(243, 243, 243));
         panel.setToolTipText("");
 
-        jCustomButton1.setForeground(new java.awt.Color(255, 249, 237));
-        jCustomButton1.setText("Concluir");
-        jCustomButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jCustomButton1.setRound(10);
-        jCustomButton1.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
-
-        jCustomButton2.setForeground(new java.awt.Color(107, 62, 35));
-        jCustomButton2.setText("Voltar");
-        jCustomButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jCustomButton2.setRound(10);
-        jCustomButton2.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
-        jCustomButton2.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarDespesaBtn.setForeground(new java.awt.Color(255, 249, 237));
+        cadastrarDespesaBtn.setText("Concluir");
+        cadastrarDespesaBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cadastrarDespesaBtn.setRound(10);
+        cadastrarDespesaBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
+        cadastrarDespesaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCustomButton2ActionPerformed(evt);
+                cadastrarDespesaBtnActionPerformed(evt);
+            }
+        });
+
+        sairBtn.setForeground(new java.awt.Color(107, 62, 35));
+        sairBtn.setText("Voltar");
+        sairBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        sairBtn.setRound(10);
+        sairBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
+        sairBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairBtnActionPerformed(evt);
             }
         });
 
@@ -60,11 +69,6 @@ public class CadastroDespesaView extends javax.swing.JFrame {
         tfDescricaoDespesa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfDescricaoDespesa.setMaximumSize(new java.awt.Dimension(370, 40));
         tfDescricaoDespesa.setMinimumSize(new java.awt.Dimension(220, 22));
-        tfDescricaoDespesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDescricaoDespesaActionPerformed(evt);
-            }
-        });
 
         tfDataPagamentoDespesa.setBackground(new java.awt.Color(255, 255, 255));
         tfDataPagamentoDespesa.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
@@ -135,19 +139,13 @@ public class CadastroDespesaView extends javax.swing.JFrame {
         despesaTabela.setSelectionBackground(new java.awt.Color(255, 249, 237));
         despesaTabela.setSelectionForeground(new java.awt.Color(107, 62, 35));
         jScrollPane1.setViewportView(despesaTabela);
-        if (despesaTabela.getColumnModel().getColumnCount() > 0) {
-            despesaTabela.getColumnModel().getColumn(0).setResizable(false);
-            despesaTabela.getColumnModel().getColumn(0).setPreferredWidth(150);
-            despesaTabela.getColumnModel().getColumn(1).setResizable(false);
-            despesaTabela.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -160,18 +158,18 @@ public class CadastroDespesaView extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tfDataPagamentoDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(panelLayout.createSequentialGroup()
-                            .addComponent(jCustomButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jCustomButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cadastrarDespesaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(tfDescricaoDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel1))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,44 +184,39 @@ public class CadastroDespesaView extends javax.swing.JFrame {
                     .addComponent(tfDataPagamentoDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCustomButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCustomButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cadastrarDespesaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(panel, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCustomButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCustomButton2ActionPerformed
-       dispose();
-    }//GEN-LAST:event_jCustomButton2ActionPerformed
+    private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_closeDialog
 
-    private void tfDescricaoDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDescricaoDespesaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDescricaoDespesaActionPerformed
+    private void cadastrarDespesaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarDespesaBtnActionPerformed
+        FinanceiroController.cadastrarDespesaController(tfDescricaoDespesa, tfValorDespesa, tfDataPagamentoDespesa);
+    }//GEN-LAST:event_cadastrarDespesaBtnActionPerformed
 
+    private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed
+        dispose();
+    }//GEN-LAST:event_sairBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JCustom.JCustomButton cadastrarDespesaBtn;
     private javax.swing.JTable despesaTabela;
-    private JCustom.JCustomButton jCustomButton1;
-    private JCustom.JCustomButton jCustomButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
+    private JCustom.JCustomButton sairBtn;
     private javax.swing.JTextField tfDataPagamentoDespesa;
     private javax.swing.JTextField tfDescricaoDespesa;
     private javax.swing.JTextField tfValorDespesa;

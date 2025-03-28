@@ -1,5 +1,6 @@
 package View;
 
+import Controller.ClienteController;
 import Controller.UserAccessController;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -12,37 +13,55 @@ public class InicioView extends javax.swing.JFrame {
         initComponents();
         detectarFecharJanela();
     }
-    
-    
+
     public void ListarCadastroClientes() {
-        
-        DefaultTableModel modelo  = (DefaultTableModel) tabelaClientes.getModel();
+
+        DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
         modelo.setRowCount(0);
-        
-       String[] linha = {
-           "1","Luiz", "222", "222", "Ativo"
-       };
-       
-       modelo.addRow(linha);
-       
-       tabelaClientes.setModel(modelo);
+
+        String[] linha = {
+            "1", "Luiz", "222", "222", "Ativo"
+        };
+
+        modelo.addRow(linha);
+
+        tabelaClientes.setModel(modelo);
     }
-    
-    
+
     public void detectarFecharJanela() {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 confirmarFecharPrograma();
             }
-            
-            
         });
     }
 
     public void confirmarFecharPrograma() {
-         new SystemExitConfirm(this, rootPaneCheckingEnabled).setVisible(true);
+        new SystemExitConfirm(this, rootPaneCheckingEnabled).setVisible(true);
     }
+    
+    public void limparCamposCadastroAluno() {
+        tfNomeCliente.setText("");
+        tfCPFCLiente.setText("");
+        tfdataNascimento.setText("");
+        tfEmailCliente.setText("");
+        tfTelefoneCliente.setText("");
+        tfTelefoneEmergenciaCliente.setText("");
+        tfPesoAluno.setText("");
+        tfAlturaCliente.setText("");
+        tfHistoricoSaudeCliente.setText("");
+        tfEnderecoCliente.setText("");
+        cbMatricula.setSelectedIndex(0);
+    }
+    
+    public void limparCamposCadastroADM() {
+        tfNewUserName.setText("");
+        tfNewPassword.setText("");
+        tfNewPasswordConfirm.setText("");
+        cbAccessType.setSelectedIndex(0);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,19 +106,15 @@ public class InicioView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tfEnderecoCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        tfCPFCLiente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tfDataNascimentoCliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tfTelefoneCliente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        tfTelefoneEmergenciaCliente = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         tfEmailCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        tfPesoCliente = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         tfAlturaCliente = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tfPesoAluno = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tfHistoricoSaudeCliente = new javax.swing.JTextArea();
@@ -111,6 +126,10 @@ public class InicioView extends javax.swing.JFrame {
         cadastrarAlunoBtn = new JCustom.JCustomButton();
         cancelarCadastroBtn = new JCustom.JCustomButton();
         limparCamposBtn = new JCustom.JCustomButton();
+        tfdataNascimento = new javax.swing.JFormattedTextField();
+        tfTelefoneEmergenciaCliente = new javax.swing.JFormattedTextField();
+        tfCPFCLiente = new javax.swing.JFormattedTextField();
+        tfTelefoneCliente = new javax.swing.JFormattedTextField();
         ViewListaCadastro = new javax.swing.JPanel();
         cadastroAlunoScrollPane = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
@@ -151,6 +170,7 @@ public class InicioView extends javax.swing.JFrame {
         listarADMBtn = new JCustom.JCustomButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Início");
         setMinimumSize(new java.awt.Dimension(1200, 700));
         setResizable(false);
 
@@ -695,46 +715,14 @@ public class InicioView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(85, 85, 85));
         jLabel2.setText("Endereço");
 
-        tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
-        tfCPFCLiente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tfCPFCLiente.setForeground(new java.awt.Color(54, 54, 54));
-        tfCPFCLiente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        tfCPFCLiente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfCPFCLiente.setMaximumSize(new java.awt.Dimension(328, 22));
-        tfCPFCLiente.setMinimumSize(new java.awt.Dimension(220, 22));
-
         jLabel3.setForeground(new java.awt.Color(85, 85, 85));
         jLabel3.setText("CPF");
-
-        tfDataNascimentoCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfDataNascimentoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tfDataNascimentoCliente.setForeground(new java.awt.Color(54, 54, 54));
-        tfDataNascimentoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfDataNascimentoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfDataNascimentoCliente.setMaximumSize(new java.awt.Dimension(328, 22));
-        tfDataNascimentoCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
         jLabel4.setForeground(new java.awt.Color(85, 85, 85));
         jLabel4.setText("Data de Nascimento");
 
-        tfTelefoneCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tfTelefoneCliente.setForeground(new java.awt.Color(54, 54, 54));
-        tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        tfTelefoneCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfTelefoneCliente.setMaximumSize(new java.awt.Dimension(328, 22));
-        tfTelefoneCliente.setMinimumSize(new java.awt.Dimension(220, 22));
-
         jLabel5.setForeground(new java.awt.Color(85, 85, 85));
         jLabel5.setText("Número de Telefone");
-
-        tfTelefoneEmergenciaCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tfTelefoneEmergenciaCliente.setForeground(new java.awt.Color(54, 54, 54));
-        tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        tfTelefoneEmergenciaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfTelefoneEmergenciaCliente.setMaximumSize(new java.awt.Dimension(328, 22));
-        tfTelefoneEmergenciaCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
         jLabel6.setForeground(new java.awt.Color(85, 85, 85));
         jLabel6.setText("Número de Emergência");
@@ -750,22 +738,22 @@ public class InicioView extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(85, 85, 85));
         jLabel7.setText("Email");
 
-        tfPesoCliente.setBackground(new java.awt.Color(255, 255, 255));
-        tfPesoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tfPesoCliente.setForeground(new java.awt.Color(54, 54, 54));
-        tfPesoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfPesoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfPesoCliente.setMinimumSize(new java.awt.Dimension(50, 22));
-
-        jLabel8.setForeground(new java.awt.Color(85, 85, 85));
-        jLabel8.setText("Peso");
-
         tfAlturaCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfAlturaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfAlturaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfAlturaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfAlturaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfAlturaCliente.setMinimumSize(new java.awt.Dimension(50, 22));
+
+        jLabel8.setForeground(new java.awt.Color(85, 85, 85));
+        jLabel8.setText("Peso");
+
+        tfPesoAluno.setBackground(new java.awt.Color(255, 255, 255));
+        tfPesoAluno.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tfPesoAluno.setForeground(new java.awt.Color(54, 54, 54));
+        tfPesoAluno.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoAluno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfPesoAluno.setMinimumSize(new java.awt.Dimension(50, 22));
 
         jLabel9.setForeground(new java.awt.Color(85, 85, 85));
         jLabel9.setText("Altura");
@@ -807,6 +795,11 @@ public class InicioView extends javax.swing.JFrame {
         cadastrarAlunoBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cadastrarAlunoBtn.setRound(10);
         cadastrarAlunoBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
+        cadastrarAlunoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarAlunoBtnActionPerformed(evt);
+            }
+        });
 
         cancelarCadastroBtn.setForeground(new java.awt.Color(107, 62, 35));
         cancelarCadastroBtn.setText("Cancelar");
@@ -814,12 +807,22 @@ public class InicioView extends javax.swing.JFrame {
         cancelarCadastroBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cancelarCadastroBtn.setRound(10);
         cancelarCadastroBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
+        cancelarCadastroBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarCadastroBtnActionPerformed(evt);
+            }
+        });
 
         limparCamposBtn.setForeground(new java.awt.Color(107, 62, 35));
         limparCamposBtn.setText("Limpar campos");
         limparCamposBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         limparCamposBtn.setRound(10);
         limparCamposBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
+        limparCamposBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparCamposBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelButtonsLayout = new javax.swing.GroupLayout(panelButtons);
         panelButtons.setLayout(panelButtonsLayout);
@@ -845,6 +848,50 @@ public class InicioView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        tfdataNascimento.setBackground(new java.awt.Color(255, 255, 255));
+        tfdataNascimento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfdataNascimento.setForeground(new java.awt.Color(54, 54, 54));
+        try {
+            tfdataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfdataNascimento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfdataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        tfTelefoneEmergenciaCliente.setBackground(new java.awt.Color(255, 255, 255));
+        tfTelefoneEmergenciaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfTelefoneEmergenciaCliente.setForeground(new java.awt.Color(51, 51, 51));
+        try {
+            tfTelefoneEmergenciaCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
+        tfCPFCLiente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfCPFCLiente.setForeground(new java.awt.Color(51, 51, 51));
+        try {
+            tfCPFCLiente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfCPFCLiente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCPFCLiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        tfTelefoneCliente.setBackground(new java.awt.Color(255, 255, 255));
+        tfTelefoneCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfTelefoneCliente.setForeground(new java.awt.Color(51, 51, 51));
+        try {
+            tfTelefoneCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout cardCadastrarAlunoLayout = new javax.swing.GroupLayout(cardCadastrarAluno);
         cardCadastrarAluno.setLayout(cardCadastrarAlunoLayout);
         cardCadastrarAlunoLayout.setHorizontalGroup(
@@ -855,31 +902,31 @@ public class InicioView extends javax.swing.JFrame {
                     .addComponent(panelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(cardCadastrarAlunoLayout.createSequentialGroup()
                         .addGroup(cardCadastrarAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(tfEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17)
+                            .addComponent(tfCPFCLiente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(cardCadastrarAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tfTelefoneEmergenciaCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tfTelefoneCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfEmailCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfDataNascimentoCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfCPFCLiente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(tfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfTelefoneEmergenciaCliente, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfTelefoneCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)))
                         .addGap(70, 70, 70)
                         .addGroup(cardCadastrarAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardCadastrarAlunoLayout.createSequentialGroup()
                                 .addGroup(cardCadastrarAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfAlturaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfPesoAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel8))
                                 .addGap(108, 108, 108)
                                 .addGroup(cardCadastrarAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
-                                    .addComponent(tfPesoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(tfAlturaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(tfEnderecoCliente)
                             .addComponent(jLabel10)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -902,18 +949,21 @@ public class InicioView extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfCPFCLiente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfDataNascimentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfTelefoneEmergenciaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfTelefoneEmergenciaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 9, Short.MAX_VALUE))
                     .addGroup(cardCadastrarAlunoLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -923,10 +973,10 @@ public class InicioView extends javax.swing.JFrame {
                             .addGroup(cardCadastrarAlunoLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfAlturaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfPesoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(cardCadastrarAlunoLayout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addComponent(tfPesoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfAlturaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel10)
@@ -935,12 +985,10 @@ public class InicioView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)))
                 .addComponent(tfEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(panelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -1082,10 +1130,10 @@ public class InicioView extends javax.swing.JFrame {
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Total do Mês");
 
-        totalMesLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        totalMesLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         totalMesLabel.setForeground(new java.awt.Color(183, 115, 6));
         totalMesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        totalMesLabel.setText("jLabel23");
+        totalMesLabel.setText("R$ 6500");
 
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
@@ -1136,10 +1184,10 @@ public class InicioView extends javax.swing.JFrame {
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText("Total de Receitas");
 
-        totalReceitaLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        totalReceitaLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         totalReceitaLabel.setForeground(new java.awt.Color(17, 99, 67));
         totalReceitaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        totalReceitaLabel.setText("jLabel28");
+        totalReceitaLabel.setText("R$ 8000");
 
         javax.swing.GroupLayout contentPanel2Layout = new javax.swing.GroupLayout(contentPanel2);
         contentPanel2.setLayout(contentPanel2Layout);
@@ -1190,10 +1238,10 @@ public class InicioView extends javax.swing.JFrame {
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("Despesas");
 
-        despesasLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        despesasLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         despesasLabel.setForeground(new java.awt.Color(196, 80, 92));
         despesasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        despesasLabel.setText("jLabel30");
+        despesasLabel.setText("R$ 1500");
 
         javax.swing.GroupLayout ContentPanel3Layout = new javax.swing.GroupLayout(ContentPanel3);
         ContentPanel3.setLayout(ContentPanel3Layout);
@@ -1434,6 +1482,11 @@ public class InicioView extends javax.swing.JFrame {
         cancelarBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cancelarBtn.setRound(10);
         cancelarBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
 
         listarADMBtn.setForeground(new java.awt.Color(255, 249, 237));
         listarADMBtn.setText("listar");
@@ -1526,16 +1579,16 @@ public class InicioView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed
-       confirmarFecharPrograma();
+        confirmarFecharPrograma();
     }//GEN-LAST:event_sairBtnActionPerformed
 
     private void btViewPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btViewPrincipalActionPerformed
-         viewChange("cardPrincipal");
+        viewChange("cardPrincipal");
         setTitle("Inicio");
     }//GEN-LAST:event_btViewPrincipalActionPerformed
 
     private void btViewCAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btViewCAlunoActionPerformed
-         viewChange("cardCadastrarAluno");
+        viewChange("cardCadastrarAluno");
         setTitle("Cadastrar Aluno");
     }//GEN-LAST:event_btViewCAlunoActionPerformed
 
@@ -1560,31 +1613,50 @@ public class InicioView extends javax.swing.JFrame {
     }//GEN-LAST:event_btViewCAdministradorActionPerformed
 
     private void visualizarCadastrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarCadastrosBtnActionPerformed
-        new VisuCadastroView().setVisible(true);
+        new VisuCadastroDialog(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_visualizarCadastrosBtnActionPerformed
 
     private void listarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarADMBtnActionPerformed
-        new VisualizarADMView().setVisible(true);
+        new VisualizarADMDialog(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_listarADMBtnActionPerformed
 
     private void cadastroDespesaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroDespesaBtnActionPerformed
-        new CadastroDespesaView().setVisible(true);
+        new CadastroDespesaDialog(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_cadastroDespesaBtnActionPerformed
 
     private void cadastroPagamentoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroPagamentoBtnActionPerformed
-        new CadastroPagamentoView().setVisible(true);
+        new CadastroPagamentoDialog(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_cadastroPagamentoBtnActionPerformed
 
     private void cadastrarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarADMBtnActionPerformed
         UserAccessController.cadastrarController(tfNewUserName, tfNewPassword, tfNewPasswordConfirm, cbAccessType);
     }//GEN-LAST:event_cadastrarADMBtnActionPerformed
 
-        public void viewChange(String cardName) {
+    private void cadastrarAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoBtnActionPerformed
+       ClienteController.cadastrarController(this, tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfAlturaCliente, tfPesoAluno, tfHistoricoSaudeCliente, cbMatricula);
+    }//GEN-LAST:event_cadastrarAlunoBtnActionPerformed
+
+    private void limparCamposBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparCamposBtnActionPerformed
+        limparCamposCadastroAluno();
+    }//GEN-LAST:event_limparCamposBtnActionPerformed
+
+    private void cancelarCadastroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCadastroBtnActionPerformed
+       viewChange("cardPrincipal");
+       setTitle("Inicio");
+       limparCamposCadastroAluno();
+    }//GEN-LAST:event_cancelarCadastroBtnActionPerformed
+
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+       viewChange("cardPrincipal");
+       setTitle("Inicio");
+       
+    }//GEN-LAST:event_cancelarBtnActionPerformed
+
+    public void viewChange(String cardName) {
         CardLayout layout = (CardLayout) ViewsPanelCardLayout.getLayout();
         layout.show(ViewsPanelCardLayout, cardName);
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JCustom.JCustomPanel ContentPanel3;
@@ -1671,8 +1743,7 @@ public class InicioView extends javax.swing.JFrame {
     private javax.swing.JPanel sidebarMenu;
     private javax.swing.JTable tabelaClientes;
     private javax.swing.JTextField tfAlturaCliente;
-    private javax.swing.JTextField tfCPFCLiente;
-    private javax.swing.JTextField tfDataNascimentoCliente;
+    private javax.swing.JFormattedTextField tfCPFCLiente;
     private javax.swing.JTextField tfEmailCliente;
     private javax.swing.JTextField tfEnderecoCliente;
     private javax.swing.JTextArea tfHistoricoSaudeCliente;
@@ -1680,9 +1751,10 @@ public class InicioView extends javax.swing.JFrame {
     private javax.swing.JPasswordField tfNewPasswordConfirm;
     private javax.swing.JTextField tfNewUserName;
     private javax.swing.JTextField tfNomeCliente;
-    private javax.swing.JTextField tfPesoCliente;
-    private javax.swing.JTextField tfTelefoneCliente;
-    private javax.swing.JTextField tfTelefoneEmergenciaCliente;
+    private javax.swing.JTextField tfPesoAluno;
+    private javax.swing.JFormattedTextField tfTelefoneCliente;
+    private javax.swing.JFormattedTextField tfTelefoneEmergenciaCliente;
+    private javax.swing.JFormattedTextField tfdataNascimento;
     private javax.swing.JLabel totalMesLabel;
     private JCustom.JCustomPanel totalMesPanel;
     private javax.swing.JLabel totalReceitaLabel;

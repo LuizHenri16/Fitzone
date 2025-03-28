@@ -183,12 +183,9 @@ public class LoginView extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         new InicioView().setVisible(true);
+        dispose();
     }//GEN-LAST:event_loginBtnActionPerformed
-
     
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

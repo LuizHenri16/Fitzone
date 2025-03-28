@@ -19,7 +19,7 @@ public class UserAccessService {
                UserAccessRepository.cadastrarRepository(newUser);
                
         } catch (Exception e) {
-             new AvisoForm(null, true, "Ocorreu um erro!").setVisible(true);
+             new AvisoForm(null, true, "Ocorreu um erro no cadastro!").setVisible(true);
         }
     }
     

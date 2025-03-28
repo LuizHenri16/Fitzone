@@ -1,8 +1,11 @@
 package Entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class UserAccess {
     private int id;
     private String name;

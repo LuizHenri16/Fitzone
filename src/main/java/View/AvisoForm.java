@@ -19,9 +19,7 @@ public class AvisoForm extends java.awt.Dialog {
         avisoTxt = new javax.swing.JLabel();
         sairBtn = new JCustom.JCustomButton();
 
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 0));
-        setLocationByPlatform(true);
         setLocationRelativeTo(this);
         setModal(true);
         setUndecorated(true);
