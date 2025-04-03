@@ -419,7 +419,7 @@
               <StringArray count="3">
                 <StringItem index="0" value="Selecione:"/>
                 <StringItem index="1" value="Mensal"/>
-                <StringItem index="2" value="Quinzena"/>
+                <StringItem index="2" value="Quinzenal"/>
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -480,6 +480,9 @@
               <Value id="UPDATE"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarAlunoBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="JCustom.JCustomButton" name="confirmarEdicaoBtn">
           <Properties>
@@ -495,6 +498,9 @@
               <Value id="SECONDARY"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmarEdicaoBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="JCustom.JCustomButton" name="removerAlunoBtn">
           <Properties>
@@ -510,6 +516,9 @@
               <Value id="RETURN"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removerAlunoBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="JCustom.JCustomButton" name="sairBtn">
           <Properties>

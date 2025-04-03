@@ -2,16 +2,39 @@ package View;
 
 import Controller.ClienteController;
 import Controller.UserAccessController;
+import Entity.Cliente;
+import Entity.UserAccess;
+import Validation.DIALOG;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
+import javax.swing.SwingUtilities;
 
 public class InicioView extends javax.swing.JFrame {
 
-    public InicioView() {
+    private UserAccess user;
+
+    public InicioView(UserAccess user) {
         initComponents();
+        this.user = user;
         detectarFecharJanela();
+        ListarCadastroClientes();
+        login();
+
+    }
+
+    public void login() {
+
+        if (user.getAccessType().equals("Parcial")) {
+            //btViewCAdministrador.setEnabled(false);
+        }
+
+        userNameLabel.setText("Usuário: " + user.getName());
+        SwingUtilities.invokeLater(() -> {
+            DIALOG.exbirMensagem(this, "Bem vindo " + user.getName());
+        });
     }
 
     public void ListarCadastroClientes() {
@@ -19,11 +42,18 @@ public class InicioView extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
         modelo.setRowCount(0);
 
-        String[] linha = {
-            "1", "Luiz", "222", "222", "Ativo"
-        };
+        List<Cliente> listaClientes = ClienteController.listarClientes();
 
-        modelo.addRow(linha);
+        for (Cliente cliente : listaClientes) {
+            String[] linha = {
+                String.valueOf(cliente.getID()),
+                cliente.getNome(),
+                cliente.getContato().getNumero(),
+                cliente.getContato().getNumero_emeregencia(),
+                cliente.getStatus()
+            };
+            modelo.addRow(linha);
+        }
 
         tabelaClientes.setModel(modelo);
     }
@@ -40,7 +70,7 @@ public class InicioView extends javax.swing.JFrame {
     public void confirmarFecharPrograma() {
         new SystemExitConfirm(this, rootPaneCheckingEnabled).setVisible(true);
     }
-    
+
     public void limparCamposCadastroAluno() {
         tfNomeCliente.setText("");
         tfCPFCLiente.setText("");
@@ -54,7 +84,7 @@ public class InicioView extends javax.swing.JFrame {
         tfEnderecoCliente.setText("");
         cbMatricula.setSelectedIndex(0);
     }
-    
+
     public void limparCamposCadastroADM() {
         tfNewUserName.setText("");
         tfNewPassword.setText("");
@@ -474,7 +504,7 @@ public class InicioView extends javax.swing.JFrame {
                 .addGroup(jCustomPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(alunosCadastradosLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jCustomPanel9Layout.setVerticalGroup(
@@ -778,7 +808,7 @@ public class InicioView extends javax.swing.JFrame {
         cbMatricula.setBackground(new java.awt.Color(255, 255, 255));
         cbMatricula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbMatricula.setForeground(new java.awt.Color(51, 51, 51));
-        cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzena" }));
+        cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzenal" }));
         cbMatricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         cbMatricula.setDoubleBuffered(true);
 
@@ -1037,6 +1067,7 @@ public class InicioView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaClientes.setColumnSelectionAllowed(true);
         tabelaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabelaClientes.setDoubleBuffered(true);
         tabelaClientes.setFillsViewportHeight(true);
@@ -1613,7 +1644,15 @@ public class InicioView extends javax.swing.JFrame {
     }//GEN-LAST:event_btViewCAdministradorActionPerformed
 
     private void visualizarCadastrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarCadastrosBtnActionPerformed
-        new VisuCadastroDialog(this, rootPaneCheckingEnabled).setVisible(true);
+        int linhaSelecionada = tabelaClientes.getSelectedRow();
+
+        if (linhaSelecionada == -1) {
+            DIALOG.exbirMensagem(this, "Selecione um usuário para visualizar.");
+        } else {
+            new VisuCadastroDialog(this, rootPaneCheckingEnabled, user, (String) tabelaClientes.getValueAt(linhaSelecionada, 0)).setVisible(true);
+
+        }
+        ListarCadastroClientes();
     }//GEN-LAST:event_visualizarCadastrosBtnActionPerformed
 
     private void listarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarADMBtnActionPerformed
@@ -1630,10 +1669,14 @@ public class InicioView extends javax.swing.JFrame {
 
     private void cadastrarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarADMBtnActionPerformed
         UserAccessController.cadastrarController(tfNewUserName, tfNewPassword, tfNewPasswordConfirm, cbAccessType);
+
     }//GEN-LAST:event_cadastrarADMBtnActionPerformed
 
     private void cadastrarAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoBtnActionPerformed
-       ClienteController.cadastrarController(this, tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfAlturaCliente, tfPesoAluno, tfHistoricoSaudeCliente, cbMatricula);
+        ClienteController.cadastrarController(this, tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfAlturaCliente, tfPesoAluno, tfHistoricoSaudeCliente, cbMatricula);
+        limparCamposCadastroAluno();
+        ListarCadastroClientes();
+        DIALOG.exbirMensagem(this, "Aluno cadastrado");
     }//GEN-LAST:event_cadastrarAlunoBtnActionPerformed
 
     private void limparCamposBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparCamposBtnActionPerformed
@@ -1641,15 +1684,15 @@ public class InicioView extends javax.swing.JFrame {
     }//GEN-LAST:event_limparCamposBtnActionPerformed
 
     private void cancelarCadastroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCadastroBtnActionPerformed
-       viewChange("cardPrincipal");
-       setTitle("Inicio");
-       limparCamposCadastroAluno();
+        viewChange("cardPrincipal");
+        setTitle("Inicio");
+        limparCamposCadastroAluno();
     }//GEN-LAST:event_cancelarCadastroBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
-       viewChange("cardPrincipal");
-       setTitle("Inicio");
-       
+        viewChange("cardPrincipal");
+        setTitle("Inicio");
+
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     public void viewChange(String cardName) {

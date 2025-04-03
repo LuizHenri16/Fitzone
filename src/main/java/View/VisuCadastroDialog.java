@@ -1,11 +1,103 @@
 package View;
 
+import Controller.ClienteController;
+import Entity.Cliente;
+import Entity.UserAccess;
+import JPAUtil.JPAUtil;
+import Validation.DIALOG;
+import Validation.FORMAT;
+import jakarta.persistence.EntityManager;
+
 public class VisuCadastroDialog extends java.awt.Dialog {
 
-    public VisuCadastroDialog(java.awt.Frame parent, boolean modal) { //Passar o id oh nome do aluno para poder verificar e também o tipo de usuário do adm
-        super(parent, modal);                                         //para poder definir suas ações nessa tela.          
+    private UserAccess user;
+    private String idClient;
+    
+    EntityManager em;
+
+    public VisuCadastroDialog(java.awt.Frame parent, boolean modal, UserAccess user, String IdCliente) { //Passar o id oh nome do aluno para poder verificar e também o tipo de usuário do adm
+        super(parent, modal);                                                                         //para poder definir suas ações nessa tela.          
         initComponents();
+
+        this.user = user;
+        this.idClient = IdCliente;
+
+        userPermissao();
+        desativarCampos();
+        preencherCampos();
+        
     }
+
+    public void userPermissao() {
+        if (user.getAccessType().equals("Parcial")) {
+            editarAlunoBtn.setEnabled(false);
+            removerAlunoBtn.setEnabled(false);
+            confirmarEdicaoBtn.setEnabled(false);
+        }
+    }
+    
+    public void excluirCliente() {
+        Cliente cliente = ClienteController.listarCliente(idClient);
+        ClienteController.excluirController(cliente);
+    }
+
+    public void preencherCampos() {
+        Cliente cliente = ClienteController.listarCliente(idClient);
+
+        tfNomeCliente.setText(cliente.getNome());
+        tfEnderecoCliente.setText(cliente.getEndereco().getAddress());
+        tfTelefoneCliente.setText(cliente.getContato().getNumero());
+        tfTelefoneEmergenciaCliente.setText(cliente.getContato().getNumero_emeregencia());
+        tfEmailCliente.setText(cliente.getEmail());
+        tfAlturaCliente.setText(String.valueOf(cliente.getInfoComplement().getHeight()));
+        tfPesoCliente.setText(String.valueOf(cliente.getInfoComplement().getWeight()));
+        tfdataNascimento.setText(FORMAT.converterData(cliente.getDataNascimento()));
+        tfHistoricoSaudeCliente.setText(cliente.getInfoComplement().getHealthHistory());
+        
+        if (cliente.getStatus().equals("Ativo")) {
+            cbStatus.setSelectedIndex(1);
+        } else if (cliente.getStatus().equals("Inativo")) {
+            cbStatus.setSelectedIndex(0);
+        }
+        
+         if (cliente.getMatricula().getId() == 1) {
+            cbMatricula.setSelectedIndex(1);
+        } else if (cliente.getMatricula().getId() == 2) {
+             cbMatricula.setSelectedIndex(2);
+        }
+
+    }
+
+    public void desativarCampos() {
+        tfNomeCliente.setEnabled(false);
+        tfCPFCLiente.setEnabled(false);
+        tfEnderecoCliente.setEnabled(false);
+        tfTelefoneCliente.setEnabled(false);
+        tfTelefoneEmergenciaCliente.setEnabled(false);
+        tfEmailCliente.setEnabled(false);
+        tfAlturaCliente.setEnabled(false);
+        tfPesoCliente.setEnabled(false);
+        tfdataNascimento.setEnabled(false);
+        cbStatus.setEnabled(false);
+        cbMatricula.setEnabled(false);
+        tfHistoricoSaudeCliente.setEnabled(false);
+    }
+
+    public void ativarCampos() {
+        tfNomeCliente.setEnabled(true);
+        tfCPFCLiente.setEnabled(true);
+        tfEnderecoCliente.setEnabled(true);
+        tfTelefoneCliente.setEnabled(true);
+        tfTelefoneEmergenciaCliente.setEnabled(true);
+        tfEmailCliente.setEnabled(true);
+        tfAlturaCliente.setEnabled(true);
+        tfPesoCliente.setEnabled(true);
+        tfdataNascimento.setEnabled(true);
+        cbStatus.setEnabled(true);
+        cbMatricula.setEnabled(true);
+        tfHistoricoSaudeCliente.setEnabled(true);
+    }
+
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -125,7 +217,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
 
         cbMatricula.setBackground(new java.awt.Color(255, 255, 255));
         cbMatricula.setForeground(new java.awt.Color(54, 54, 54));
-        cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzena" }));
+        cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzenal" }));
         cbMatricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel9.setForeground(new java.awt.Color(85, 85, 85));
@@ -143,18 +235,33 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         editarAlunoBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         editarAlunoBtn.setRound(10);
         editarAlunoBtn.setStyle(JCustom.JCustomButton.ButtonStyle.UPDATE);
+        editarAlunoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarAlunoBtnActionPerformed(evt);
+            }
+        });
 
         confirmarEdicaoBtn.setForeground(new java.awt.Color(107, 62, 35));
         confirmarEdicaoBtn.setText("Confirmar");
         confirmarEdicaoBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         confirmarEdicaoBtn.setRound(10);
         confirmarEdicaoBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
+        confirmarEdicaoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarEdicaoBtnActionPerformed(evt);
+            }
+        });
 
         removerAlunoBtn.setForeground(new java.awt.Color(255, 249, 237));
         removerAlunoBtn.setText("Remover");
         removerAlunoBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         removerAlunoBtn.setRound(10);
         removerAlunoBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
+        removerAlunoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerAlunoBtnActionPerformed(evt);
+            }
+        });
 
         sairBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         sairBtn.setForeground(new java.awt.Color(107, 62, 35));
@@ -390,6 +497,20 @@ public class VisuCadastroDialog extends java.awt.Dialog {
     private void cbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbStatusActionPerformed
+
+    private void editarAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAlunoBtnActionPerformed
+        ativarCampos();
+        editarAlunoBtn.setEnabled(false);
+    }//GEN-LAST:event_editarAlunoBtnActionPerformed
+
+    private void confirmarEdicaoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEdicaoBtnActionPerformed
+       ClienteController.editarController( idClient,tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente, tfHistoricoSaudeCliente, cbMatricula, cbStatus);
+    }//GEN-LAST:event_confirmarEdicaoBtnActionPerformed
+
+    private void removerAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAlunoBtnActionPerformed
+        excluirCliente();
+        dispose();
+    }//GEN-LAST:event_removerAlunoBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbMatricula;

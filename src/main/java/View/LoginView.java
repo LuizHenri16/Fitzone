@@ -1,5 +1,7 @@
 package View;
 
+import Controller.UserAccessController;
+
 public class LoginView extends javax.swing.JFrame {
 
     public LoginView() {
@@ -182,9 +184,15 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        new InicioView().setVisible(true);
-        dispose();
+        login();
     }//GEN-LAST:event_loginBtnActionPerformed
+    
+    public void login(){
+        if(UserAccessController.loginController(tfUserName, tfPassword) != null){
+            new InicioView(UserAccessController.loginController(tfUserName, tfPassword)).setVisible(true);
+            dispose();
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -3,8 +3,8 @@ package Controller;
 import Entity.UserAccess;
 import Service.UserAccessService;
 import Validation.DIALOG;
-import View.AvisoForm;
 
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.util.List;
 
@@ -13,15 +13,21 @@ public class UserAccessController {
     public UserAccessController() {
     }
 
-    public static UserAccess login(JTextField userNameLogin, JPasswordField passwordFieldLogin) {
+    public static UserAccess loginController(JTextField userNameLogin, JPasswordField passwordFieldLogin) {
         UserAccess usuario = null;
 
-        if (userNameLogin.getText().isBlank()) {
-            DIALOG.exbirMensagem(null, "Preencha os campos para adicionar um novo usuário");
+        String password = new String(passwordFieldLogin.getPassword());
+
+        if (userNameLogin.getText().isBlank() && password.isBlank()) {
+            DIALOG.exbirMensagem(null, "Digite seu login");
+        } else if (userNameLogin.getText().isBlank()) {
+            DIALOG.exbirMensagem(null, "Digite o nome de usuário");
+        } else if (password.isBlank()) {
+            DIALOG.exbirMensagem(null, "Digite a senha");
+        } else {
+            return UserAccessService.loginService(userNameLogin.getText() , password);
         }
-
-
-        return usuario;
+        return null;
     }
 
     public static void cadastrarController(JTextField userNameLogin, JPasswordField passwordFieldLogin, JPasswordField passwordConfirmFieldLogin, JComboBox tipoUsuarioCombobox) {
@@ -46,6 +52,7 @@ public class UserAccessController {
                 DIALOG.exbirMensagem(null, "Selecione um tipo de acesso");
             } else {
                   UserAccessService.cadastrarService(userNameLogin.getText(), passwordConfirm, (String) tipoUsuarioCombobox.getSelectedItem());
+
             }
 
         } catch (Exception e) {
@@ -59,7 +66,7 @@ public class UserAccessController {
         return lista;
     }
 
-    public static void apagarController() {
-
+    public static void apagarController(String id) {
+        UserAccessService.apagarService(id);
     }
 }

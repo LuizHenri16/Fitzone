@@ -3,15 +3,20 @@ package Service;
 import Entity.UserAccess;
 import Repository.UserAccessRepository;
 import Validation.DIALOG;
-import Validation.MD5;
-import View.AvisoForm;
+import Validation.CRIPTOGRAFAR;
+
 import java.util.List;
 
 public class UserAccessService {
 
-    public static UserAccess loginService() {
-        UserAccess usuario = UserAccessRepository.loginRepository();
-            //Validação do login e retorno o usuário
+    public static UserAccess loginService(String userName, String password) {
+        UserAccess usuario = UserAccessRepository.loginRepository(userName, CRIPTOGRAFAR.toSHA256(password));
+
+        if (usuario == null) {
+            DIALOG.exbirMensagem(null, "Usuário incorreto");
+        } else {
+            return usuario;
+        }
         return usuario;
     }
 
@@ -20,7 +25,7 @@ public class UserAccessService {
                UserAccess newUser = new UserAccess();
                
                newUser.setName(userName);
-               newUser.setPassword(MD5.toMD5(passwordConfirm));
+               newUser.setPassword(CRIPTOGRAFAR.toSHA256(passwordConfirm));
                newUser.setAccessType(accessType);
                
                UserAccessRepository.cadastrarRepository(newUser);
@@ -35,8 +40,8 @@ public class UserAccessService {
         return lista;
     }
         
-        public static void apagarService() {
-
+        public static void apagarService(String id) {
+            UserAccessRepository.apagarRepository(id);
     }
         
         
