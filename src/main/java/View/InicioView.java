@@ -1,8 +1,12 @@
 package View;
 
 import Controller.ClienteController;
+import Controller.FinanceiroController;
 import Controller.UserAccessController;
+import DTO.AniversarianteDTO;
+import DTO.PagamentoDTO;
 import Entity.Cliente;
+import Entity.Despesa;
 import Entity.UserAccess;
 import Validation.DIALOG;
 import javax.swing.table.DefaultTableModel;
@@ -19,16 +23,22 @@ public class InicioView extends javax.swing.JFrame {
     public InicioView(UserAccess user) {
         initComponents();
         this.user = user;
-        detectarFecharJanela();
-        ListarCadastroClientes();
         login();
+
+        ListarCadastroClientes();
+        detectarFecharJanela();
+        listarTotalDespesas();
+        listarAlunosCadastradosContador();
+        listarDadosPagamentoTabela();
+        totalMesValor();
+        listarAniversariantes();
 
     }
 
     public void login() {
 
         if (user.getAccessType().equals("Parcial")) {
-            //btViewCAdministrador.setEnabled(false);
+            btViewCAdministrador.setEnabled(false);
         }
 
         userNameLabel.setText("Usuário: " + user.getName());
@@ -92,6 +102,64 @@ public class InicioView extends javax.swing.JFrame {
         cbAccessType.setSelectedIndex(0);
     }
 
+    public void listarTotalDespesas() {
+        Double totalDespesas = 0.;
+
+        List<Despesa> listaDepesas = FinanceiroController.ListarDespesasController();
+        
+
+        for (Despesa despesa : listaDepesas) {
+            totalDespesas = totalDespesas + despesa.getValor();
+
+        }
+        despesasLabel.setText("R$ " + totalDespesas);
+    }
+    
+    public void listarAniversariantes() {
+        List<AniversarianteDTO> listaAniversariante = ClienteController.listarAniversarianteController();
+        
+        String linha = "";
+        for (AniversarianteDTO aniversariante : listaAniversariante) {
+            linha = linha + aniversariante.getNome() + "\n";   
+        }
+        
+        aniversariantesLabel.setText(linha);
+    }
+    
+    public void listarAlunosCadastradosContador() {
+        alunosCadastradosLabel.setText(String.valueOf(ClienteController.contarClientesCadastradosController()));
+        alunosStatusLabel.setText(String.valueOf(ClienteController.contarClientesCadastradosAtivosController()));
+    }
+    
+    public void listarDadosPagamentoTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) FinanceiroTable.getModel();
+        modelo.setRowCount(0);
+        Double valorReceita =  0.;
+        
+        List<PagamentoDTO> listaPagamento = FinanceiroController.listarDadosPagamentoController();
+        
+        for (PagamentoDTO dados : listaPagamento) {
+            String[] linha = {
+                dados.getDataUltimoPagamento(),dados.getNomeCliente(), String.valueOf(dados.getValorMatricula()), dados.getEmail()
+            };
+            valorReceita = valorReceita + dados.getValorMatricula();
+            
+         modelo.addRow(linha);
+        }
+        
+        totalReceitaLabel.setText("R$ " + valorReceita);
+        FinanceiroTable.setModel(modelo);
+    }
+    
+    public void totalMesValor(){
+        Double valorReceita = Double.valueOf(totalReceitaLabel.getText().replace("R", "").replace("$", ""));
+        Double valorDespesa = Double.valueOf(despesasLabel.getText().replace("R", "").replace("$", ""));
+        Double valorTotalMes = valorReceita - valorDespesa;
+        totalMesLabel.setText("R$ " + valorTotalMes);
+        
+        
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -130,6 +198,7 @@ public class InicioView extends javax.swing.JFrame {
         labelAniversario = new JCustom.JCustomPanel();
         jCustomPanel7 = new JCustom.JCustomPanel();
         jLabel26 = new javax.swing.JLabel();
+        aniversariantesLabel = new javax.swing.JLabel();
         labelTitle = new javax.swing.JLabel();
         cardCadastrarAluno = new javax.swing.JPanel();
         tfNomeCliente = new javax.swing.JTextField();
@@ -236,6 +305,7 @@ public class InicioView extends javax.swing.JFrame {
         btViewPrincipal.setForeground(new java.awt.Color(126, 126, 126));
         btViewPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Incio-icon.png"))); // NOI18N
         btViewPrincipal.setText(" Inicio");
+        btViewPrincipal.setToolTipText("Botão Inicio");
         btViewPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btViewPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewPrincipal.setIconTextGap(10);
@@ -250,6 +320,7 @@ public class InicioView extends javax.swing.JFrame {
         btViewCAluno.setForeground(new java.awt.Color(126, 126, 126));
         btViewCAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/CadastrarAluno-icon.png"))); // NOI18N
         btViewCAluno.setText("Cadastrar Aluno");
+        btViewCAluno.setToolTipText("Cadastrar Aluno");
         btViewCAluno.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btViewCAluno.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewCAluno.setIconTextGap(10);
@@ -264,6 +335,7 @@ public class InicioView extends javax.swing.JFrame {
         btViewLCadastros.setForeground(new java.awt.Color(126, 126, 126));
         btViewLCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Vizualizar-icon.png"))); // NOI18N
         btViewLCadastros.setText("Lista Cadastros");
+        btViewLCadastros.setToolTipText("Lista Cadastros");
         btViewLCadastros.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btViewLCadastros.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewLCadastros.setIconTextGap(10);
@@ -278,6 +350,7 @@ public class InicioView extends javax.swing.JFrame {
         btViewFinanceiro.setForeground(new java.awt.Color(126, 126, 126));
         btViewFinanceiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Financeiro-icon.png"))); // NOI18N
         btViewFinanceiro.setText("Financeiro");
+        btViewFinanceiro.setToolTipText("Financeiro");
         btViewFinanceiro.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btViewFinanceiro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewFinanceiro.setIconTextGap(10);
@@ -292,6 +365,7 @@ public class InicioView extends javax.swing.JFrame {
         btViewFTreino.setForeground(new java.awt.Color(126, 126, 126));
         btViewFTreino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fichaTreino-icon.png"))); // NOI18N
         btViewFTreino.setText("Ficha de Treino");
+        btViewFTreino.setToolTipText("Ficha de Treino");
         btViewFTreino.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btViewFTreino.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewFTreino.setIconTextGap(10);
@@ -306,6 +380,7 @@ public class InicioView extends javax.swing.JFrame {
         btViewCAdministrador.setForeground(new java.awt.Color(126, 126, 126));
         btViewCAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Administrator-icon.png"))); // NOI18N
         btViewCAdministrador.setText("Cadastrar Administrador");
+        btViewCAdministrador.setToolTipText("Cadastrar Administrador");
         btViewCAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btViewCAdministrador.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewCAdministrador.setIconTextGap(10);
@@ -352,6 +427,7 @@ public class InicioView extends javax.swing.JFrame {
 
         sairBtn.setForeground(new java.awt.Color(255, 255, 255));
         sairBtn.setText("Sair");
+        sairBtn.setToolTipText("Sair do Programa");
         sairBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sairBtn.setRound(10);
         sairBtn.setStyle(JCustom.JCustomButton.ButtonStyle.EXIT);
@@ -603,14 +679,14 @@ public class InicioView extends javax.swing.JFrame {
         jCustomPanel5Layout.setHorizontalGroup(
             jCustomPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jCustomPanel5Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(jCustomPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jCustomPanel5Layout.createSequentialGroup()
                         .addComponent(jCustomPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCustomPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jCustomPanel5Layout.setVerticalGroup(
             jCustomPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,7 +703,7 @@ public class InicioView extends javax.swing.JFrame {
         LabelEstatisticas.setLayout(LabelEstatisticasLayout);
         LabelEstatisticasLayout.setHorizontalGroup(
             LabelEstatisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LabelEstatisticasLayout.createSequentialGroup()
+            .addGroup(LabelEstatisticasLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(jCustomPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4))
@@ -644,6 +720,7 @@ public class InicioView extends javax.swing.JFrame {
         labelAniversario.setRound(40);
 
         jCustomPanel7.setBackground(new java.awt.Color(243, 243, 243));
+        jCustomPanel7.setForeground(new java.awt.Color(51, 51, 51));
         jCustomPanel7.setRound(30);
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -651,28 +728,37 @@ public class InicioView extends javax.swing.JFrame {
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Aniversariante do Dia");
 
+        aniversariantesLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        aniversariantesLabel.setForeground(new java.awt.Color(107, 62, 35));
+        aniversariantesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jCustomPanel7Layout = new javax.swing.GroupLayout(jCustomPanel7);
         jCustomPanel7.setLayout(jCustomPanel7Layout);
         jCustomPanel7Layout.setHorizontalGroup(
             jCustomPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jCustomPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jCustomPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addGroup(jCustomPanel7Layout.createSequentialGroup()
+                        .addComponent(aniversariantesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jCustomPanel7Layout.setVerticalGroup(
             jCustomPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jCustomPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel26)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(aniversariantesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout labelAniversarioLayout = new javax.swing.GroupLayout(labelAniversario);
         labelAniversario.setLayout(labelAniversarioLayout);
         labelAniversarioLayout.setHorizontalGroup(
             labelAniversarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, labelAniversarioLayout.createSequentialGroup()
+            .addGroup(labelAniversarioLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(jCustomPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
@@ -696,28 +782,28 @@ public class InicioView extends javax.swing.JFrame {
         ViewPrincipalLayout.setHorizontalGroup(
             ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewPrincipalLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelRelogio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTitle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addGroup(ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LabelEstatisticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelAniversario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGroup(ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelEstatisticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAniversario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         ViewPrincipalLayout.setVerticalGroup(
             ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewPrincipalLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelAniversario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelRelogio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addComponent(labelTitle)
+                .addGap(33, 33, 33)
+                .addGroup(ViewPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelAniversario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LabelRelogio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(LabelEstatisticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         ViewsPanelCardLayout.add(ViewPrincipal, "cardPrincipal");
@@ -729,6 +815,7 @@ public class InicioView extends javax.swing.JFrame {
         tfNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfNomeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfNomeCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfNomeCliente.setToolTipText("Nome do Cliente");
         tfNomeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfNomeCliente.setMaximumSize(new java.awt.Dimension(370, 40));
         tfNomeCliente.setMinimumSize(new java.awt.Dimension(220, 22));
@@ -740,6 +827,7 @@ public class InicioView extends javax.swing.JFrame {
         tfEnderecoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEnderecoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEnderecoCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfEnderecoCliente.setToolTipText("Endereço do Cliente");
         tfEnderecoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel2.setForeground(new java.awt.Color(85, 85, 85));
@@ -747,6 +835,7 @@ public class InicioView extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(85, 85, 85));
         jLabel3.setText("CPF");
+        jLabel3.setToolTipText("CPF do Cliente");
 
         jLabel4.setForeground(new java.awt.Color(85, 85, 85));
         jLabel4.setText("Data de Nascimento");
@@ -761,6 +850,7 @@ public class InicioView extends javax.swing.JFrame {
         tfEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEmailCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEmailCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfEmailCliente.setToolTipText("Email do Cliente");
         tfEmailCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfEmailCliente.setMaximumSize(new java.awt.Dimension(328, 22));
         tfEmailCliente.setMinimumSize(new java.awt.Dimension(220, 22));
@@ -772,6 +862,7 @@ public class InicioView extends javax.swing.JFrame {
         tfAlturaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfAlturaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfAlturaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfAlturaCliente.setToolTipText("Altura do Cliente");
         tfAlturaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfAlturaCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
@@ -782,6 +873,7 @@ public class InicioView extends javax.swing.JFrame {
         tfPesoAluno.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfPesoAluno.setForeground(new java.awt.Color(54, 54, 54));
         tfPesoAluno.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoAluno.setToolTipText("Peso do Cliente");
         tfPesoAluno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfPesoAluno.setMinimumSize(new java.awt.Dimension(50, 22));
 
@@ -795,9 +887,11 @@ public class InicioView extends javax.swing.JFrame {
         tfHistoricoSaudeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfHistoricoSaudeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfHistoricoSaudeCliente.setRows(5);
+        tfHistoricoSaudeCliente.setToolTipText("Histórico de Saúde do Cliente");
         tfHistoricoSaudeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfHistoricoSaudeCliente.setMinimumSize(new java.awt.Dimension(200, 22));
         jScrollPane3.setViewportView(tfHistoricoSaudeCliente);
+        tfHistoricoSaudeCliente.getAccessibleContext().setAccessibleName("Histórico de saúde do Cliente");
 
         jLabel10.setForeground(new java.awt.Color(85, 85, 85));
         jLabel10.setText("Histórico de Saúde");
@@ -809,6 +903,7 @@ public class InicioView extends javax.swing.JFrame {
         cbMatricula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbMatricula.setForeground(new java.awt.Color(51, 51, 51));
         cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzenal" }));
+        cbMatricula.setToolTipText("Caixa de Matrículas");
         cbMatricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         cbMatricula.setDoubleBuffered(true);
 
@@ -822,6 +917,7 @@ public class InicioView extends javax.swing.JFrame {
 
         cadastrarAlunoBtn.setForeground(new java.awt.Color(255, 249, 237));
         cadastrarAlunoBtn.setText("Confirmar");
+        cadastrarAlunoBtn.setToolTipText(" Confirmar Cadastro");
         cadastrarAlunoBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cadastrarAlunoBtn.setRound(10);
         cadastrarAlunoBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
@@ -833,6 +929,7 @@ public class InicioView extends javax.swing.JFrame {
 
         cancelarCadastroBtn.setForeground(new java.awt.Color(107, 62, 35));
         cancelarCadastroBtn.setText("Cancelar");
+        cancelarCadastroBtn.setToolTipText("Cancelar Cadastro");
         cancelarCadastroBtn.setActionCommand("");
         cancelarCadastroBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cancelarCadastroBtn.setRound(10);
@@ -845,6 +942,7 @@ public class InicioView extends javax.swing.JFrame {
 
         limparCamposBtn.setForeground(new java.awt.Color(107, 62, 35));
         limparCamposBtn.setText("Limpar campos");
+        limparCamposBtn.setToolTipText("Limpar Campos");
         limparCamposBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         limparCamposBtn.setRound(10);
         limparCamposBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
@@ -878,6 +976,8 @@ public class InicioView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        limparCamposBtn.getAccessibleContext().setAccessibleName("Limpar Campos");
+
         tfdataNascimento.setBackground(new java.awt.Color(255, 255, 255));
         tfdataNascimento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfdataNascimento.setForeground(new java.awt.Color(54, 54, 54));
@@ -887,6 +987,7 @@ public class InicioView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         tfdataNascimento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfdataNascimento.setToolTipText("Data de Nascimento do Cliente");
         tfdataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tfTelefoneEmergenciaCliente.setBackground(new java.awt.Color(255, 255, 255));
@@ -898,6 +999,7 @@ public class InicioView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTelefoneEmergenciaCliente.setToolTipText("Número de Telefone de Emergência");
         tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
@@ -909,6 +1011,7 @@ public class InicioView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         tfCPFCLiente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCPFCLiente.setToolTipText("CPF do Cliente");
         tfCPFCLiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tfTelefoneCliente.setBackground(new java.awt.Color(255, 255, 255));
@@ -920,6 +1023,7 @@ public class InicioView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTelefoneCliente.setToolTipText("Número de Telefone");
         tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout cardCadastrarAlunoLayout = new javax.swing.GroupLayout(cardCadastrarAluno);
@@ -1023,6 +1127,20 @@ public class InicioView extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
+        tfNomeCliente.getAccessibleContext().setAccessibleName("Nome do Cliente");
+        tfEnderecoCliente.getAccessibleContext().setAccessibleName("Endereço do Cliente");
+        jLabel3.getAccessibleContext().setAccessibleName("CPF do Cliente");
+        tfEmailCliente.getAccessibleContext().setAccessibleName("Email do Cliente");
+        tfEmailCliente.getAccessibleContext().setAccessibleDescription("Email do Cliente");
+        tfAlturaCliente.getAccessibleContext().setAccessibleName("Altura do Cliente");
+        tfPesoAluno.getAccessibleContext().setAccessibleName("Peso do Cliente");
+        cbMatricula.getAccessibleContext().setAccessibleName("Caixa de Matrículas");
+        tfdataNascimento.getAccessibleContext().setAccessibleName("Data de Nascimento do Cliente");
+        tfTelefoneEmergenciaCliente.getAccessibleContext().setAccessibleName("Número de Telefone de Emergência");
+        tfCPFCLiente.getAccessibleContext().setAccessibleName("CPF do Cliente");
+        tfTelefoneCliente.getAccessibleContext().setAccessibleName("Número de Telefone");
+        tfTelefoneCliente.getAccessibleContext().setAccessibleDescription("Número de Telefone");
+
         ViewsPanelCardLayout.add(cardCadastrarAluno, "cardCadastrarAluno");
 
         ViewListaCadastro.setBackground(new java.awt.Color(243, 243, 243));
@@ -1067,6 +1185,7 @@ public class InicioView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabelaClientes.setToolTipText("Tabela de Clientes");
         tabelaClientes.setColumnSelectionAllowed(true);
         tabelaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabelaClientes.setDoubleBuffered(true);
@@ -1092,9 +1211,11 @@ public class InicioView extends javax.swing.JFrame {
             tabelaClientes.getColumnModel().getColumn(4).setResizable(false);
             tabelaClientes.getColumnModel().getColumn(4).setPreferredWidth(100);
         }
+        tabelaClientes.getAccessibleContext().setAccessibleName("Tabela de Clientes");
 
         visualizarCadastrosBtn.setForeground(new java.awt.Color(255, 249, 237));
         visualizarCadastrosBtn.setText("Visualizar");
+        visualizarCadastrosBtn.setToolTipText("Visualizar Informações de Clientes");
         visualizarCadastrosBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         visualizarCadastrosBtn.setRound(10);
         visualizarCadastrosBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
@@ -1116,9 +1237,9 @@ public class InicioView extends javax.swing.JFrame {
         ViewListaCadastroLayout.setHorizontalGroup(
             ViewListaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewListaCadastroLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(ViewListaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cadastroAlunoScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+                    .addComponent(cadastroAlunoScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
                     .addGroup(ViewListaCadastroLayout.createSequentialGroup()
                         .addComponent(labelTitle3)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -1342,6 +1463,7 @@ public class InicioView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        FinanceiroTable.setToolTipText("Tabela de Últimos Pagamentos");
         FinanceiroTable.setGridColor(new java.awt.Color(107, 62, 35));
         FinanceiroTable.setRowHeight(35);
         FinanceiroTable.setSelectionBackground(new java.awt.Color(255, 249, 237));
@@ -1358,9 +1480,11 @@ public class InicioView extends javax.swing.JFrame {
             FinanceiroTable.getColumnModel().getColumn(3).setResizable(false);
             FinanceiroTable.getColumnModel().getColumn(3).setPreferredWidth(200);
         }
+        FinanceiroTable.getAccessibleContext().setAccessibleName("Tabela de Últimos Pagamentos");
 
         cadastroDespesaBtn.setForeground(new java.awt.Color(255, 255, 255));
         cadastroDespesaBtn.setText("Cadastrar Despesa");
+        cadastroDespesaBtn.setToolTipText("Cadastrar Despesa");
         cadastroDespesaBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cadastroDespesaBtn.setRound(10);
         cadastroDespesaBtn.setStyle(JCustom.JCustomButton.ButtonStyle.EXIT);
@@ -1372,6 +1496,7 @@ public class InicioView extends javax.swing.JFrame {
 
         cadastroPagamentoBtn.setForeground(new java.awt.Color(255, 255, 255));
         cadastroPagamentoBtn.setText("Cadastrar Pagamento");
+        cadastroPagamentoBtn.setToolTipText("Cadastrar Pagamento de Matricula");
         cadastroPagamentoBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cadastroPagamentoBtn.setRound(10);
         cadastroPagamentoBtn.setStyle(JCustom.JCustomButton.ButtonStyle.UPDATE);
@@ -1460,7 +1585,7 @@ public class InicioView extends javax.swing.JFrame {
         tfNewUserName.setBackground(java.awt.Color.white);
         tfNewUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tfNewUserName.setForeground(new java.awt.Color(69, 64, 64));
-        tfNewUserName.setToolTipText("");
+        tfNewUserName.setToolTipText("Nome de Usuário");
         tfNewUserName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfNewUserName.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
@@ -1471,6 +1596,7 @@ public class InicioView extends javax.swing.JFrame {
         tfNewPassword.setBackground(java.awt.Color.white);
         tfNewPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tfNewPassword.setForeground(new java.awt.Color(69, 64, 64));
+        tfNewPassword.setToolTipText("Senha de Usuário");
         tfNewPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -1480,6 +1606,7 @@ public class InicioView extends javax.swing.JFrame {
         tfNewPasswordConfirm.setBackground(java.awt.Color.white);
         tfNewPasswordConfirm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tfNewPasswordConfirm.setForeground(new java.awt.Color(69, 64, 64));
+        tfNewPasswordConfirm.setToolTipText("Confirmação de Senha de Usuário");
         tfNewPasswordConfirm.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -1490,6 +1617,7 @@ public class InicioView extends javax.swing.JFrame {
         cbAccessType.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbAccessType.setForeground(new java.awt.Color(85, 85, 85));
         cbAccessType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Parcial", "Completo" }));
+        cbAccessType.setToolTipText("Caixa de Tipo de Acesso");
         cbAccessType.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -1499,6 +1627,7 @@ public class InicioView extends javax.swing.JFrame {
 
         cadastrarADMBtn.setForeground(new java.awt.Color(255, 249, 237));
         cadastrarADMBtn.setText("Cadastrar");
+        cadastrarADMBtn.setToolTipText("Confirmar Cadastro de Usuário ADM");
         cadastrarADMBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cadastrarADMBtn.setRound(10);
         cadastrarADMBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
@@ -1510,6 +1639,7 @@ public class InicioView extends javax.swing.JFrame {
 
         cancelarBtn.setForeground(new java.awt.Color(107, 62, 35));
         cancelarBtn.setText("Cancelar");
+        cancelarBtn.setToolTipText("Cancelar Cadastro de ADM");
         cancelarBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cancelarBtn.setRound(10);
         cancelarBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
@@ -1521,6 +1651,7 @@ public class InicioView extends javax.swing.JFrame {
 
         listarADMBtn.setForeground(new java.awt.Color(255, 249, 237));
         listarADMBtn.setText("listar");
+        listarADMBtn.setToolTipText("Listar ADMs");
         listarADMBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         listarADMBtn.setRound(10);
         listarADMBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
@@ -1563,8 +1694,8 @@ public class InicioView extends javax.swing.JFrame {
             ViewCadastrarADMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewCadastrarADMLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfNewUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1587,6 +1718,11 @@ public class InicioView extends javax.swing.JFrame {
                     .addComponent(listarADMBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(119, 119, 119))
         );
+
+        tfNewUserName.getAccessibleContext().setAccessibleName("Nome de Usuário");
+        tfNewPassword.getAccessibleContext().setAccessibleName("Senha de Usuário");
+        tfNewPasswordConfirm.getAccessibleContext().setAccessibleName("Confirmação de Senha de Usuário");
+        tfNewPasswordConfirm.getAccessibleContext().setAccessibleDescription("");
 
         ViewsPanelCardLayout.add(ViewCadastrarADM, "cardCadastrarADM");
 
@@ -1653,6 +1789,7 @@ public class InicioView extends javax.swing.JFrame {
 
         }
         ListarCadastroClientes();
+        listarAlunosCadastradosContador();
     }//GEN-LAST:event_visualizarCadastrosBtnActionPerformed
 
     private void listarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarADMBtnActionPerformed
@@ -1661,10 +1798,16 @@ public class InicioView extends javax.swing.JFrame {
 
     private void cadastroDespesaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroDespesaBtnActionPerformed
         new CadastroDespesaDialog(this, rootPaneCheckingEnabled).setVisible(true);
+        listarTotalDespesas();
+        listarDadosPagamentoTabela();
+        totalMesValor();
     }//GEN-LAST:event_cadastroDespesaBtnActionPerformed
 
     private void cadastroPagamentoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroPagamentoBtnActionPerformed
         new CadastroPagamentoDialog(this, rootPaneCheckingEnabled).setVisible(true);
+        listarDadosPagamentoTabela();
+        totalMesValor();
+                
     }//GEN-LAST:event_cadastroPagamentoBtnActionPerformed
 
     private void cadastrarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarADMBtnActionPerformed
@@ -1715,6 +1858,7 @@ public class InicioView extends javax.swing.JFrame {
     private javax.swing.JPanel ViewsPanelCardLayout;
     private javax.swing.JLabel alunosCadastradosLabel;
     private javax.swing.JLabel alunosStatusLabel;
+    private javax.swing.JLabel aniversariantesLabel;
     private javax.swing.JPanel bottomPanel;
     private JCustom.JCustomButton btViewCAdministrador;
     private JCustom.JCustomButton btViewCAluno;

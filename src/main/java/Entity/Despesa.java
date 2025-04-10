@@ -3,13 +3,11 @@ package Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Despesas")
+@Table(name = "Despesa")
 public class Despesa {
 
     @Id

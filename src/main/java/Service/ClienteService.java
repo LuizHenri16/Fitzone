@@ -1,5 +1,6 @@
 package Service;
 
+import DTO.AniversarianteDTO;
 import Entity.*;
 import Repository.ClienteRepository;
 import Validation.CRIPTOGRAFAR;
@@ -43,6 +44,18 @@ public class ClienteService {
 
     public static LicenseType listarMatriculasService(String matricula) {
         return ClienteRepository.listarMatriculasRepository(matricula);
+    }
+
+    public static Integer contarClientesCadastradosAtivosService() {
+        return ClienteRepository.contarClientesCadastradosAtivosRepository();
+    }
+
+    public static Integer contarClientesCadastradosService() {
+        return ClienteRepository.contarClientesCadastradosRepository();
+    }
+    
+    public static List<AniversarianteDTO> listarAniversarianteService() {
+        return ClienteRepository.listarAniversarianteRepository();
     }
 
 }

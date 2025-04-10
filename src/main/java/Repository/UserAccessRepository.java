@@ -12,11 +12,10 @@ import java.util.List;
 
 public class UserAccessRepository {
 
-    static EntityManager em;
 
     public static UserAccess loginRepository(String userName, String passwordHash) {
 
-        em = JPAUtil.getEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
         TypedQuery<UserAccess> query;
         try {
 
@@ -34,7 +33,7 @@ public class UserAccessRepository {
     }
 
     public static void cadastrarRepository(UserAccess usuario) {
-        em = JPAUtil.getEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
 
         try {
 
@@ -45,12 +44,15 @@ public class UserAccessRepository {
 
         } catch (Exception e) {
             DIALOG.exbirMensagem(null, "Ocorreu um erro ao adicionar o ADM ao banco!");
+        } finally {
+            em.close();
         }
     }
     
     public static List<UserAccess> listarRepository() {
+        EntityManager em = JPAUtil.getEntityManager();
         List<UserAccess> lista = null;
-        em = JPAUtil.getEntityManager();
+
         Query query;
 
         try {
@@ -67,7 +69,8 @@ public class UserAccessRepository {
     }
     
     public static void apagarRepository(String id) {
-        em = JPAUtil.getEntityManager();
+
+        EntityManager em = JPAUtil.getEntityManager();
 
         try {
             UserAccess user = em.find(UserAccess.class, id);

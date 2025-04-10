@@ -16,22 +16,28 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
         initComponents();
         ListarDespesas();
     }
-    
+
     public void ListarDespesas() {
         DefaultTableModel modelo = (DefaultTableModel) despesaTabela.getModel();
         modelo.setRowCount(0);
-        
-        List<Despesa> listaDespesas =  FinanceiroController.ListarDespesasController();
-        
+
+        List<Despesa> listaDespesas = FinanceiroController.ListarDespesasController();
+
         for (Despesa despesa : listaDespesas) {
             String[] linha = {
                 despesa.getDescricao(), String.valueOf(despesa.getValor()), FORMAT.converterData(despesa.getData())
             };
-            
+
             modelo.addRow(linha);
         }
-        
+
         despesaTabela.setModel(modelo);
+    }
+
+    public void limparCampos() {
+        tfValorDespesa.setText("");
+        tfDescricaoDespesa.setText("");
+        tfDataPagamentoDespesa.setText("");
     }
 
 
@@ -231,6 +237,8 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
     private void cadastrarDespesaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarDespesaBtnActionPerformed
         FinanceiroController.cadastrarDespesaController(tfDescricaoDespesa, tfValorDespesa, tfDataPagamentoDespesa);
         ListarDespesas();
+        limparCampos();
+
     }//GEN-LAST:event_cadastrarDespesaBtnActionPerformed
 
     private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed

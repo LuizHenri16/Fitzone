@@ -1,12 +1,11 @@
 package Controller;
 
+import DTO.AniversarianteDTO;
 import Entity.*;
 import Service.ClienteService;
 import Validation.DIALOG;
 import Validation.FORMAT;
 import View.InicioView;
-import View.VisuCadastroDialog;
-
 import javax.swing.*;
 import java.util.List;
 
@@ -183,6 +182,16 @@ public class ClienteController {
         return ClienteService.listarMatriculasService(matricula);
     }
 
+    public static Integer contarClientesCadastradosAtivosController() {
+        return ClienteService.contarClientesCadastradosAtivosService();
+    }
 
+    public static Integer contarClientesCadastradosController() {
+        return ClienteService.contarClientesCadastradosService();
+    }
+
+    public static List<AniversarianteDTO> listarAniversarianteController() {
+       return ClienteService.listarAniversarianteService();
+    }
 }
 

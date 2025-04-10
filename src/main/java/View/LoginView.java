@@ -74,7 +74,7 @@ public class LoginView extends javax.swing.JFrame {
 
         makeLoginPanel.setBackground(new java.awt.Color(6, 61, 56));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(241, 221, 183));
         jLabel1.setText("Seja bem vindo ao FitZone System!");
 
@@ -83,8 +83,9 @@ public class LoginView extends javax.swing.JFrame {
         jLabel2.setText("Usuário");
 
         tfUserName.setBackground(new java.awt.Color(255, 255, 255));
-        tfUserName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tfUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tfUserName.setForeground(new java.awt.Color(51, 51, 51));
+        tfUserName.setToolTipText("Digite o nome de usuário");
         tfUserName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         tfUserName.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
@@ -93,13 +94,14 @@ public class LoginView extends javax.swing.JFrame {
         jLabel3.setText("Senha");
 
         tfPassword.setBackground(new java.awt.Color(255, 255, 255));
-        tfPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tfPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tfPassword.setForeground(new java.awt.Color(51, 51, 51));
         tfPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         tfPassword.setMargin(new java.awt.Insets(5, 6, 5, 6));
 
         loginBtn.setForeground(new java.awt.Color(107, 62, 35));
         loginBtn.setText("Login");
+        loginBtn.setToolTipText("Fazer Login");
         loginBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         loginBtn.setRolloverEnabled(true);
         loginBtn.setRound(10);
@@ -147,6 +149,8 @@ public class LoginView extends javax.swing.JFrame {
                 .addContainerGap(113, Short.MAX_VALUE))
         );
 
+        tfUserName.getAccessibleContext().setAccessibleName("");
+
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
         loginPanelLayout.setHorizontalGroup(
@@ -158,7 +162,7 @@ public class LoginView extends javax.swing.JFrame {
         );
         loginPanelLayout.setVerticalGroup(
             loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
             .addComponent(makeLoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 

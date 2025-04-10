@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity()
@@ -20,8 +22,6 @@ public class LicenseType {
     @Column(name = "valor_matricula")
     private Double price;
 
-    @Override
-    public String toString() {
-        return this.licenseType;
-    }
+    @OneToMany(mappedBy = "licenseType", cascade = CascadeType.ALL)
+    private List<Payment> payment;
 }
