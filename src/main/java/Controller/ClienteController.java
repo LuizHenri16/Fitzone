@@ -12,17 +12,17 @@ import java.util.List;
 public class ClienteController {
 
     public static void cadastrarController(InicioView parent, JTextField tfNomeCliente, JFormattedTextField tfCPFCLiente, JFormattedTextField tfdataNascimento,
-                                           JFormattedTextField tfTelefoneCliente, JFormattedTextField tfTelefoneEmergenciaCliente, JTextField tfEmailCliente,
-                                           JTextField tfEnderecoCliente, JTextField tfPesoCliente, JTextField tfAlturaCliente, JTextArea tfHistoricoSaudeCliente,
-                                           JComboBox<String> cbMatricula) {
+            JFormattedTextField tfTelefoneCliente, JFormattedTextField tfTelefoneEmergenciaCliente, JTextField tfEmailCliente,
+            JTextField tfEnderecoCliente, JTextField tfPesoCliente, JTextField tfAlturaCliente, JTextArea tfHistoricoSaudeCliente,
+            JComboBox<String> cbMatricula) {
 
-        JTextField[] campos = {tfNomeCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente };
+        JTextField[] campos = {tfNomeCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente};
         JFormattedTextField[] camposTelefone = {tfTelefoneCliente, tfTelefoneEmergenciaCliente};
         boolean camposVazio = true;
         boolean camposTelefoneVazio = true;
 
         for (JTextField campo : campos) {
-            if(!campo.getText().isBlank()) {
+            if (!campo.getText().isBlank()) {
                 camposVazio = false;
                 break;
             }
@@ -35,7 +35,7 @@ public class ClienteController {
             }
         }
 
-        if (camposVazio && camposTelefoneVazio && tfHistoricoSaudeCliente.getText().isBlank() && cbMatricula.getSelectedIndex() == 0 ) {
+        if (camposVazio && camposTelefoneVazio && tfHistoricoSaudeCliente.getText().isBlank() && cbMatricula.getSelectedIndex() == 0) {
             DIALOG.exbirMensagem(null, "Preencha as informações necessárias");
         } else if (tfNomeCliente.getText().isBlank()) {
             DIALOG.exbirMensagem(parent, "Digite o nome do aluno");
@@ -43,7 +43,7 @@ public class ClienteController {
             DIALOG.exbirMensagem(parent, "Digite o CPF do aluno");
         } else if (FORMAT.formatarData(tfdataNascimento.getText()).isBlank()) {
             DIALOG.exbirMensagem(parent, "Digite a data de nascimento");
-        }   else if (FORMAT.formatarNumero(tfTelefoneCliente.getText()).isBlank()) {
+        } else if (FORMAT.formatarNumero(tfTelefoneCliente.getText()).isBlank()) {
             DIALOG.exbirMensagem(parent, "Digite o telefone do aluno");
         } else if (FORMAT.formatarNumero(tfTelefoneEmergenciaCliente.getText()).isBlank()) {
             DIALOG.exbirMensagem(parent, "Digite um telefone de emergência ");
@@ -64,7 +64,7 @@ public class ClienteController {
             ClienteAddress newClienteAddress = new ClienteAddress();
             ClienteContact newClienteContact = new ClienteContact();
             ClienteInfoComplement newClienteComplement = new ClienteInfoComplement();
-            
+
             newCliente.setNome(tfNomeCliente.getText());
             newCliente.setCpf(tfCPFCLiente.getText());
             newCliente.setDataNascimento(tfdataNascimento.getText());
@@ -82,17 +82,18 @@ public class ClienteController {
             ClienteService.cadastrarService(newCliente, newClienteContact, newClienteAddress, newClienteComplement);
         }
     }
+
     public static void editarController(String ID, JTextField tfNomeCliente, JFormattedTextField tfCPFCLiente, JFormattedTextField tfdataNascimento,
-                                        JFormattedTextField tfTelefoneCliente, JFormattedTextField tfTelefoneEmergenciaCliente, JTextField tfEmailCliente,
-                                        JTextField tfEnderecoCliente, JTextField tfPesoCliente, JTextField tfAlturaCliente, JTextArea tfHistoricoSaudeCliente,
-                                        JComboBox<String> cbMatricula, JComboBox<String> cbStatus) {
-        JTextField[] campos = {tfNomeCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente };
+            JFormattedTextField tfTelefoneCliente, JFormattedTextField tfTelefoneEmergenciaCliente, JTextField tfEmailCliente,
+            JTextField tfEnderecoCliente, JTextField tfPesoCliente, JTextField tfAlturaCliente, JTextArea tfHistoricoSaudeCliente,
+            JComboBox<String> cbMatricula, JComboBox<String> cbStatus) {
+        JTextField[] campos = {tfNomeCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente};
         JFormattedTextField[] camposTelefone = {tfTelefoneCliente, tfTelefoneEmergenciaCliente};
         boolean camposVazio = true;
         boolean camposTelefoneVazio = true;
 
         for (JTextField campo : campos) {
-            if(!campo.getText().isBlank()) {
+            if (!campo.getText().isBlank()) {
                 camposVazio = false;
                 break;
             }
@@ -105,7 +106,7 @@ public class ClienteController {
             }
         }
 
-        if (camposVazio && camposTelefoneVazio && tfHistoricoSaudeCliente.getText().isBlank() && cbMatricula.getSelectedIndex() == 0 ) {
+        if (camposVazio && camposTelefoneVazio && tfHistoricoSaudeCliente.getText().isBlank() && cbMatricula.getSelectedIndex() == 0) {
             DIALOG.exbirMensagem(null, "Os campos devem estar preenchidos");
         } else if (tfNomeCliente.getText().isBlank()) {
             DIALOG.exbirMensagem(null, "Digite o nome do aluno");
@@ -113,7 +114,7 @@ public class ClienteController {
             DIALOG.exbirMensagem(null, "Digite o CPF do aluno");
         } else if (FORMAT.formatarData(tfdataNascimento.getText()).isBlank()) {
             DIALOG.exbirMensagem(null, "Digite a data de nascimento");
-        }   else if (FORMAT.formatarNumero(tfTelefoneCliente.getText()).isBlank()) {
+        } else if (FORMAT.formatarNumero(tfTelefoneCliente.getText()).isBlank()) {
             DIALOG.exbirMensagem(null, "Digite o telefone do aluno");
         } else if (FORMAT.formatarNumero(tfTelefoneEmergenciaCliente.getText()).isBlank()) {
             DIALOG.exbirMensagem(null, "Digite um telefone de emergência ");
@@ -168,7 +169,7 @@ public class ClienteController {
     }
 
     public static List<Cliente> listarClientes() {
-        List<Cliente> listaCliente =  ClienteService.listarClientes();
+        List<Cliente> listaCliente = ClienteService.listarClientes();
         return listaCliente;
     }
 
@@ -191,7 +192,6 @@ public class ClienteController {
     }
 
     public static List<AniversarianteDTO> listarAniversarianteController() {
-       return ClienteService.listarAniversarianteService();
+        return ClienteService.listarAniversarianteService();
     }
 }
-

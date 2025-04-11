@@ -114,6 +114,7 @@ public class VisualizarADMDialog extends java.awt.Dialog {
 
         sairBtn.setForeground(new java.awt.Color(107, 62, 35));
         sairBtn.setText("Sair");
+        sairBtn.setToolTipText("Sair ");
         sairBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sairBtn.setRound(10);
         sairBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
@@ -125,6 +126,7 @@ public class VisualizarADMDialog extends java.awt.Dialog {
 
         removerUsuarioBtn.setForeground(new java.awt.Color(255, 249, 237));
         removerUsuarioBtn.setText("Remover");
+        removerUsuarioBtn.setToolTipText("remover administrador");
         removerUsuarioBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         removerUsuarioBtn.setRound(10);
         removerUsuarioBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);

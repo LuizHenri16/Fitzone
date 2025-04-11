@@ -16,7 +16,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.SwingUtilities;
 
-public class InicioView extends javax.swing.JFrame {
+public final class InicioView extends javax.swing.JFrame {
 
     private UserAccess user;
 
@@ -32,7 +32,6 @@ public class InicioView extends javax.swing.JFrame {
         listarDadosPagamentoTabela();
         totalMesValor();
         listarAniversariantes();
-
     }
 
     public void login() {
@@ -156,14 +155,13 @@ public class InicioView extends javax.swing.JFrame {
         Double valorDespesa = Double.valueOf(despesasLabel.getText().replace("R", "").replace("$", ""));
         Double valorTotalMes = valorReceita - valorDespesa;
         totalMesLabel.setText("R$ " + valorTotalMes);
-        
-        
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         sidebarMenu = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
         userNameLabel = new javax.swing.JLabel();
@@ -267,6 +265,9 @@ public class InicioView extends javax.swing.JFrame {
         cadastrarADMBtn = new JCustom.JCustomButton();
         cancelarBtn = new JCustom.JCustomButton();
         listarADMBtn = new JCustom.JCustomButton();
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Início");
@@ -1131,7 +1132,6 @@ public class InicioView extends javax.swing.JFrame {
         tfEnderecoCliente.getAccessibleContext().setAccessibleName("Endereço do Cliente");
         jLabel3.getAccessibleContext().setAccessibleName("CPF do Cliente");
         tfEmailCliente.getAccessibleContext().setAccessibleName("Email do Cliente");
-        tfEmailCliente.getAccessibleContext().setAccessibleDescription("Email do Cliente");
         tfAlturaCliente.getAccessibleContext().setAccessibleName("Altura do Cliente");
         tfPesoAluno.getAccessibleContext().setAccessibleName("Peso do Cliente");
         cbMatricula.getAccessibleContext().setAccessibleName("Caixa de Matrículas");
@@ -1139,7 +1139,6 @@ public class InicioView extends javax.swing.JFrame {
         tfTelefoneEmergenciaCliente.getAccessibleContext().setAccessibleName("Número de Telefone de Emergência");
         tfCPFCLiente.getAccessibleContext().setAccessibleName("CPF do Cliente");
         tfTelefoneCliente.getAccessibleContext().setAccessibleName("Número de Telefone");
-        tfTelefoneCliente.getAccessibleContext().setAccessibleDescription("Número de Telefone");
 
         ViewsPanelCardLayout.add(cardCadastrarAluno, "cardCadastrarAluno");
 
@@ -1186,7 +1185,7 @@ public class InicioView extends javax.swing.JFrame {
             }
         });
         tabelaClientes.setToolTipText("Tabela de Clientes");
-        tabelaClientes.setColumnSelectionAllowed(true);
+        tabelaClientes.setCellSelectionEnabled(false);
         tabelaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabelaClientes.setDoubleBuffered(true);
         tabelaClientes.setFillsViewportHeight(true);
@@ -1194,8 +1193,10 @@ public class InicioView extends javax.swing.JFrame {
         tabelaClientes.setMaximumSize(new java.awt.Dimension(1231321, 61313100));
         tabelaClientes.setMinimumSize(new java.awt.Dimension(300, 300));
         tabelaClientes.setRowHeight(35);
+        tabelaClientes.setRowSelectionAllowed(true);
         tabelaClientes.setSelectionBackground(new java.awt.Color(255, 249, 237));
         tabelaClientes.setSelectionForeground(new java.awt.Color(107, 62, 35));
+        tabelaClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tabelaClientes.setShowGrid(true);
         cadastroAlunoScrollPane.setViewportView(tabelaClientes);
         tabelaClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -1468,6 +1469,7 @@ public class InicioView extends javax.swing.JFrame {
         FinanceiroTable.setRowHeight(35);
         FinanceiroTable.setSelectionBackground(new java.awt.Color(255, 249, 237));
         FinanceiroTable.setSelectionForeground(new java.awt.Color(107, 62, 35));
+        FinanceiroTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         FinanceiroTable.setShowGrid(true);
         FinancerioScrollPane.setViewportView(FinanceiroTable);
         if (FinanceiroTable.getColumnModel().getColumnCount() > 0) {
@@ -1786,7 +1788,6 @@ public class InicioView extends javax.swing.JFrame {
             DIALOG.exbirMensagem(this, "Selecione um usuário para visualizar.");
         } else {
             new VisuCadastroDialog(this, rootPaneCheckingEnabled, user, (String) tabelaClientes.getValueAt(linhaSelecionada, 0)).setVisible(true);
-
         }
         ListarCadastroClientes();
         listarAlunosCadastradosContador();
@@ -1812,7 +1813,6 @@ public class InicioView extends javax.swing.JFrame {
 
     private void cadastrarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarADMBtnActionPerformed
         UserAccessController.cadastrarController(tfNewUserName, tfNewPassword, tfNewPasswordConfirm, cbAccessType);
-
     }//GEN-LAST:event_cadastrarADMBtnActionPerformed
 
     private void cadastrarAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoBtnActionPerformed
@@ -1882,6 +1882,7 @@ public class InicioView extends javax.swing.JFrame {
     private javax.swing.JLabel despesasLabel;
     private JCustom.JCustomPanel despesasPanel;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private JCustom.JCustomPanel jCustomPanel11;
     private JCustom.JCustomPanel jCustomPanel4;
     private JCustom.JCustomPanel jCustomPanel5;

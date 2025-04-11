@@ -3,8 +3,6 @@ package View;
 import Controller.ClienteController;
 import Entity.Cliente;
 import Entity.UserAccess;
-import JPAUtil.JPAUtil;
-import Validation.DIALOG;
 import Validation.FORMAT;
 import jakarta.persistence.EntityManager;
 
@@ -12,8 +10,6 @@ public class VisuCadastroDialog extends java.awt.Dialog {
 
     private UserAccess user;
     private String idClient;
-    
-    EntityManager em;
 
     public VisuCadastroDialog(java.awt.Frame parent, boolean modal, UserAccess user, String IdCliente) { //Passar o id oh nome do aluno para poder verificar e também o tipo de usuário do adm
         super(parent, modal);                                                                         //para poder definir suas ações nessa tela.          
@@ -31,8 +27,14 @@ public class VisuCadastroDialog extends java.awt.Dialog {
     public void userPermissao() {
         if (user.getAccessType().equals("Parcial")) {
             editarAlunoBtn.setEnabled(false);
+            editarAlunoBtn.setVisible(false);
+            
             removerAlunoBtn.setEnabled(false);
+            removerAlunoBtn.setVisible(false);
+            
             confirmarEdicaoBtn.setEnabled(false);
+            confirmarEdicaoBtn.setVisible(false);
+            
         }
     }
     
@@ -152,6 +154,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfNomeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfNomeCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfNomeCliente.setToolTipText("editar nome de usuário");
         tfNomeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfNomeCliente.setMaximumSize(new java.awt.Dimension(370, 40));
         tfNomeCliente.setMinimumSize(new java.awt.Dimension(220, 22));
@@ -175,6 +178,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEmailCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEmailCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfEmailCliente.setToolTipText("editar email");
         tfEmailCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfEmailCliente.setMaximumSize(new java.awt.Dimension(328, 22));
         tfEmailCliente.setMinimumSize(new java.awt.Dimension(220, 22));
@@ -186,6 +190,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfEnderecoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEnderecoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEnderecoCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfEnderecoCliente.setToolTipText("editar endereço");
         tfEnderecoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel8.setForeground(new java.awt.Color(85, 85, 85));
@@ -195,6 +200,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfAlturaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfAlturaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfAlturaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfAlturaCliente.setToolTipText("editar peso");
         tfAlturaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfAlturaCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
@@ -208,6 +214,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfHistoricoSaudeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfHistoricoSaudeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfHistoricoSaudeCliente.setRows(5);
+        tfHistoricoSaudeCliente.setToolTipText("editar condição médica");
         tfHistoricoSaudeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfHistoricoSaudeCliente.setMinimumSize(new java.awt.Dimension(200, 22));
         jScrollPane3.setViewportView(tfHistoricoSaudeCliente);
@@ -218,6 +225,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         cbMatricula.setBackground(new java.awt.Color(255, 255, 255));
         cbMatricula.setForeground(new java.awt.Color(54, 54, 54));
         cbMatricula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:", "Mensal", "Quinzenal" }));
+        cbMatricula.setToolTipText("trocar matricula");
         cbMatricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
 
         jLabel9.setForeground(new java.awt.Color(85, 85, 85));
@@ -227,6 +235,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfPesoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfPesoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfPesoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoCliente.setToolTipText("editar altura");
         tfPesoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfPesoCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
@@ -266,6 +275,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         sairBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         sairBtn.setForeground(new java.awt.Color(107, 62, 35));
         sairBtn.setText("Sair");
+        sairBtn.setToolTipText("Sair da Visualização de Cliente");
         sairBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sairBtn.setRound(10);
         sairBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
@@ -281,12 +291,8 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         cbStatus.setBackground(new java.awt.Color(255, 255, 255));
         cbStatus.setForeground(new java.awt.Color(54, 54, 54));
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inativo", "Ativo", " ", " " }));
+        cbStatus.setToolTipText("definir status");
         cbStatus.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        cbStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbStatusActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(243, 243, 243));
 
@@ -320,6 +326,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
             ex.printStackTrace();
         }
         tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTelefoneEmergenciaCliente.setToolTipText("editar telefone de emergência");
         tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tfTelefoneCliente.setBackground(new java.awt.Color(255, 255, 255));
@@ -331,6 +338,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
             ex.printStackTrace();
         }
         tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTelefoneCliente.setToolTipText("editar telefone");
         tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tfdataNascimento.setBackground(new java.awt.Color(255, 255, 255));
@@ -342,6 +350,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
             ex.printStackTrace();
         }
         tfdataNascimento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfdataNascimento.setToolTipText("editar data de nascimento");
         tfdataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
@@ -353,6 +362,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
             ex.printStackTrace();
         }
         tfCPFCLiente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCPFCLiente.setToolTipText("inserir cpf");
         tfCPFCLiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout editPanelLayout = new javax.swing.GroupLayout(editPanel);
@@ -493,10 +503,6 @@ public class VisuCadastroDialog extends java.awt.Dialog {
     private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed
         dispose();
     }//GEN-LAST:event_sairBtnActionPerformed
-
-    private void cbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbStatusActionPerformed
 
     private void editarAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAlunoBtnActionPerformed
         ativarCampos();

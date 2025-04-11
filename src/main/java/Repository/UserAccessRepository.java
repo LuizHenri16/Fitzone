@@ -2,7 +2,6 @@ package Repository;
 
 import Entity.UserAccess;
 import JPAUtil.JPAUtil;
-import Service.UserAccessService;
 import Validation.DIALOG;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -12,13 +11,11 @@ import java.util.List;
 
 public class UserAccessRepository {
 
-
     public static UserAccess loginRepository(String userName, String passwordHash) {
-
         EntityManager em = JPAUtil.getEntityManager();
         TypedQuery<UserAccess> query;
-        try {
 
+        try {
             query = em.createQuery("SELECT u FROM UserAccess u where u.name = :usuario AND u.password = :senha", UserAccess.class);
             query.setParameter("usuario", userName);
             query.setParameter("senha", passwordHash);
@@ -48,7 +45,7 @@ public class UserAccessRepository {
             em.close();
         }
     }
-    
+
     public static List<UserAccess> listarRepository() {
         EntityManager em = JPAUtil.getEntityManager();
         List<UserAccess> lista = null;
@@ -67,9 +64,8 @@ public class UserAccessRepository {
             em.close();
         }
     }
-    
-    public static void apagarRepository(String id) {
 
+    public static void apagarRepository(String id) {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
@@ -87,6 +83,5 @@ public class UserAccessRepository {
             em.close();
         }
     }
-
 
 }

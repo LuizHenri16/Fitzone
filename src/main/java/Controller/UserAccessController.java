@@ -4,7 +4,6 @@ import Entity.UserAccess;
 import Service.UserAccessService;
 import Validation.DIALOG;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.util.List;
 
@@ -14,8 +13,6 @@ public class UserAccessController {
     }
 
     public static UserAccess loginController(JTextField userNameLogin, JPasswordField passwordFieldLogin) {
-        UserAccess usuario = null;
-
         String password = new String(passwordFieldLogin.getPassword());
 
         if (userNameLogin.getText().isBlank() && password.isBlank()) {
@@ -25,7 +22,7 @@ public class UserAccessController {
         } else if (password.isBlank()) {
             DIALOG.exbirMensagem(null, "Digite a senha");
         } else {
-            return UserAccessService.loginService(userNameLogin.getText() , password);
+            return UserAccessService.loginService(userNameLogin.getText(), password);
         }
         return null;
     }
@@ -51,8 +48,7 @@ public class UserAccessController {
             } else if (tipoUsuarioCombobox.getSelectedIndex() == 0) {
                 DIALOG.exbirMensagem(null, "Selecione um tipo de acesso");
             } else {
-                  UserAccessService.cadastrarService(userNameLogin.getText(), passwordConfirm, (String) tipoUsuarioCombobox.getSelectedItem());
-
+                UserAccessService.cadastrarService(userNameLogin.getText(), passwordConfirm, (String) tipoUsuarioCombobox.getSelectedItem());
             }
 
         } catch (Exception e) {

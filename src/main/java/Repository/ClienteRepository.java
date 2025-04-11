@@ -8,7 +8,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import java.lang.reflect.Array;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +22,8 @@ public class ClienteRepository {
             em = JPAUtil.getEntityManager();
             em.getTransaction().begin();
             em.persist(cliente);
-            em.flush(); // O flush permite gerar o id do cliente antes de levar ao banco de dados
-            // Permitindo depois fazer a comunicação com as tabelas auxiliares, levando o id para a coluna que os liga ao cliente.
+            em.flush();
+
             if (cliente.getContato() != null) {
                 cliente.getContato().setCliente(cliente);
             }
@@ -50,7 +49,6 @@ public class ClienteRepository {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
-
             em.getTransaction().begin();
             em.merge(cliente);
             em.getTransaction().commit();
@@ -68,7 +66,6 @@ public class ClienteRepository {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
-
             em.getTransaction().begin();
             em.remove(cliente);
             em.getTransaction().commit();
@@ -151,7 +148,6 @@ public class ClienteRepository {
         } finally {
             em.close();
         }
-
         return null;
     }
 
@@ -178,14 +174,12 @@ public class ClienteRepository {
 
         try {
             Query consulta = em.createNativeQuery("SELECT nome_cliente FROM cliente_cadastro WHERE DAY(data_nascimento) = DAY(CURDATE()) AND MONTH(data_nascimento) = MONTH(CURDATE())");
-
-            // Alterar o tipo de dados retornado para List<Object>
             List<Object> objects = consulta.getResultList();
 
             for (Object obj : objects) {
                 AniversarianteDTO aniversariante = new AniversarianteDTO();
 
-                // Converter o objeto para String, pois a consulta retorna apenas o nome
+              
                 aniversariante.setNome((String) obj);
                 listaAniversariantes.add(aniversariante);
             }
@@ -195,7 +189,6 @@ public class ClienteRepository {
             System.out.println(e);
             DIALOG.exbirMensagem(null, "Não foi possível retornar os aniversariantes.");
         }
-
         return listaAniversariantes;
     }
 }

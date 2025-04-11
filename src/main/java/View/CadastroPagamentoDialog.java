@@ -53,6 +53,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
 
         concluirPagamentoBtn.setForeground(new java.awt.Color(255, 249, 237));
         concluirPagamentoBtn.setText("Concluir");
+        concluirPagamentoBtn.setToolTipText("Cadastrar Novo Pagamento");
         concluirPagamentoBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         concluirPagamentoBtn.setRound(10);
         concluirPagamentoBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
@@ -64,6 +65,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
 
         sairBtn.setForeground(new java.awt.Color(107, 62, 35));
         sairBtn.setText("Voltar");
+        sairBtn.setToolTipText("Voltar e Cancelar");
         sairBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sairBtn.setRound(10);
         sairBtn.setStyle(JCustom.JCustomButton.ButtonStyle.SECONDARY);
@@ -77,6 +79,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
         tfUltimoPagamento.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfUltimoPagamento.setForeground(new java.awt.Color(54, 54, 54));
         tfUltimoPagamento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfUltimoPagamento.setToolTipText("Data do Último Pagamento");
         tfUltimoPagamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfUltimoPagamento.setEnabled(false);
         tfUltimoPagamento.setMaximumSize(new java.awt.Dimension(370, 40));
@@ -86,6 +89,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
         tfValorPagamento.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfValorPagamento.setForeground(new java.awt.Color(54, 54, 54));
         tfValorPagamento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfValorPagamento.setToolTipText("Valor da Matricula");
         tfValorPagamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfValorPagamento.setEnabled(false);
         tfValorPagamento.setMaximumSize(new java.awt.Dimension(370, 40));
@@ -95,6 +99,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
         tfTipoMatricula.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfTipoMatricula.setForeground(new java.awt.Color(54, 54, 54));
         tfTipoMatricula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfTipoMatricula.setToolTipText("Descrição da Matricula");
         tfTipoMatricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfTipoMatricula.setEnabled(false);
         tfTipoMatricula.setMaximumSize(new java.awt.Dimension(370, 40));
@@ -116,6 +121,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
         tfNovoPagamento.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfNovoPagamento.setForeground(new java.awt.Color(54, 54, 54));
         tfNovoPagamento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfNovoPagamento.setToolTipText("Data do Novo Pagamento");
         tfNovoPagamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfNovoPagamento.setEnabled(false);
         tfNovoPagamento.setMaximumSize(new java.awt.Dimension(370, 40));
@@ -129,6 +135,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
         clientesCombobox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clientesCombobox.setForeground(new java.awt.Color(51, 51, 51));
         clientesCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        clientesCombobox.setToolTipText("Bsucar Client");
         clientesCombobox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         clientesCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

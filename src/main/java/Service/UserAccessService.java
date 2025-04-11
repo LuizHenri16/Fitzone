@@ -21,28 +21,27 @@ public class UserAccessService {
     }
 
     public static void cadastrarService(String userName, String passwordConfirm, String accessType) {
-           try {
-               UserAccess newUser = new UserAccess();
-               
-               newUser.setName(userName);
-               newUser.setPassword(CRIPTOGRAFAR.toSHA256(passwordConfirm));
-               newUser.setAccessType(accessType);
-               
-               UserAccessRepository.cadastrarRepository(newUser);
-               
+        try {
+            UserAccess newUser = new UserAccess();
+
+            newUser.setName(userName);
+            newUser.setPassword(CRIPTOGRAFAR.toSHA256(passwordConfirm));
+            newUser.setAccessType(accessType);
+
+            UserAccessRepository.cadastrarRepository(newUser);
+
         } catch (Exception e) {
-               DIALOG.exbirMensagem(null, "Ocorreu um erro no cadastro!");
+            DIALOG.exbirMensagem(null, "Ocorreu um erro no cadastro!");
         }
     }
-    
-        public static List<UserAccess> listarService() {
+
+    public static List<UserAccess> listarService() {
         List<UserAccess> lista = UserAccessRepository.listarRepository();
         return lista;
     }
-        
-        public static void apagarService(String id) {
-            UserAccessRepository.apagarRepository(id);
+
+    public static void apagarService(String id) {
+        UserAccessRepository.apagarRepository(id);
     }
-        
-        
+
 }

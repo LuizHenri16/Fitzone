@@ -70,6 +70,7 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
 
         cadastrarDespesaBtn.setForeground(new java.awt.Color(255, 249, 237));
         cadastrarDespesaBtn.setText("Concluir");
+        cadastrarDespesaBtn.setActionCommand("Cadastrar");
         cadastrarDespesaBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cadastrarDespesaBtn.setRound(10);
         cadastrarDespesaBtn.setStyle(JCustom.JCustomButton.ButtonStyle.RETURN);
@@ -94,6 +95,7 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
         tfDescricaoDespesa.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfDescricaoDespesa.setForeground(new java.awt.Color(54, 54, 54));
         tfDescricaoDespesa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfDescricaoDespesa.setToolTipText("Descrição da Despesa");
         tfDescricaoDespesa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfDescricaoDespesa.setMaximumSize(new java.awt.Dimension(370, 40));
         tfDescricaoDespesa.setMinimumSize(new java.awt.Dimension(220, 22));
@@ -102,6 +104,7 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
         tfValorDespesa.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         tfValorDespesa.setForeground(new java.awt.Color(54, 54, 54));
         tfValorDespesa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfValorDespesa.setToolTipText("Valor da Despesa");
         tfValorDespesa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfValorDespesa.setMaximumSize(new java.awt.Dimension(370, 40));
         tfValorDespesa.setMinimumSize(new java.awt.Dimension(220, 22));
@@ -157,6 +160,7 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
             }
         });
         despesaTabela.setGridColor(new java.awt.Color(107, 62, 35));
+        despesaTabela.setRowHeight(30);
         despesaTabela.setSelectionBackground(new java.awt.Color(255, 249, 237));
         despesaTabela.setSelectionForeground(new java.awt.Color(107, 62, 35));
         jScrollPane1.setViewportView(despesaTabela);
@@ -170,6 +174,7 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
             ex.printStackTrace();
         }
         tfDataPagamentoDespesa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfDataPagamentoDespesa.setToolTipText("Data da Despesa");
         tfDataPagamentoDespesa.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
@@ -222,6 +227,13 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
                     .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
+
+        cadastrarDespesaBtn.getAccessibleContext().setAccessibleName("Cadastrar");
+        cadastrarDespesaBtn.getAccessibleContext().setAccessibleDescription("Cadastrar Pagamento");
+        tfDescricaoDespesa.getAccessibleContext().setAccessibleName("Descrição da Despesa");
+        tfDescricaoDespesa.getAccessibleContext().setAccessibleDescription("Descrição da Despesa");
+        tfValorDespesa.getAccessibleContext().setAccessibleName("Valor da Despesa");
+        tfDataPagamentoDespesa.getAccessibleContext().setAccessibleName("");
 
         add(panel, java.awt.BorderLayout.CENTER);
 

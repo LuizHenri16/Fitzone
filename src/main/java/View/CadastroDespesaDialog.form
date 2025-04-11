@@ -115,6 +115,7 @@
               <Color blue="ed" green="f9" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Concluir"/>
+            <Property name="actionCommand" type="java.lang.String" value="Cadastrar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
@@ -123,6 +124,10 @@
               <Value id="RETURN"/>
             </Property>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Cadastrar"/>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Cadastrar Pagamento"/>
+          </AccessibilityProperties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarDespesaBtnActionPerformed"/>
           </Events>
@@ -157,6 +162,7 @@
               <Color blue="36" green="36" red="36" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="toolTipText" type="java.lang.String" value="Descri&#xe7;&#xe3;o da Despesa"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true">
@@ -171,6 +177,10 @@
               <Dimension value="[220, 22]"/>
             </Property>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Descri&#xe7;&#xe3;o da Despesa"/>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Descri&#xe7;&#xe3;o da Despesa"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfValorDespesa">
           <Properties>
@@ -184,6 +194,7 @@
               <Color blue="36" green="36" red="36" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="toolTipText" type="java.lang.String" value="Valor da Despesa"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true">
@@ -198,6 +209,9 @@
               <Dimension value="[220, 22]"/>
             </Property>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Valor da Despesa"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -272,6 +286,7 @@
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="23" green="3e" red="6b" type="rgb"/>
                 </Property>
+                <Property name="rowHeight" type="int" value="30"/>
                 <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="f9" red="ff" type="rgb"/>
                 </Property>
@@ -307,10 +322,14 @@
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="toolTipText" type="java.lang.String" value="Data da Despesa"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="17" style="1"/>
             </Property>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+          </AccessibilityProperties>
         </Component>
       </SubComponents>
     </Container>

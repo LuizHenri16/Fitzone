@@ -21,7 +21,6 @@ public class FinanceiroRepository {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
-
             em.getTransaction().begin();
             em.persist(pagamento);
             em.getTransaction().commit();

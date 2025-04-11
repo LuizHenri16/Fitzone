@@ -14,9 +14,9 @@ public class ClienteService {
         cliente.setDataNascimento(FORMAT.converterData(cliente.getDataNascimento()));
         cliente.setCpf(CRIPTOGRAFAR.toSHA256(cliente.getCpf()));
 
-       cliente.setContato(contact);
-       cliente.setEndereco(address);
-       cliente.setInfoComplement(complement);
+        cliente.setContato(contact);
+        cliente.setEndereco(address);
+        cliente.setInfoComplement(complement);
 
         ClienteRepository.cadastrarRepository(cliente);
     }
@@ -26,7 +26,7 @@ public class ClienteService {
         cliente.setCpf(CRIPTOGRAFAR.toSHA256(cliente.getCpf()));
 
         ClienteRepository.editarRepository(cliente);
-    };
+    }
 
     public static void excluirService(Cliente cliente) {
         ClienteRepository.excluirRepository(cliente);
@@ -37,8 +37,6 @@ public class ClienteService {
     }
 
     public static Cliente listarCliente(String idCliente) {
-        Cliente cliente = new Cliente();
-
         return ClienteRepository.listarCliente(idCliente);
     }
 
@@ -53,7 +51,7 @@ public class ClienteService {
     public static Integer contarClientesCadastradosService() {
         return ClienteRepository.contarClientesCadastradosRepository();
     }
-    
+
     public static List<AniversarianteDTO> listarAniversarianteService() {
         return ClienteRepository.listarAniversarianteRepository();
     }

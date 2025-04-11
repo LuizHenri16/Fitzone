@@ -167,6 +167,7 @@
               <Color blue="23" green="3e" red="6b" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
+            <Property name="toolTipText" type="java.lang.String" value="Sair "/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
@@ -185,6 +186,7 @@
               <Color blue="ed" green="f9" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Remover"/>
+            <Property name="toolTipText" type="java.lang.String" value="remover administrador"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
