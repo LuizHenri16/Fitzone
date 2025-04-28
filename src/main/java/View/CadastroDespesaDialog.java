@@ -159,6 +159,7 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
                 return canEdit [columnIndex];
             }
         });
+        despesaTabela.setFocusable(false);
         despesaTabela.setGridColor(new java.awt.Color(107, 62, 35));
         despesaTabela.setRowHeight(30);
         despesaTabela.setSelectionBackground(new java.awt.Color(255, 249, 237));
@@ -231,7 +232,6 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
         cadastrarDespesaBtn.getAccessibleContext().setAccessibleName("Cadastrar");
         cadastrarDespesaBtn.getAccessibleContext().setAccessibleDescription("Cadastrar Pagamento");
         tfDescricaoDespesa.getAccessibleContext().setAccessibleName("Descrição da Despesa");
-        tfDescricaoDespesa.getAccessibleContext().setAccessibleDescription("Descrição da Despesa");
         tfValorDespesa.getAccessibleContext().setAccessibleName("Valor da Despesa");
         tfDataPagamentoDespesa.getAccessibleContext().setAccessibleName("");
 

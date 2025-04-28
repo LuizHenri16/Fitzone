@@ -98,6 +98,7 @@ public class VisualizarADMDialog extends java.awt.Dialog {
                 return canEdit [columnIndex];
             }
         });
+        tabelaADMs.setFocusable(false);
         tabelaADMs.setGridColor(new java.awt.Color(107, 62, 35));
         tabelaADMs.setRowHeight(35);
         tabelaADMs.setSelectionBackground(new java.awt.Color(255, 249, 237));

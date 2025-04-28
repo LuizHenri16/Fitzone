@@ -179,7 +179,6 @@
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Descri&#xe7;&#xe3;o da Despesa"/>
-            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Descri&#xe7;&#xe3;o da Despesa"/>
           </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfValorDespesa">
@@ -283,6 +282,7 @@
                     <Column editable="false" title="Data" type="java.lang.String"/>
                   </Table>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="23" green="3e" red="6b" type="rgb"/>
                 </Property>
