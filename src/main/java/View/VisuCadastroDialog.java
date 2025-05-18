@@ -150,12 +150,14 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         jLabel1.setForeground(new java.awt.Color(85, 85, 85));
         jLabel1.setText("Nome Completo");
 
+        tfNomeCliente.setEditable(false);
         tfNomeCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfNomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfNomeCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfNomeCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfNomeCliente.setToolTipText("editar nome de usuário");
         tfNomeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfNomeCliente.setEnabled(false);
         tfNomeCliente.setMaximumSize(new java.awt.Dimension(370, 40));
         tfNomeCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
@@ -174,6 +176,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         jLabel7.setForeground(new java.awt.Color(85, 85, 85));
         jLabel7.setText("Email");
 
+        tfEmailCliente.setEditable(false);
         tfEmailCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEmailCliente.setForeground(new java.awt.Color(54, 54, 54));
@@ -186,22 +189,26 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         jLabel2.setForeground(new java.awt.Color(85, 85, 85));
         jLabel2.setText("Endereço");
 
+        tfEnderecoCliente.setEditable(false);
         tfEnderecoCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfEnderecoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfEnderecoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfEnderecoCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfEnderecoCliente.setToolTipText("editar endereço");
         tfEnderecoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfEnderecoCliente.setEnabled(false);
 
         jLabel8.setForeground(new java.awt.Color(85, 85, 85));
         jLabel8.setText("Peso");
 
+        tfAlturaCliente.setEditable(false);
         tfAlturaCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfAlturaCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfAlturaCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfAlturaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfAlturaCliente.setToolTipText("editar peso");
         tfAlturaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfAlturaCliente.setEnabled(false);
         tfAlturaCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
         jLabel10.setForeground(new java.awt.Color(85, 85, 85));
@@ -209,6 +216,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
 
         jScrollPane3.setBorder(null);
 
+        tfHistoricoSaudeCliente.setEditable(false);
         tfHistoricoSaudeCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfHistoricoSaudeCliente.setColumns(20);
         tfHistoricoSaudeCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -231,12 +239,14 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         jLabel9.setForeground(new java.awt.Color(85, 85, 85));
         jLabel9.setText("Altura");
 
+        tfPesoCliente.setEditable(false);
         tfPesoCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfPesoCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tfPesoCliente.setForeground(new java.awt.Color(54, 54, 54));
         tfPesoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfPesoCliente.setToolTipText("editar altura");
         tfPesoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
+        tfPesoCliente.setEnabled(false);
         tfPesoCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
         editarAlunoBtn.setForeground(new java.awt.Color(255, 249, 237));
@@ -317,6 +327,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
                 .addContainerGap())
         );
 
+        tfTelefoneEmergenciaCliente.setEditable(false);
         tfTelefoneEmergenciaCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfTelefoneEmergenciaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfTelefoneEmergenciaCliente.setForeground(new java.awt.Color(51, 51, 51));
@@ -327,8 +338,10 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         }
         tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelefoneEmergenciaCliente.setToolTipText("editar telefone de emergência");
+        tfTelefoneEmergenciaCliente.setEnabled(false);
         tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        tfTelefoneCliente.setEditable(false);
         tfTelefoneCliente.setBackground(new java.awt.Color(255, 255, 255));
         tfTelefoneCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfTelefoneCliente.setForeground(new java.awt.Color(51, 51, 51));
@@ -339,8 +352,10 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         }
         tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelefoneCliente.setToolTipText("editar telefone");
+        tfTelefoneCliente.setEnabled(false);
         tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        tfdataNascimento.setEditable(false);
         tfdataNascimento.setBackground(new java.awt.Color(255, 255, 255));
         tfdataNascimento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfdataNascimento.setForeground(new java.awt.Color(54, 54, 54));
@@ -351,8 +366,15 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         }
         tfdataNascimento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfdataNascimento.setToolTipText("editar data de nascimento");
+        tfdataNascimento.setEnabled(false);
         tfdataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfdataNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfdataNascimentoActionPerformed(evt);
+            }
+        });
 
+        tfCPFCLiente.setEditable(false);
         tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
         tfCPFCLiente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
         tfCPFCLiente.setForeground(new java.awt.Color(51, 51, 51));
@@ -459,7 +481,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
                                 .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(editPanelLayout.createSequentialGroup()
                         .addComponent(tfNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfCPFCLiente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -517,6 +539,10 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         excluirCliente();
         dispose();
     }//GEN-LAST:event_removerAlunoBtnActionPerformed
+
+    private void tfdataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdataNascimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfdataNascimentoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbMatricula;

@@ -1704,7 +1704,14 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder roundedCorners="true" thickness="2">
+                          <Color PropertyName="color" blue="f3" green="f3" red="f3" type="rgb"/>
+                        </LineBorder>
+                      </Border>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="tabelaClientes.setIntercellSpacing(new Dimension(0, 0));">
                       <Font name="Segoe UI Light" size="14" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor" postCode="tabelaClientes.getTableHeader().setBackground(new Color(240, 240,240));&#xa;tabelaClientes.getTableHeader().setForeground(new Color(107, 62,35));&#xa;tabelaClientes.getTableHeader().setReorderingAllowed(false);&#xa;tabelaClientes.getTableHeader().setFont( new Font(&quot;Segoe UI&quot;,Font.BOLD, 14));&#xa;tabelaClientes.getTableHeader().setPreferredSize(new Dimension(tabelaClientes.getTableHeader().getWidth(), 30));">
@@ -1756,7 +1763,7 @@
                     <Property name="fillsViewportHeight" type="boolean" value="true"/>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="23" green="3e" red="6b" type="rgb"/>
+                      <Color blue="ed" green="f9" red="ff" type="rgb"/>
                     </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[1231321, 61313100]"/>
@@ -1775,12 +1782,14 @@
                       <JTableSelectionModel selectionMode="0"/>
                     </Property>
                     <Property name="showGrid" type="boolean" value="true"/>
+                    <Property name="showHorizontalLines" type="boolean" value="false"/>
+                    <Property name="showVerticalLines" type="boolean" value="false"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                   <AccessibilityProperties>
-                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Tabela de Clientes"/>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="" postCode="DefaultTableCellRenderer centralizarTabela = new DefaultTableCellRenderer();&#xa;centralizarTabela.setHorizontalAlignment(SwingConstants.CENTER);&#xa;&#xa;for (int i = 0; i &lt; tabelaClientes.getColumnCount(); i++) {&#xa;            tabelaClientes.getColumnModel().getColumn(i).setCellRenderer(centralizarTabela);&#xa;        }&#xa;&#xa;TableCellRenderer baseRenderer2 = tabelaClientes.getTableHeader().getDefaultRenderer();&#xa;&#xa;tabelaClientes.getTableHeader().setDefaultRenderer((tbl, value, isSelected, hasFocus, row, column) -&gt; {&#xa;    JComponent comp = (JComponent) baseRenderer2.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);&#xa;    comp.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));&#xa;        return comp;&#xa;});"/>
                   </AccessibilityProperties>
                 </Component>
               </SubComponents>
@@ -1846,7 +1855,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="110" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="totalMesPanel" min="-2" max="-2" attributes="0"/>
@@ -2203,7 +2212,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Light" size="14" style="1"/>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor" postCode="FinanceiroTable.setIntercellSpacing(new Dimension(0, 0));">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
@@ -2241,7 +2250,7 @@
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="23" green="3e" red="6b" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="rowHeight" type="int" value="35"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -2253,13 +2262,15 @@
                     <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                       <JTableSelectionModel selectionMode="0"/>
                     </Property>
-                    <Property name="showGrid" type="boolean" value="true"/>
+                    <Property name="showGrid" type="boolean" value="false"/>
+                    <Property name="showHorizontalLines" type="boolean" value="false"/>
+                    <Property name="showVerticalLines" type="boolean" value="false"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                   <AccessibilityProperties>
-                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Tabela de &#xda;ltimos Pagamentos"/>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="" postCode="for (int i = 0; i &lt; FinanceiroTable.getColumnCount(); i++) {&#xa;            FinanceiroTable.getColumnModel().getColumn(i).setCellRenderer(centralizarTabela);&#xa;        }&#xa;&#xa;TableCellRenderer baseRenderer1 = FinanceiroTable.getTableHeader().getDefaultRenderer();&#xa;&#xa;FinanceiroTable.getTableHeader().setDefaultRenderer((tbl, value, isSelected, hasFocus, row, column) -&gt; {&#xa;    JComponent comp = (JComponent) baseRenderer1.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);&#xa;    comp.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));&#xa;        return comp;&#xa;});"/>
                   </AccessibilityProperties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="FinanceiroTable.getTableHeader().setBackground(new Color(240, 240,240));&#xa;FinanceiroTable.getTableHeader().setForeground(new Color(107, 62,35));&#xa;FinanceiroTable.getTableHeader().setReorderingAllowed(false);&#xa;FinanceiroTable.getTableHeader().setFont( new Font(&quot;Segoe UI&quot;,Font.BOLD, 14));&#xa;FinanceiroTable.getTableHeader().setPreferredSize(new Dimension(tabelaClientes.getTableHeader().getWidth(), 30));"/>

@@ -101,6 +101,15 @@
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="tabelaAdmScrollPane">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder roundedCorners="true" thickness="2">
+                  <Color PropertyName="color" blue="23" green="3e" red="6b" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+          </Properties>
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -112,7 +121,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="tabelaADMs.setIntercellSpacing(new Dimension(0, 0));">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
@@ -122,7 +131,7 @@
                     <Column editable="false" title="Tipo de Acesso" type="java.lang.String"/>
                   </Table>
                 </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="DefaultTableCellRenderer centralizarTabela = new DefaultTableCellRenderer();&#xa;centralizarTabela.setHorizontalAlignment(SwingConstants.CENTER);&#xa;&#xa;tabelaADMs.getAccessibleContext().setAccessibleName(&quot;&quot;);&#xa;for (int i = 0; i &lt; tabelaADMs.getColumnCount(); i++) {&#xa;            tabelaADMs.getColumnModel().getColumn(i).setCellRenderer(centralizarTabela);&#xa;        }&#xa;&#xa;TableCellRenderer baseRenderer1 = tabelaADMs.getTableHeader().getDefaultRenderer();&#xa;&#xa;tabelaADMs.getTableHeader().setDefaultRenderer((tbl, value, isSelected, hasFocus, row, column) -&gt; {&#xa;    JComponent comp = (JComponent) baseRenderer1.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);&#xa;    comp.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));&#xa;        return comp;&#xa;});">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
                       <Title/>

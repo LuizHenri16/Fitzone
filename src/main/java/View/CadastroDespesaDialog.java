@@ -7,7 +7,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 public class CadastroDespesaDialog extends java.awt.Dialog {
 
@@ -27,10 +32,8 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
             String[] linha = {
                 despesa.getDescricao(), String.valueOf(despesa.getValor()), FORMAT.converterData(despesa.getData())
             };
-
             modelo.addRow(linha);
         }
-
         despesaTabela.setModel(modelo);
     }
 
@@ -39,8 +42,6 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
         tfDescricaoDespesa.setText("");
         tfDataPagamentoDespesa.setText("");
     }
-
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -122,7 +123,7 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
         jLabel3.setText("Data");
 
         jScrollPane1.setBackground(new java.awt.Color(243, 243, 243));
-        jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 62, 35), 1, true));
+        jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 62, 35), 2, true));
 
         despesaTabela.getTableHeader().setBackground(new Color(240, 240,240));
         despesaTabela.getTableHeader().setForeground(new Color(107, 62,35));
@@ -132,6 +133,7 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
         despesaTabela.setBackground(new java.awt.Color(255, 255, 255));
         despesaTabela.setBackground(new java.awt.Color(255, 255, 255));
         despesaTabela.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        despesaTabela.setIntercellSpacing(new Dimension(0, 0));
         despesaTabela.setForeground(new java.awt.Color(51, 51, 51));
         despesaTabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,11 +162,26 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
             }
         });
         despesaTabela.setFocusable(false);
-        despesaTabela.setGridColor(new java.awt.Color(107, 62, 35));
+        despesaTabela.setGridColor(new java.awt.Color(255, 255, 255));
         despesaTabela.setRowHeight(30);
         despesaTabela.setSelectionBackground(new java.awt.Color(255, 249, 237));
         despesaTabela.setSelectionForeground(new java.awt.Color(107, 62, 35));
         jScrollPane1.setViewportView(despesaTabela);
+        DefaultTableCellRenderer centralizarTabela = new DefaultTableCellRenderer();
+        centralizarTabela.setHorizontalAlignment(SwingConstants.CENTER);
+
+        despesaTabela.getAccessibleContext().setAccessibleName("");
+        for (int i = 0; i < despesaTabela.getColumnCount(); i++) {
+            despesaTabela.getColumnModel().getColumn(i).setCellRenderer(centralizarTabela);
+        }
+
+        TableCellRenderer baseRenderer1 = despesaTabela.getTableHeader().getDefaultRenderer();
+
+        despesaTabela.getTableHeader().setDefaultRenderer((tbl, value, isSelected, hasFocus, row, column) -> {
+            JComponent comp = (JComponent) baseRenderer1.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);
+            comp.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+            return comp;
+        });
 
         tfDataPagamentoDespesa.setBackground(new java.awt.Color(255, 255, 255));
         tfDataPagamentoDespesa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
@@ -250,7 +267,6 @@ public class CadastroDespesaDialog extends java.awt.Dialog {
         FinanceiroController.cadastrarDespesaController(tfDescricaoDespesa, tfValorDespesa, tfDataPagamentoDespesa);
         ListarDespesas();
         limparCampos();
-
     }//GEN-LAST:event_cadastrarDespesaBtnActionPerformed
 
     private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed

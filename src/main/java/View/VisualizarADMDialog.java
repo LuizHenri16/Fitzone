@@ -7,7 +7,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 public class VisualizarADMDialog extends java.awt.Dialog {
 
@@ -65,6 +70,8 @@ public class VisualizarADMDialog extends java.awt.Dialog {
         jLabel17.setText("Visualizar Administradores");
         jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        tabelaAdmScrollPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 62, 35), 2, true));
+
         tabelaADMs.getTableHeader().setBackground(new Color(240, 240,240));
         tabelaADMs.getTableHeader().setForeground(new Color(107, 62,35));
         tabelaADMs.getTableHeader().setReorderingAllowed(false);
@@ -72,6 +79,7 @@ public class VisualizarADMDialog extends java.awt.Dialog {
         tabelaADMs.getTableHeader().setPreferredSize(new Dimension(tabelaADMs.getTableHeader().getWidth(), 30));
         tabelaADMs.setBackground(new java.awt.Color(255, 255, 255));
         tabelaADMs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tabelaADMs.setIntercellSpacing(new Dimension(0, 0));
         tabelaADMs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -112,6 +120,21 @@ public class VisualizarADMDialog extends java.awt.Dialog {
             tabelaADMs.getColumnModel().getColumn(2).setResizable(false);
             tabelaADMs.getColumnModel().getColumn(2).setPreferredWidth(150);
         }
+        DefaultTableCellRenderer centralizarTabela = new DefaultTableCellRenderer();
+        centralizarTabela.setHorizontalAlignment(SwingConstants.CENTER);
+
+        tabelaADMs.getAccessibleContext().setAccessibleName("");
+        for (int i = 0; i < tabelaADMs.getColumnCount(); i++) {
+            tabelaADMs.getColumnModel().getColumn(i).setCellRenderer(centralizarTabela);
+        }
+
+        TableCellRenderer baseRenderer1 = tabelaADMs.getTableHeader().getDefaultRenderer();
+
+        tabelaADMs.getTableHeader().setDefaultRenderer((tbl, value, isSelected, hasFocus, row, column) -> {
+            JComponent comp = (JComponent) baseRenderer1.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);
+            comp.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+            return comp;
+        });
 
         sairBtn.setForeground(new java.awt.Color(107, 62, 35));
         sairBtn.setText("Sair");

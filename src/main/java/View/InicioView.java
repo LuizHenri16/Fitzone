@@ -14,7 +14,13 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.JComponent;
+
 
 public final class InicioView extends javax.swing.JFrame {
 
@@ -63,7 +69,6 @@ public final class InicioView extends javax.swing.JFrame {
             };
             modelo.addRow(linha);
         }
-
         tabelaClientes.setModel(modelo);
     }
 
@@ -103,9 +108,7 @@ public final class InicioView extends javax.swing.JFrame {
 
     public void listarTotalDespesas() {
         Double totalDespesas = 0.;
-
         List<Despesa> listaDepesas = FinanceiroController.ListarDespesasController();
-        
 
         for (Despesa despesa : listaDepesas) {
             totalDespesas = totalDespesas + despesa.getValor();
@@ -121,7 +124,6 @@ public final class InicioView extends javax.swing.JFrame {
         for (AniversarianteDTO aniversariante : listaAniversariante) {
             linha = linha + aniversariante.getNome() + "\n";   
         }
-        
         aniversariantesLabel.setText(linha);
     }
     
@@ -1162,7 +1164,9 @@ public final class InicioView extends javax.swing.JFrame {
         cadastroAlunoScrollPane.setPreferredSize(new java.awt.Dimension(850, 500));
 
         tabelaClientes.setBackground(new java.awt.Color(255, 255, 255));
+        tabelaClientes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(243, 243, 243), 2, true));
         tabelaClientes.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        tabelaClientes.setIntercellSpacing(new Dimension(0, 0));
         tabelaClientes.setForeground(new java.awt.Color(51, 51, 51));
         tabelaClientes.getTableHeader().setBackground(new Color(240, 240,240));
         tabelaClientes.getTableHeader().setForeground(new Color(107, 62,35));
@@ -1200,7 +1204,7 @@ public final class InicioView extends javax.swing.JFrame {
         tabelaClientes.setDoubleBuffered(true);
         tabelaClientes.setFillsViewportHeight(true);
         tabelaClientes.setFocusable(false);
-        tabelaClientes.setGridColor(new java.awt.Color(107, 62, 35));
+        tabelaClientes.setGridColor(new java.awt.Color(255, 249, 237));
         tabelaClientes.setMaximumSize(new java.awt.Dimension(1231321, 61313100));
         tabelaClientes.setMinimumSize(new java.awt.Dimension(300, 300));
         tabelaClientes.setRowHeight(35);
@@ -1208,6 +1212,8 @@ public final class InicioView extends javax.swing.JFrame {
         tabelaClientes.setSelectionForeground(new java.awt.Color(107, 62, 35));
         tabelaClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tabelaClientes.setShowGrid(true);
+        tabelaClientes.setShowHorizontalLines(false);
+        tabelaClientes.setShowVerticalLines(false);
         cadastroAlunoScrollPane.setViewportView(tabelaClientes);
         tabelaClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tabelaClientes.getColumnModel().getColumnCount() > 0) {
@@ -1222,7 +1228,21 @@ public final class InicioView extends javax.swing.JFrame {
             tabelaClientes.getColumnModel().getColumn(4).setResizable(false);
             tabelaClientes.getColumnModel().getColumn(4).setPreferredWidth(100);
         }
-        tabelaClientes.getAccessibleContext().setAccessibleName("Tabela de Clientes");
+        tabelaClientes.getAccessibleContext().setAccessibleName("");
+        DefaultTableCellRenderer centralizarTabela = new DefaultTableCellRenderer();
+        centralizarTabela.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int i = 0; i < tabelaClientes.getColumnCount(); i++) {
+            tabelaClientes.getColumnModel().getColumn(i).setCellRenderer(centralizarTabela);
+        }
+
+        TableCellRenderer baseRenderer2 = tabelaClientes.getTableHeader().getDefaultRenderer();
+
+        tabelaClientes.getTableHeader().setDefaultRenderer((tbl, value, isSelected, hasFocus, row, column) -> {
+            JComponent comp = (JComponent) baseRenderer2.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);
+            comp.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+            return comp;
+        });
 
         visualizarCadastrosBtn.setForeground(new java.awt.Color(255, 249, 237));
         visualizarCadastrosBtn.setText("Visualizar");
@@ -1455,6 +1475,7 @@ public final class InicioView extends javax.swing.JFrame {
         FinanceiroTable.setBackground(new java.awt.Color(255, 255, 255));
         FinanceiroTable.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         FinanceiroTable.setForeground(new java.awt.Color(51, 51, 51));
+        FinanceiroTable.setIntercellSpacing(new Dimension(0, 0));
         FinanceiroTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1476,12 +1497,14 @@ public final class InicioView extends javax.swing.JFrame {
         });
         FinanceiroTable.setToolTipText("Tabela de Últimos Pagamentos");
         FinanceiroTable.setFocusable(false);
-        FinanceiroTable.setGridColor(new java.awt.Color(107, 62, 35));
+        FinanceiroTable.setGridColor(new java.awt.Color(255, 255, 255));
         FinanceiroTable.setRowHeight(35);
         FinanceiroTable.setSelectionBackground(new java.awt.Color(255, 249, 237));
         FinanceiroTable.setSelectionForeground(new java.awt.Color(107, 62, 35));
         FinanceiroTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        FinanceiroTable.setShowGrid(true);
+        FinanceiroTable.setShowGrid(false);
+        FinanceiroTable.setShowHorizontalLines(false);
+        FinanceiroTable.setShowVerticalLines(false);
         FinancerioScrollPane.setViewportView(FinanceiroTable);
         if (FinanceiroTable.getColumnModel().getColumnCount() > 0) {
             FinanceiroTable.getColumnModel().getColumn(0).setResizable(false);
@@ -1493,7 +1516,18 @@ public final class InicioView extends javax.swing.JFrame {
             FinanceiroTable.getColumnModel().getColumn(3).setResizable(false);
             FinanceiroTable.getColumnModel().getColumn(3).setPreferredWidth(200);
         }
-        FinanceiroTable.getAccessibleContext().setAccessibleName("Tabela de Últimos Pagamentos");
+        FinanceiroTable.getAccessibleContext().setAccessibleName("");
+        for (int i = 0; i < FinanceiroTable.getColumnCount(); i++) {
+            FinanceiroTable.getColumnModel().getColumn(i).setCellRenderer(centralizarTabela);
+        }
+
+        TableCellRenderer baseRenderer1 = FinanceiroTable.getTableHeader().getDefaultRenderer();
+
+        FinanceiroTable.getTableHeader().setDefaultRenderer((tbl, value, isSelected, hasFocus, row, column) -> {
+            JComponent comp = (JComponent) baseRenderer1.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);
+            comp.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+            return comp;
+        });
 
         cadastroDespesaBtn.setForeground(new java.awt.Color(255, 255, 255));
         cadastroDespesaBtn.setText("Cadastrar Despesa");
@@ -1530,7 +1564,7 @@ public final class InicioView extends javax.swing.JFrame {
                     .addComponent(FinancerioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewFinanceiroLayout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
+                .addGap(110, 110, 110)
                 .addGroup(ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewFinanceiroLayout.createSequentialGroup()
                         .addComponent(totalMesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
