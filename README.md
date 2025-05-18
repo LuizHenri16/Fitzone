@@ -1,7 +1,7 @@
 # Fitzone System    
 
 ## Status
-Concluído a primeira parte do projeto
+Concluído a primeira parte do projeto <br>
 Feito com finalidade educativa
 
 ## Tecnologias
