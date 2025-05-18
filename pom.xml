@@ -10,6 +10,38 @@
         <maven.compiler.release>17</maven.compiler.release>
         <exec.mainClass>com.mycompany.fitzonesystem.FitzoneSystem</exec.mainClass>
     </properties>
+    
+    
+    <build>
+        <plugins>
+           
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.mycompany.fitzonesystem.FitzoneSystem</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
@@ -54,6 +86,7 @@
             <artifactId>caelum-stella-core</artifactId>
             <version>2.1.6</version>
         </dependency>
+        
     </dependencies>
 
 
