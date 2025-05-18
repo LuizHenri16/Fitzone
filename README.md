@@ -1,7 +1,8 @@
 # Fitzone System    
 
 ## Status
-Em desenvolvimento
+Concluído a primeira parte do projeto
+Feito com finalidade educativa
 
 ## Tecnologias
 - Java
