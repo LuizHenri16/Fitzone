@@ -11,10 +11,8 @@
         <exec.mainClass>com.mycompany.fitzonesystem.FitzoneSystem</exec.mainClass>
     </properties>
     
-    
     <build>
-        <plugins>
-           
+        <plugins>       
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -86,8 +84,6 @@
             <artifactId>caelum-stella-core</artifactId>
             <version>2.1.6</version>
         </dependency>
-        
     </dependencies>
-
 
 </project>

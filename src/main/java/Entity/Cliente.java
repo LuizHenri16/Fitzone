@@ -4,11 +4,17 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "cliente_Cadastro")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cliente {
     
     @Id

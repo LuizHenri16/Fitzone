@@ -1,13 +1,15 @@
 package Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "info_complementar")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClienteInfoComplement {
 
     @Id

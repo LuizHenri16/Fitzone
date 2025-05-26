@@ -1,14 +1,15 @@
 package Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "endereco_aluno")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClienteAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

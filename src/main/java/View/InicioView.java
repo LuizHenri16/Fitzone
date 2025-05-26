@@ -14,13 +14,14 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.JComponent;
-
 
 public final class InicioView extends javax.swing.JFrame {
 
@@ -116,43 +117,43 @@ public final class InicioView extends javax.swing.JFrame {
         }
         despesasLabel.setText("R$ " + totalDespesas);
     }
-    
+
     public void listarAniversariantes() {
         List<AniversarianteDTO> listaAniversariante = ClienteController.listarAniversarianteController();
-        
+
         String linha = "";
         for (AniversarianteDTO aniversariante : listaAniversariante) {
-            linha = linha + aniversariante.getNome() + "\n";   
+            linha = linha + aniversariante.getNome() + "\n";
         }
         aniversariantesLabel.setText(linha);
     }
-    
+
     public void listarAlunosCadastradosContador() {
         alunosCadastradosLabel.setText(String.valueOf(ClienteController.contarClientesCadastradosController()));
         alunosStatusLabel.setText(String.valueOf(ClienteController.contarClientesCadastradosAtivosController()));
     }
-    
+
     public void listarDadosPagamentoTabela() {
         DefaultTableModel modelo = (DefaultTableModel) FinanceiroTable.getModel();
         modelo.setRowCount(0);
-        Double valorReceita =  0.;
-        
+        Double valorReceita = 0.;
+
         List<PagamentoDTO> listaPagamento = FinanceiroController.listarDadosPagamentoController();
-        
+
         for (PagamentoDTO dados : listaPagamento) {
             String[] linha = {
-                dados.getDataUltimoPagamento(),dados.getNomeCliente(), String.valueOf(dados.getValorMatricula()), dados.getEmail()
+                dados.getDataUltimoPagamento(), dados.getNomeCliente(), String.valueOf(dados.getValorMatricula()), dados.getEmail()
             };
             valorReceita = valorReceita + dados.getValorMatricula();
-            
-         modelo.addRow(linha);
+
+            modelo.addRow(linha);
         }
-        
+
         totalReceitaLabel.setText("R$ " + valorReceita);
         FinanceiroTable.setModel(modelo);
     }
-    
-    public void totalMesValor(){
+
+    public void totalMesValor() {
         Double valorReceita = Double.valueOf(totalReceitaLabel.getText().replace("R", "").replace("$", ""));
         Double valorDespesa = Double.valueOf(despesasLabel.getText().replace("R", "").replace("$", ""));
         Double valorTotalMes = valorReceita - valorDespesa;
@@ -1853,7 +1854,7 @@ public final class InicioView extends javax.swing.JFrame {
         new CadastroPagamentoDialog(this, rootPaneCheckingEnabled).setVisible(true);
         listarDadosPagamentoTabela();
         totalMesValor();
-                
+
     }//GEN-LAST:event_cadastroPagamentoBtnActionPerformed
 
     private void cadastrarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarADMBtnActionPerformed
@@ -1861,7 +1862,9 @@ public final class InicioView extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarADMBtnActionPerformed
 
     private void cadastrarAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoBtnActionPerformed
+
         ClienteController.cadastrarController(this, tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfAlturaCliente, tfPesoAluno, tfHistoricoSaudeCliente, cbMatricula);
+
         limparCamposCadastroAluno();
         ListarCadastroClientes();
         DIALOG.exbirMensagem(this, "Aluno cadastrado");

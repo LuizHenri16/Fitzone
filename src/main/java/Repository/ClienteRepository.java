@@ -67,11 +67,13 @@ public class ClienteRepository {
 
         try {
             em.getTransaction().begin();
-            em.remove(cliente);
+            Cliente clienteGerenciado = em.merge(cliente);
+            em.remove(clienteGerenciado);
             em.getTransaction().commit();
             DIALOG.exbirMensagem(null, "Cliente removido com sucesso!");
 
         } catch (Exception e) {
+            System.out.println(e);
             DIALOG.exbirMensagem(null, "Não foi possivel excluir o cliente");
         } finally {
             em.close();

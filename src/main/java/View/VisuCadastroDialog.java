@@ -3,25 +3,24 @@ package View;
 import Controller.ClienteController;
 import Entity.Cliente;
 import Entity.UserAccess;
+import Validation.CRIPTOGRAFAR;
 import Validation.FORMAT;
-import jakarta.persistence.EntityManager;
 
 public class VisuCadastroDialog extends java.awt.Dialog {
 
     private UserAccess user;
-    private String idClient;
+    private Cliente cliente;
 
-    public VisuCadastroDialog(java.awt.Frame parent, boolean modal, UserAccess user, String IdCliente) { //Passar o id oh nome do aluno para poder verificar e também o tipo de usuário do adm
-        super(parent, modal);                                                                         //para poder definir suas ações nessa tela.          
+    public VisuCadastroDialog(java.awt.Frame parent, boolean modal, UserAccess user, String IdCliente) { 
+        super(parent, modal);   
         initComponents();
 
         this.user = user;
-        this.idClient = IdCliente;
+        this.cliente = ClienteController.listarCliente(IdCliente);
 
         userPermissao();
-        desativarCampos();
         preencherCampos();
-        
+        desativarCampos();
     }
 
     public void userPermissao() {
@@ -39,15 +38,13 @@ public class VisuCadastroDialog extends java.awt.Dialog {
     }
     
     public void excluirCliente() {
-        Cliente cliente = ClienteController.listarCliente(idClient);
         ClienteController.excluirController(cliente);
     }
 
     public void preencherCampos() {
-        Cliente cliente = ClienteController.listarCliente(idClient);
-
         tfNomeCliente.setText(cliente.getNome());
         tfEnderecoCliente.setText(cliente.getEndereco().getAddress());
+        tfCPFCLiente.setText(CRIPTOGRAFAR.decryptAES(cliente.getCpf()));
         tfTelefoneCliente.setText(cliente.getContato().getNumero());
         tfTelefoneEmergenciaCliente.setText(cliente.getContato().getNumero_emeregencia());
         tfEmailCliente.setText(cliente.getEmail());
@@ -71,36 +68,34 @@ public class VisuCadastroDialog extends java.awt.Dialog {
     }
 
     public void desativarCampos() {
-        tfNomeCliente.setEnabled(false);
-        tfCPFCLiente.setEnabled(false);
-        tfEnderecoCliente.setEnabled(false);
-        tfTelefoneCliente.setEnabled(false);
-        tfTelefoneEmergenciaCliente.setEnabled(false);
-        tfEmailCliente.setEnabled(false);
-        tfAlturaCliente.setEnabled(false);
-        tfPesoCliente.setEnabled(false);
-        tfdataNascimento.setEnabled(false);
+        tfNomeCliente.setEditable(false);
+        tfCPFCLiente.setEditable(false);
+        tfEnderecoCliente.setEditable(false);
+        tfTelefoneCliente.setEditable(false);
+        tfTelefoneEmergenciaCliente.setEditable(false);
+        tfEmailCliente.setEditable(false);
+        tfAlturaCliente.setEditable(false);
+        tfPesoCliente.setEditable(false);
+        tfdataNascimento.setEditable(false);
         cbStatus.setEnabled(false);
         cbMatricula.setEnabled(false);
-        tfHistoricoSaudeCliente.setEnabled(false);
+        tfHistoricoSaudeCliente.setEditable(false);
     }
 
     public void ativarCampos() {
-        tfNomeCliente.setEnabled(true);
-        tfCPFCLiente.setEnabled(true);
-        tfEnderecoCliente.setEnabled(true);
-        tfTelefoneCliente.setEnabled(true);
-        tfTelefoneEmergenciaCliente.setEnabled(true);
-        tfEmailCliente.setEnabled(true);
-        tfAlturaCliente.setEnabled(true);
-        tfPesoCliente.setEnabled(true);
-        tfdataNascimento.setEnabled(true);
+        tfNomeCliente.setEditable(true);
+        tfCPFCLiente.setEditable(true);
+        tfEnderecoCliente.setEditable(true);
+        tfTelefoneCliente.setEditable(true);
+        tfTelefoneEmergenciaCliente.setEditable(true);
+        tfEmailCliente.setEditable(true);
+        tfAlturaCliente.setEditable(true);
+        tfPesoCliente.setEditable(true);
+        tfdataNascimento.setEditable(true);
         cbStatus.setEnabled(true);
         cbMatricula.setEnabled(true);
-        tfHistoricoSaudeCliente.setEnabled(true);
+        tfHistoricoSaudeCliente.setEditable(true);
     }
-
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -157,7 +152,6 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfNomeCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfNomeCliente.setToolTipText("editar nome de usuário");
         tfNomeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfNomeCliente.setEnabled(false);
         tfNomeCliente.setMaximumSize(new java.awt.Dimension(370, 40));
         tfNomeCliente.setMinimumSize(new java.awt.Dimension(220, 22));
 
@@ -196,7 +190,6 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfEnderecoCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfEnderecoCliente.setToolTipText("editar endereço");
         tfEnderecoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfEnderecoCliente.setEnabled(false);
 
         jLabel8.setForeground(new java.awt.Color(85, 85, 85));
         jLabel8.setText("Peso");
@@ -208,7 +201,6 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfAlturaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfAlturaCliente.setToolTipText("editar peso");
         tfAlturaCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfAlturaCliente.setEnabled(false);
         tfAlturaCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
         jLabel10.setForeground(new java.awt.Color(85, 85, 85));
@@ -246,7 +238,6 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         tfPesoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfPesoCliente.setToolTipText("editar altura");
         tfPesoCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 1, true));
-        tfPesoCliente.setEnabled(false);
         tfPesoCliente.setMinimumSize(new java.awt.Dimension(50, 22));
 
         editarAlunoBtn.setForeground(new java.awt.Color(255, 249, 237));
@@ -338,7 +329,6 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         }
         tfTelefoneEmergenciaCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelefoneEmergenciaCliente.setToolTipText("editar telefone de emergência");
-        tfTelefoneEmergenciaCliente.setEnabled(false);
         tfTelefoneEmergenciaCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tfTelefoneCliente.setEditable(false);
@@ -352,7 +342,6 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         }
         tfTelefoneCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelefoneCliente.setToolTipText("editar telefone");
-        tfTelefoneCliente.setEnabled(false);
         tfTelefoneCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tfdataNascimento.setEditable(false);
@@ -366,13 +355,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         }
         tfdataNascimento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfdataNascimento.setToolTipText("editar data de nascimento");
-        tfdataNascimento.setEnabled(false);
         tfdataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tfdataNascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfdataNascimentoActionPerformed(evt);
-            }
-        });
 
         tfCPFCLiente.setEditable(false);
         tfCPFCLiente.setBackground(new java.awt.Color(255, 255, 255));
@@ -532,17 +515,13 @@ public class VisuCadastroDialog extends java.awt.Dialog {
     }//GEN-LAST:event_editarAlunoBtnActionPerformed
 
     private void confirmarEdicaoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEdicaoBtnActionPerformed
-       ClienteController.editarController( idClient,tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente, tfHistoricoSaudeCliente, cbMatricula, cbStatus);
+        ClienteController.editarController( cliente ,tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente, tfHistoricoSaudeCliente, cbMatricula, cbStatus);
     }//GEN-LAST:event_confirmarEdicaoBtnActionPerformed
 
     private void removerAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAlunoBtnActionPerformed
         excluirCliente();
         dispose();
     }//GEN-LAST:event_removerAlunoBtnActionPerformed
-
-    private void tfdataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdataNascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfdataNascimentoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbMatricula;

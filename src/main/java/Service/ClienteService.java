@@ -10,21 +10,17 @@ import java.util.List;
 
 public class ClienteService {
 
-    public static void cadastrarService(Cliente cliente, ClienteContact contact, ClienteAddress address, ClienteInfoComplement complement) {
+    public static void cadastrarService(Cliente cliente)  {
         cliente.setDataNascimento(FORMAT.converterData(cliente.getDataNascimento()));
-        cliente.setCpf(CRIPTOGRAFAR.toSHA256(cliente.getCpf()));
-
-        cliente.setContato(contact);
-        cliente.setEndereco(address);
-        cliente.setInfoComplement(complement);
-
+        cliente.setCpf(CRIPTOGRAFAR.criptografarAES(cliente.getCpf()));
+        
         ClienteRepository.cadastrarRepository(cliente);
     }
 
     public static void editarService(Cliente cliente) {
         cliente.setDataNascimento(FORMAT.converterData(cliente.getDataNascimento()));
-        cliente.setCpf(CRIPTOGRAFAR.toSHA256(cliente.getCpf()));
-
+        cliente.setCpf(CRIPTOGRAFAR.criptografarAES(cliente.getCpf()));
+        
         ClienteRepository.editarRepository(cliente);
     }
 

@@ -107,10 +107,11 @@ public class VisualizarADMDialog extends java.awt.Dialog {
             }
         });
         tabelaADMs.setFocusable(false);
-        tabelaADMs.setGridColor(new java.awt.Color(107, 62, 35));
+        tabelaADMs.setGridColor(new java.awt.Color(255, 255, 255));
         tabelaADMs.setRowHeight(35);
         tabelaADMs.setSelectionBackground(new java.awt.Color(255, 249, 237));
         tabelaADMs.setSelectionForeground(new java.awt.Color(107, 62, 35));
+        tabelaADMs.setShowGrid(false);
         tabelaAdmScrollPane.setViewportView(tabelaADMs);
         if (tabelaADMs.getColumnModel().getColumnCount() > 0) {
             tabelaADMs.getColumnModel().getColumn(0).setResizable(false);

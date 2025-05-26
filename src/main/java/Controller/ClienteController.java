@@ -60,30 +60,38 @@ public class ClienteController {
         } else if (cbMatricula.getSelectedIndex() == 0) {
             DIALOG.exbirMensagem(parent, "Escolha o tipo de matrícula");
         } else {
-            Cliente newCliente = new Cliente();
-            ClienteAddress newClienteAddress = new ClienteAddress();
-            ClienteContact newClienteContact = new ClienteContact();
-            ClienteInfoComplement newClienteComplement = new ClienteInfoComplement();
 
-            newCliente.setNome(tfNomeCliente.getText());
-            newCliente.setCpf(tfCPFCLiente.getText());
-            newCliente.setDataNascimento(tfdataNascimento.getText());
-            newCliente.setEmail(tfEmailCliente.getText());
-            newCliente.setStatus("Ativo");
-            newCliente.setMatricula(listarMatriculasController((String) cbMatricula.getSelectedItem()));
+            Cliente cliente = Cliente.builder()
+                    
+                    .nome(tfNomeCliente.getText())
+                    .cpf(tfCPFCLiente.getText())
+                    .dataNascimento(tfdataNascimento.getText())
+                    .email(tfEmailCliente.getText())
+                    .status("Ativo")
+                    .matricula(listarMatriculasController((String) cbMatricula.getSelectedItem()))
+                    
+                    .contato(ClienteContact.builder()
+                            .numero(tfTelefoneCliente.getText())
+                            .numero_emeregencia(tfTelefoneEmergenciaCliente.getText())
+                            .build())
+                    
+                    .endereco(ClienteAddress.builder()
+                            .address(tfEnderecoCliente.getText())
+                            .build())
+                    
+                    .infoComplement(ClienteInfoComplement.builder()
+                            .height(Double.parseDouble(tfAlturaCliente.getText()))
+                            .weight(Double.parseDouble(tfPesoCliente.getText()))
+                            .healthHistory(tfHistoricoSaudeCliente.getText())
+                            .build())
+                    
+                    .build();
 
-            newClienteAddress.setAddress(tfEnderecoCliente.getText());
-            newClienteContact.setNumero(tfTelefoneCliente.getText());
-            newClienteContact.setNumero_emeregencia(tfTelefoneEmergenciaCliente.getText());
-            newClienteComplement.setWeight(Double.parseDouble(tfPesoCliente.getText()));
-            newClienteComplement.setHeight(Double.parseDouble(tfAlturaCliente.getText()));
-            newClienteComplement.setHealthHistory(tfHistoricoSaudeCliente.getText());
-
-            ClienteService.cadastrarService(newCliente, newClienteContact, newClienteAddress, newClienteComplement);
+            ClienteService.cadastrarService(cliente);
         }
     }
 
-    public static void editarController(String ID, JTextField tfNomeCliente, JFormattedTextField tfCPFCLiente, JFormattedTextField tfdataNascimento,
+    public static void editarController(Cliente cliente, JTextField tfNomeCliente, JFormattedTextField tfCPFCLiente, JFormattedTextField tfdataNascimento,
             JFormattedTextField tfTelefoneCliente, JFormattedTextField tfTelefoneEmergenciaCliente, JTextField tfEmailCliente,
             JTextField tfEnderecoCliente, JTextField tfPesoCliente, JTextField tfAlturaCliente, JTextArea tfHistoricoSaudeCliente,
             JComboBox<String> cbMatricula, JComboBox<String> cbStatus) {
@@ -131,12 +139,7 @@ public class ClienteController {
         } else if (cbMatricula.getSelectedIndex() == 0) {
             DIALOG.exbirMensagem(null, "Escolha o tipo de matrícula");
         } else {
-            Cliente cliente = new Cliente();
-            ClienteAddress ClienteAddress = new ClienteAddress();
-            ClienteContact ClienteContact = new ClienteContact();
-            ClienteInfoComplement ClienteComplement = new ClienteInfoComplement();
-
-            cliente.setID(Integer.parseInt(ID));
+            
             cliente.setNome(tfNomeCliente.getText());
             cliente.setCpf(tfCPFCLiente.getText());
             cliente.setDataNascimento(tfdataNascimento.getText());
@@ -144,21 +147,14 @@ public class ClienteController {
             cliente.setStatus((String) cbStatus.getSelectedItem());
             cliente.setMatricula(listarMatriculasController((String) cbMatricula.getSelectedItem()));
 
-            ClienteAddress.setAddress(tfEnderecoCliente.getText());
-            ClienteAddress.setCliente(cliente);
+            cliente.getEndereco().setAddress(tfEnderecoCliente.getText());
 
-            ClienteContact.setCliente(cliente);
-            ClienteContact.setNumero(tfTelefoneCliente.getText());
-            ClienteContact.setNumero_emeregencia(tfTelefoneEmergenciaCliente.getText());
+            cliente.getContato().setNumero(tfTelefoneCliente.getText());
+            cliente.getContato().setNumero_emeregencia(tfTelefoneEmergenciaCliente.getText());
 
-            ClienteComplement.setCliente(cliente);
-            ClienteComplement.setWeight(Double.parseDouble(tfPesoCliente.getText()));
-            ClienteComplement.setHeight(Double.parseDouble(tfAlturaCliente.getText()));
-            ClienteComplement.setHealthHistory(tfHistoricoSaudeCliente.getText());
-
-            cliente.setEndereco(ClienteAddress);
-            cliente.setInfoComplement(ClienteComplement);
-            cliente.setContato(ClienteContact);
+            cliente.getInfoComplement().setWeight(Double.parseDouble(tfPesoCliente.getText()));
+            cliente.getInfoComplement().setHeight(Double.parseDouble(tfAlturaCliente.getText()));
+            cliente.getInfoComplement().setHealthHistory(tfHistoricoSaudeCliente.getText());
 
             ClienteService.editarService(cliente);
         }
