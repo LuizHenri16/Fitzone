@@ -8,10 +8,11 @@ import Validation.FORMAT;
 import View.InicioView;
 import javax.swing.*;
 import java.util.List;
+import static Service.ClienteService.*;
 
 public class ClienteController {
 
-    public static void cadastrarController(InicioView parent, JTextField tfNomeCliente, JFormattedTextField tfCPFCLiente, JFormattedTextField tfdataNascimento,
+    public static void postCustomerController(InicioView parent, JTextField tfNomeCliente, JFormattedTextField tfCPFCLiente, JFormattedTextField tfdataNascimento,
             JFormattedTextField tfTelefoneCliente, JFormattedTextField tfTelefoneEmergenciaCliente, JTextField tfEmailCliente,
             JTextField tfEnderecoCliente, JTextField tfPesoCliente, JTextField tfAlturaCliente, JTextArea tfHistoricoSaudeCliente,
             JComboBox<String> cbMatricula) {
@@ -68,7 +69,7 @@ public class ClienteController {
                     .dataNascimento(tfdataNascimento.getText())
                     .email(tfEmailCliente.getText())
                     .status("Ativo")
-                    .matricula(listarMatriculasController((String) cbMatricula.getSelectedItem()))
+                    .matricula(getRegistryController((String) cbMatricula.getSelectedItem()))
                     
                     .contato(ClienteContact.builder()
                             .numero(tfTelefoneCliente.getText())
@@ -87,11 +88,11 @@ public class ClienteController {
                     
                     .build();
 
-            ClienteService.cadastrarService(cliente);
+            postCustomerService(cliente);
         }
     }
 
-    public static void editarController(Cliente cliente, JTextField tfNomeCliente, JFormattedTextField tfCPFCLiente, JFormattedTextField tfdataNascimento,
+    public static void updateCustomerController(Cliente cliente, JTextField tfNomeCliente, JFormattedTextField tfCPFCLiente, JFormattedTextField tfdataNascimento,
             JFormattedTextField tfTelefoneCliente, JFormattedTextField tfTelefoneEmergenciaCliente, JTextField tfEmailCliente,
             JTextField tfEnderecoCliente, JTextField tfPesoCliente, JTextField tfAlturaCliente, JTextArea tfHistoricoSaudeCliente,
             JComboBox<String> cbMatricula, JComboBox<String> cbStatus) {
@@ -145,7 +146,7 @@ public class ClienteController {
             cliente.setDataNascimento(tfdataNascimento.getText());
             cliente.setEmail(tfEmailCliente.getText());
             cliente.setStatus((String) cbStatus.getSelectedItem());
-            cliente.setMatricula(listarMatriculasController((String) cbMatricula.getSelectedItem()));
+            cliente.setMatricula(getRegistryController((String) cbMatricula.getSelectedItem()));
 
             cliente.getEndereco().setAddress(tfEnderecoCliente.getText());
 
@@ -156,38 +157,35 @@ public class ClienteController {
             cliente.getInfoComplement().setHeight(Double.parseDouble(tfAlturaCliente.getText()));
             cliente.getInfoComplement().setHealthHistory(tfHistoricoSaudeCliente.getText());
 
-            ClienteService.editarService(cliente);
+            updateCustomerService(cliente);
         }
     }
 
-    public static void excluirController(Cliente cliente) {
-        ClienteService.excluirService(cliente);
+    public static void deleteCustomerController(Cliente cliente) {
+        deleteCustomerService(cliente);
     }
 
-    public static List<Cliente> listarClientes() {
-        List<Cliente> listaCliente = ClienteService.listarClientes();
-        return listaCliente;
+    public static List<Cliente> getCustomersController() {
+        return getCustomersService();
     }
 
-    public static Cliente listarCliente(String idCliente) {
-        Cliente cliente = ClienteService.listarCliente(idCliente);
-
-        return cliente;
+    public static Cliente getCustomerController(String idCliente) {
+        return getCustomerService(idCliente);
     }
 
-    public static LicenseType listarMatriculasController(String matricula) {
-        return ClienteService.listarMatriculasService(matricula);
+    public static LicenseType getRegistryController(String matricula) {
+        return getRegistryService(matricula);
     }
 
-    public static Integer contarClientesCadastradosAtivosController() {
-        return ClienteService.contarClientesCadastradosAtivosService();
+    public static Integer getCountActiveCustomersController() {
+        return getCountActiveCustomersService();
     }
 
-    public static Integer contarClientesCadastradosController() {
-        return ClienteService.contarClientesCadastradosService();
+    public static Integer getCountRegisteredCustomersController() {
+        return getCountRegisteredCustomersService();
     }
 
-    public static List<AniversarianteDTO> listarAniversarianteController() {
-        return ClienteService.listarAniversarianteService();
+    public static List<AniversarianteDTO> getBirthdayCustomerController() {
+        return getBirthdayCustomerService();
     }
 }

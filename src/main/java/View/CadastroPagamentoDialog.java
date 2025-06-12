@@ -226,7 +226,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
 
     public void comboboxEvent() {
         String nomeSelecionado = (String) clientesCombobox.getSelectedItem();
-        List<Cliente> listaClientes = ClienteController.listarClientes();
+        List<Cliente> listaClientes = ClienteController.getCustomersController();
 
         clienteSelecionado = listaClientes.stream()
                 .filter(cliente -> cliente.getNome().equals(nomeSelecionado))
@@ -260,7 +260,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
         pagamento.setLicenseType(clienteSelecionado.getMatricula());
         pagamento.setLastPayment(LocalDate.now().toString());
 
-        FinanceiroController.cadastrarPagamentoController(pagamento);
+        FinanceiroController.postPaymentController(pagamento);
         dispose();
     }
 
@@ -269,7 +269,7 @@ public class CadastroPagamentoDialog extends java.awt.Dialog {
     }//GEN-LAST:event_concluirPagamentoBtnActionPerformed
 
     public void listarClientesCombobox() {
-        List<Cliente> listaClientes = ClienteController.listarClientes();
+        List<Cliente> listaClientes = ClienteController.getCustomersController();
 
         DefaultComboBoxModel<String> modeloCombobox = new DefaultComboBoxModel<>();
         modeloCombobox.addElement("Selecione:");

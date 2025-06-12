@@ -28,7 +28,7 @@ public class VisualizarADMDialog extends java.awt.Dialog {
         DefaultTableModel modelo = (DefaultTableModel) tabelaADMs.getModel();
         modelo.setRowCount(0);
         
-        List<UserAccess> listaAdms = UserAccessController.listarController();
+        List<UserAccess> listaAdms = UserAccessController.getUserAccessController();
         
         for (UserAccess user : listaAdms) {
             String[] linha = {
@@ -216,7 +216,7 @@ public class VisualizarADMDialog extends java.awt.Dialog {
         if (linhaSelecionada == -1) {
             DIALOG.exbirMensagem(null, "Escolha um usuário administrador");
         } else {
-            UserAccessController.apagarController((String) tabelaADMs.getValueAt(linhaSelecionada, 0));
+            UserAccessController.deleteUserAccessController((String) tabelaADMs.getValueAt(linhaSelecionada, 0));
             ListarCadastroADMs();
         }
     }//GEN-LAST:event_removerUsuarioBtnActionPerformed

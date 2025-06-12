@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ClienteRepository {
 
-    public static void cadastrarRepository(Cliente cliente) {
+    public static void postCustomerRepository(Cliente cliente) {
 
         EntityManager em = JPAUtil.getEntityManager();
 
@@ -45,7 +45,7 @@ public class ClienteRepository {
         }
     }
 
-    public static void editarRepository(Cliente cliente) {
+    public static void updateCustomerRepository(Cliente cliente) {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
@@ -62,7 +62,7 @@ public class ClienteRepository {
         }
     }
 
-    public static void excluirRepository(Cliente cliente) {
+    public static void deleteCustomerRepository(Cliente cliente) {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
@@ -80,7 +80,7 @@ public class ClienteRepository {
         }
     }
 
-    public static List<Cliente> listarClientes() {
+    public static List<Cliente> getCustomersRepository() {
         EntityManager em = JPAUtil.getEntityManager();
         List<Cliente> listaClientes = null;
 
@@ -102,7 +102,7 @@ public class ClienteRepository {
         return listaClientes;
     }
 
-    public static Cliente listarCliente(String idCliente) {
+    public static Cliente getCustomerRepository(String idCliente) {
         EntityManager em = JPAUtil.getEntityManager();
         em = JPAUtil.getEntityManager();
         Cliente cliente = null;
@@ -135,7 +135,7 @@ public class ClienteRepository {
         }
     }
 
-    public static Integer contarClientesCadastradosRepository() {
+    public static Integer getCountRegisteredCustomersRepository() {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
@@ -153,7 +153,7 @@ public class ClienteRepository {
         return null;
     }
 
-    public static Integer contarClientesCadastradosAtivosRepository() {
+    public static Integer getCountActiveCustomersRepository() {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
@@ -170,7 +170,7 @@ public class ClienteRepository {
         return null;
     }
 
-    public static List<AniversarianteDTO> listarAniversarianteRepository() {
+    public static List<AniversarianteDTO> getBirthdayCustomerRepository() {
         EntityManager em = JPAUtil.getEntityManager();
         List<AniversarianteDTO> listaAniversariantes = new ArrayList<>();
 

@@ -14,8 +14,6 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -58,7 +56,7 @@ public final class InicioView extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
         modelo.setRowCount(0);
 
-        List<Cliente> listaClientes = ClienteController.listarClientes();
+        List<Cliente> listaClientes = ClienteController.getCustomersController();
 
         for (Cliente cliente : listaClientes) {
             String[] linha = {
@@ -119,7 +117,7 @@ public final class InicioView extends javax.swing.JFrame {
     }
 
     public void listarAniversariantes() {
-        List<AniversarianteDTO> listaAniversariante = ClienteController.listarAniversarianteController();
+        List<AniversarianteDTO> listaAniversariante = ClienteController.getBirthdayCustomerController();
 
         String linha = "";
         for (AniversarianteDTO aniversariante : listaAniversariante) {
@@ -129,8 +127,8 @@ public final class InicioView extends javax.swing.JFrame {
     }
 
     public void listarAlunosCadastradosContador() {
-        alunosCadastradosLabel.setText(String.valueOf(ClienteController.contarClientesCadastradosController()));
-        alunosStatusLabel.setText(String.valueOf(ClienteController.contarClientesCadastradosAtivosController()));
+        alunosCadastradosLabel.setText(String.valueOf(ClienteController.getCountRegisteredCustomersController()));
+        alunosStatusLabel.setText(String.valueOf(ClienteController.getCountActiveCustomersController()));
     }
 
     public void listarDadosPagamentoTabela() {
@@ -165,6 +163,7 @@ public final class InicioView extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jToolBar1 = new javax.swing.JToolBar();
         sidebarMenu = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
         userNameLabel = new javax.swing.JLabel();
@@ -272,6 +271,8 @@ public final class InicioView extends javax.swing.JFrame {
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
+        jToolBar1.setRollover(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Início");
         setMinimumSize(new java.awt.Dimension(1200, 700));
@@ -310,7 +311,7 @@ public final class InicioView extends javax.swing.JFrame {
         btViewPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Incio-icon.png"))); // NOI18N
         btViewPrincipal.setText(" Inicio");
         btViewPrincipal.setToolTipText("Botão Inicio");
-        btViewPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btViewPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewPrincipal.setIconTextGap(10);
         btViewPrincipal.setRound(10);
@@ -325,7 +326,7 @@ public final class InicioView extends javax.swing.JFrame {
         btViewCAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/CadastrarAluno-icon.png"))); // NOI18N
         btViewCAluno.setText("Cadastrar Aluno");
         btViewCAluno.setToolTipText("Cadastrar Aluno");
-        btViewCAluno.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewCAluno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btViewCAluno.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewCAluno.setIconTextGap(10);
         btViewCAluno.setRound(10);
@@ -340,7 +341,7 @@ public final class InicioView extends javax.swing.JFrame {
         btViewLCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Vizualizar-icon.png"))); // NOI18N
         btViewLCadastros.setText("Lista Cadastros");
         btViewLCadastros.setToolTipText("Lista Cadastros");
-        btViewLCadastros.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewLCadastros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btViewLCadastros.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewLCadastros.setIconTextGap(10);
         btViewLCadastros.setRound(10);
@@ -355,7 +356,7 @@ public final class InicioView extends javax.swing.JFrame {
         btViewFinanceiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Financeiro-icon.png"))); // NOI18N
         btViewFinanceiro.setText("Financeiro");
         btViewFinanceiro.setToolTipText("Financeiro");
-        btViewFinanceiro.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewFinanceiro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btViewFinanceiro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewFinanceiro.setIconTextGap(10);
         btViewFinanceiro.setRound(10);
@@ -370,7 +371,7 @@ public final class InicioView extends javax.swing.JFrame {
         btViewFTreino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fichaTreino-icon.png"))); // NOI18N
         btViewFTreino.setText("Ficha de Treino");
         btViewFTreino.setToolTipText("Ficha de Treino");
-        btViewFTreino.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewFTreino.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btViewFTreino.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewFTreino.setIconTextGap(10);
         btViewFTreino.setRound(10);
@@ -385,7 +386,7 @@ public final class InicioView extends javax.swing.JFrame {
         btViewCAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Administrator-icon.png"))); // NOI18N
         btViewCAdministrador.setText("Cadastrar Administrador");
         btViewCAdministrador.setToolTipText("Cadastrar Administrador");
-        btViewCAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btViewCAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btViewCAdministrador.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btViewCAdministrador.setIconTextGap(10);
         btViewCAdministrador.setRound(10);
@@ -1504,8 +1505,6 @@ public final class InicioView extends javax.swing.JFrame {
         FinanceiroTable.setSelectionForeground(new java.awt.Color(107, 62, 35));
         FinanceiroTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         FinanceiroTable.setShowGrid(false);
-        FinanceiroTable.setShowHorizontalLines(false);
-        FinanceiroTable.setShowVerticalLines(false);
         FinancerioScrollPane.setViewportView(FinanceiroTable);
         if (FinanceiroTable.getColumnModel().getColumnCount() > 0) {
             FinanceiroTable.getColumnModel().getColumn(0).setResizable(false);
@@ -1559,24 +1558,26 @@ public final class InicioView extends javax.swing.JFrame {
         ViewFinanceiroLayout.setHorizontalGroup(
             ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewFinanceiroLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTitle1)
-                    .addComponent(FinancerioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewFinanceiroLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViewFinanceiroLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTitle1)
+                            .addComponent(FinancerioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewFinanceiroLayout.createSequentialGroup()
-                        .addComponent(totalMesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewFinanceiroLayout.createSequentialGroup()
+                                .addComponent(totalMesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(totalReceitasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cadastroPagamentoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
-                        .addComponent(totalReceitasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cadastroPagamentoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(despesasPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cadastroDespesaBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102))
+                        .addGroup(ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(despesasPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastroDespesaBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(102, 102, 102))))
         );
         ViewFinanceiroLayout.setVerticalGroup(
             ViewFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1781,12 +1782,12 @@ public final class InicioView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sidebarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(ViewsPanelCardLayout, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
+                .addComponent(ViewsPanelCardLayout, javax.swing.GroupLayout.PREFERRED_SIZE, 950, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sidebarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(ViewsPanelCardLayout, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+            .addComponent(ViewsPanelCardLayout, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE)
         );
 
         pack();
@@ -1858,12 +1859,12 @@ public final class InicioView extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroPagamentoBtnActionPerformed
 
     private void cadastrarADMBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarADMBtnActionPerformed
-        UserAccessController.cadastrarController(tfNewUserName, tfNewPassword, tfNewPasswordConfirm, cbAccessType);
+        UserAccessController.postUserAccessController(tfNewUserName, tfNewPassword, tfNewPasswordConfirm, cbAccessType);
     }//GEN-LAST:event_cadastrarADMBtnActionPerformed
 
     private void cadastrarAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoBtnActionPerformed
 
-        ClienteController.cadastrarController(this, tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfAlturaCliente, tfPesoAluno, tfHistoricoSaudeCliente, cbMatricula);
+        ClienteController.postCustomerController(this, tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfAlturaCliente, tfPesoAluno, tfHistoricoSaudeCliente, cbMatricula);
 
         limparCamposCadastroAluno();
         ListarCadastroClientes();
@@ -1972,6 +1973,7 @@ public final class InicioView extends javax.swing.JFrame {
     private JCustom.JLabelClock jLabelClock1;
     private JCustom.JLabelData jLabelData1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JToolBar jToolBar1;
     private JCustom.JCustomPanel labelAniversario;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JLabel labelTitle1;

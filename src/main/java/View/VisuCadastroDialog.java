@@ -16,7 +16,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
         initComponents();
 
         this.user = user;
-        this.cliente = ClienteController.listarCliente(IdCliente);
+        this.cliente = ClienteController.getCustomerController(IdCliente);
 
         userPermissao();
         preencherCampos();
@@ -38,7 +38,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
     }
     
     public void excluirCliente() {
-        ClienteController.excluirController(cliente);
+        ClienteController.deleteCustomerController(cliente);
     }
 
     public void preencherCampos() {
@@ -515,7 +515,7 @@ public class VisuCadastroDialog extends java.awt.Dialog {
     }//GEN-LAST:event_editarAlunoBtnActionPerformed
 
     private void confirmarEdicaoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEdicaoBtnActionPerformed
-        ClienteController.editarController( cliente ,tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente, tfHistoricoSaudeCliente, cbMatricula, cbStatus);
+        ClienteController.updateCustomerController( cliente ,tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfPesoCliente, tfAlturaCliente, tfHistoricoSaudeCliente, cbMatricula, cbStatus);
     }//GEN-LAST:event_confirmarEdicaoBtnActionPerformed
 
     private void removerAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAlunoBtnActionPerformed

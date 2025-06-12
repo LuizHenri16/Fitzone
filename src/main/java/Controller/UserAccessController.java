@@ -1,11 +1,10 @@
 package Controller;
 
 import Entity.UserAccess;
-import Service.UserAccessService;
 import Validation.DIALOG;
-
 import javax.swing.*;
 import java.util.List;
+import static Service.UserAccessService.*;
 
 public class UserAccessController {
 
@@ -22,13 +21,12 @@ public class UserAccessController {
         } else if (password.isBlank()) {
             DIALOG.exbirMensagem(null, "Digite a senha");
         } else {
-            return UserAccessService.loginService(userNameLogin.getText(), password);
+            return loginService(userNameLogin.getText(), password);
         }
         return null;
     }
 
-    public static void cadastrarController(JTextField userNameLogin, JPasswordField passwordFieldLogin, JPasswordField passwordConfirmFieldLogin, JComboBox tipoUsuarioCombobox) {
-
+    public static void postUserAccessController(JTextField userNameLogin, JPasswordField passwordFieldLogin, JPasswordField passwordConfirmFieldLogin, JComboBox tipoUsuarioCombobox) {
         try {
             String password = new String(passwordFieldLogin.getPassword());
             String passwordConfirm = new String(passwordConfirmFieldLogin.getPassword());
@@ -48,7 +46,7 @@ public class UserAccessController {
             } else if (tipoUsuarioCombobox.getSelectedIndex() == 0) {
                 DIALOG.exbirMensagem(null, "Selecione um tipo de acesso");
             } else {
-                UserAccessService.cadastrarService(userNameLogin.getText(), passwordConfirm, (String) tipoUsuarioCombobox.getSelectedItem());
+                postUserAccessService(userNameLogin.getText(), passwordConfirm, (String) tipoUsuarioCombobox.getSelectedItem());
             }
 
         } catch (Exception e) {
@@ -56,13 +54,11 @@ public class UserAccessController {
         }
     }
 
-    public static List<UserAccess> listarController() {
-        List<UserAccess> lista = UserAccessService.listarService();
-
-        return lista;
+    public static List<UserAccess> getUserAccessController() {
+        return getUserAccessService();
     }
 
-    public static void apagarController(String id) {
-        UserAccessService.apagarService(id);
+    public static void deleteUserAccessController(String id) {
+        deleteUserAccessService(id);
     }
 }

@@ -5,51 +5,51 @@ import Entity.*;
 import Repository.ClienteRepository;
 import Validation.CRIPTOGRAFAR;
 import Validation.FORMAT;
-
 import java.util.List;
+import static Repository.ClienteRepository.*;
 
 public class ClienteService {
 
-    public static void cadastrarService(Cliente cliente)  {
+    public static void postCustomerService(Cliente cliente)  {
         cliente.setDataNascimento(FORMAT.converterData(cliente.getDataNascimento()));
         cliente.setCpf(CRIPTOGRAFAR.criptografarAES(cliente.getCpf()));
         
-        ClienteRepository.cadastrarRepository(cliente);
+        postCustomerRepository(cliente);
     }
 
-    public static void editarService(Cliente cliente) {
+    public static void updateCustomerService(Cliente cliente) {
         cliente.setDataNascimento(FORMAT.converterData(cliente.getDataNascimento()));
         cliente.setCpf(CRIPTOGRAFAR.criptografarAES(cliente.getCpf()));
         
-        ClienteRepository.editarRepository(cliente);
+        updateCustomerRepository(cliente);
     }
 
-    public static void excluirService(Cliente cliente) {
-        ClienteRepository.excluirRepository(cliente);
+    public static void deleteCustomerService(Cliente cliente) {
+        deleteCustomerRepository(cliente);
     }
 
-    public static List<Cliente> listarClientes() {
-        return ClienteRepository.listarClientes();
+    public static List<Cliente> getCustomersService() {
+        return getCustomersRepository();
     }
 
-    public static Cliente listarCliente(String idCliente) {
-        return ClienteRepository.listarCliente(idCliente);
+    public static Cliente getCustomerService(String idCliente) {
+        return getCustomerRepository(idCliente);
     }
 
-    public static LicenseType listarMatriculasService(String matricula) {
-        return ClienteRepository.listarMatriculasRepository(matricula);
+    public static LicenseType getRegistryService(String matricula) {
+        return listarMatriculasRepository(matricula);
     }
 
-    public static Integer contarClientesCadastradosAtivosService() {
-        return ClienteRepository.contarClientesCadastradosAtivosRepository();
+    public static Integer getCountActiveCustomersService() {
+        return getCountActiveCustomersRepository();
     }
 
-    public static Integer contarClientesCadastradosService() {
-        return ClienteRepository.contarClientesCadastradosRepository();
+    public static Integer getCountRegisteredCustomersService() {
+        return getCountRegisteredCustomersRepository();
     }
 
-    public static List<AniversarianteDTO> listarAniversarianteService() {
-        return ClienteRepository.listarAniversarianteRepository();
+    public static List<AniversarianteDTO> getBirthdayCustomerService() {
+        return getBirthdayCustomerRepository();
     }
 
 }

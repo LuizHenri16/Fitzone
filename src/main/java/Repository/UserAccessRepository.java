@@ -33,7 +33,6 @@ public class UserAccessRepository {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {
-
             em.getTransaction().begin();
             em.persist(usuario);
             em.getTransaction().commit();
@@ -46,7 +45,7 @@ public class UserAccessRepository {
         }
     }
 
-    public static List<UserAccess> listarRepository() {
+    public static List<UserAccess> getUserAccessRepository() {
         EntityManager em = JPAUtil.getEntityManager();
         List<UserAccess> lista = null;
 
@@ -65,7 +64,7 @@ public class UserAccessRepository {
         }
     }
 
-    public static void apagarRepository(String id) {
+    public static void deleteUserAccessRepository(String id) {
         EntityManager em = JPAUtil.getEntityManager();
 
         try {

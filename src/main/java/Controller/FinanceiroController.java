@@ -3,17 +3,19 @@ package Controller;
 import DTO.PagamentoDTO;
 import Entity.Despesa;
 import Entity.Payment;
-import Service.FinanceiroService;
 import Validation.DIALOG;
 import Validation.FORMAT;
 
 import javax.swing.*;
 import java.util.List;
+import static Service.FinanceiroService.*;
 
 public class FinanceiroController {
 
-    public static void cadastrarPagamentoController(Payment pagamento) {
-        FinanceiroService.cadastrarPagamentoService(pagamento);
+    public static void postPaymentController(Payment pagamento) {
+
+        cadastrarPagamentoService(pagamento);
+
     }
 
     public static void cadastrarDespesaController(JTextField descricaoField, JTextField valorField, JFormattedTextField dataField) {
@@ -27,16 +29,20 @@ public class FinanceiroController {
         } else if (FORMAT.formatarData(dataField.getText()).isBlank()) {
             DIALOG.exbirMensagem(null, "Digite a data em que ocorreu a despesa");
         } else {
-            FinanceiroService.cadastrarDespesaService(descricaoField, valorField, dataField);
+            cadastrarDespesaService(descricaoField, valorField, dataField);
         }
+
     }
 
     public static List<PagamentoDTO> listarDadosPagamentoController() {
-        return FinanceiroService.listarDadosPagamentoService();
+
+        return listarDadosPagamentoService();
+
     }
 
     public static List<Despesa> ListarDespesasController() {
-        return FinanceiroService.ListarDespesaService();
-    }
 
+        return ListarDespesaService();
+
+    }
 }
