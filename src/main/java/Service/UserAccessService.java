@@ -6,6 +6,7 @@ import Validation.DIALOG;
 import Validation.CRIPTOGRAFAR;
 import java.util.List;
 import static Repository.UserAccessRepository.*;
+import static Validation.CRIPTOGRAFAR.*;
 
 public class UserAccessService {
 
@@ -25,7 +26,7 @@ public class UserAccessService {
             UserAccess newUser = new UserAccess();
 
             newUser.setName(userName);
-            newUser.setPassword(CRIPTOGRAFAR.toSHA256(passwordConfirm));
+            newUser.setPassword(toSHA256(passwordConfirm));
             newUser.setAccessType(accessType);
 
             cadastrarRepository(newUser);

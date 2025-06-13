@@ -7,19 +7,22 @@ import Validation.CRIPTOGRAFAR;
 import Validation.FORMAT;
 import java.util.List;
 import static Repository.ClienteRepository.*;
+import static Validation.FORMAT.*;
+import static Validation.CRIPTOGRAFAR.*;
 
 public class ClienteService {
 
     public static void postCustomerService(Cliente cliente)  {
-        cliente.setDataNascimento(FORMAT.converterData(cliente.getDataNascimento()));
-        cliente.setCpf(CRIPTOGRAFAR.criptografarAES(cliente.getCpf()));
+        cliente.setDataNascimento(converterData(cliente.getDataNascimento()));
+        cliente.setCpf(criptografarAES(cliente.getCpf()));
         
         postCustomerRepository(cliente);
     }
 
     public static void updateCustomerService(Cliente cliente) {
-        cliente.setDataNascimento(FORMAT.converterData(cliente.getDataNascimento()));
-        cliente.setCpf(CRIPTOGRAFAR.criptografarAES(cliente.getCpf()));
+        cliente.setDataNascimento(converterData(cliente.getDataNascimento()));
+
+        cliente.setCpf(criptografarAES(cliente.getCpf()));
         
         updateCustomerRepository(cliente);
     }
