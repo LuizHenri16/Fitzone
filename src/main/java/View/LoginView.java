@@ -190,8 +190,14 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnActionPerformed
     
     public void login(){
-        if(UserAccessController.loginController(tfUserName, tfPassword) != null){
-            new InicioView(UserAccessController.loginController(tfUserName, tfPassword)).setVisible(true);
+        UserAccess userLogin = loginController(
+                new UserAccessDTO(
+                        tfUserName.getText(),
+                        new String(tfPassword.getPassword()
+                )));
+
+        if(userLogin != null){
+            new InicioView(userLogin).setVisible(true);
             dispose();
         }
     }
