@@ -19,7 +19,7 @@ public class FORMAT {
                 return formatoOriginal.format(data);
             }
         } catch (ParseException e) {
-            DIALOG.exbirMensagem(null, "Erro ao converter data");
+            DIALOG.exbirMensagem("Erro ao converter data");
         }
         return null;
     }

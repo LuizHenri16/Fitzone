@@ -25,7 +25,7 @@ public class CRIPTOGRAFAR {
             }
             return hexString.toString();
         } catch (Exception e) {
-            DIALOG.exbirMensagem(null, "Erro ao adicionar a criptografia");
+            DIALOG.exbirMensagem("Erro ao adicionar a criptografia");
         }
         return null;
     }
@@ -41,7 +41,7 @@ public class CRIPTOGRAFAR {
 
             return Base64.getEncoder().encodeToString(valorCriptografado);
         } catch (Exception e) {
-            DIALOG.exbirMensagem(null, "Erro ao adicionar a criptografia");
+            DIALOG.exbirMensagem("Erro ao adicionar a criptografia");
         }
         return null;
     }
@@ -56,7 +56,7 @@ public class CRIPTOGRAFAR {
 
             return new String(decryptedBytes);
         } catch (Exception e) {
-            DIALOG.exbirMensagem(null, "Erro ao remover a criptografia");
+            DIALOG.exbirMensagem("Erro ao remover a criptografia");
         }
         return null;
     }

@@ -41,7 +41,7 @@ public class ClienteRepository {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            DIALOG.exbirMensagem(null, "Ocorreu um erro ao adicionar um cliente");
+            DIALOG.exbirMensagem("Ocorreu um erro ao adicionar um cliente");
         }
     }
 
@@ -52,11 +52,11 @@ public class ClienteRepository {
             em.getTransaction().begin();
             em.merge(cliente);
             em.getTransaction().commit();
-            DIALOG.exbirMensagem(null, "Edição realizada com sucesso!");
+            DIALOG.exbirMensagem("Edição realizada com sucesso!");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
-            DIALOG.exbirMensagem(null, "Ocorreu um erro ao editar as informações do cliente.");
+            DIALOG.exbirMensagem("Ocorreu um erro ao editar as informações do cliente.");
         } finally {
             em.close();
         }
@@ -70,11 +70,11 @@ public class ClienteRepository {
             Cliente clienteGerenciado = em.merge(cliente);
             em.remove(clienteGerenciado);
             em.getTransaction().commit();
-            DIALOG.exbirMensagem(null, "Cliente removido com sucesso!");
+            DIALOG.exbirMensagem("Cliente removido com sucesso!");
 
         } catch (Exception e) {
             System.out.println(e);
-            DIALOG.exbirMensagem(null, "Não foi possivel excluir o cliente");
+            DIALOG.exbirMensagem("Não foi possivel excluir o cliente");
         } finally {
             em.close();
         }
@@ -92,8 +92,7 @@ public class ClienteRepository {
 
             return listaClientes;
         } catch (Exception e) {
-            DIALOG.exbirMensagem(null, "Erro ao buscar os clientes no banco");
-            System.out.println(e);
+            DIALOG.exbirMensagem("Erro ao buscar os clientes no banco");
         }
 
         if (listaClientes == null) {
@@ -111,7 +110,7 @@ public class ClienteRepository {
             cliente = em.find(Cliente.class, idCliente);
             return cliente;
         } catch (Exception e) {
-            DIALOG.exbirMensagem(null, "Erro ao buscar as informações do cliente");
+            DIALOG.exbirMensagem("Erro ao buscar as informações do cliente");
         } finally {
             JPAUtil.close();
         }
@@ -130,7 +129,7 @@ public class ClienteRepository {
 
             return newmatricula;
         } catch (NoResultException e) {
-            DIALOG.exbirMensagem(null, "Matricula não encontrada na base de dados");
+            DIALOG.exbirMensagem("Matricula não encontrada na base de dados");
             return null;
         }
     }
@@ -146,7 +145,7 @@ public class ClienteRepository {
 
         } catch (Exception e) {
             System.out.println(e);
-            DIALOG.exbirMensagem(null, "Não foi possivel contar alunos cadastrados.");
+            DIALOG.exbirMensagem("Não foi possivel contar alunos cadastrados.");
         } finally {
             em.close();
         }
@@ -163,7 +162,7 @@ public class ClienteRepository {
             return resultado.intValue();
 
         } catch (Exception e) {
-            DIALOG.exbirMensagem(null, "Não foi possivel contar alunos ativos.");
+            DIALOG.exbirMensagem("Não foi possivel contar alunos ativos.");
         } finally {
             em.close();
         }
@@ -189,7 +188,7 @@ public class ClienteRepository {
             return listaAniversariantes;
         } catch (Exception e) {
             System.out.println(e);
-            DIALOG.exbirMensagem(null, "Não foi possível retornar os aniversariantes.");
+            DIALOG.exbirMensagem("Não foi possível retornar os aniversariantes.");
         }
         return listaAniversariantes;
     }

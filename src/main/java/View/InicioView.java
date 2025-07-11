@@ -1,9 +1,10 @@
 package View;
 
-import Controller.ClienteController;
+import static Controller.ClienteController.*;
 import Controller.FinanceiroController;
 import Controller.UserAccessController;
 import DTO.AniversarianteDTO;
+import DTO.ClienteDTO;
 import DTO.PagamentoDTO;
 import Entity.Cliente;
 import Entity.Despesa;
@@ -47,7 +48,7 @@ public final class InicioView extends javax.swing.JFrame {
 
         userNameLabel.setText("Usuário: " + user.getName());
         SwingUtilities.invokeLater(() -> {
-            DIALOG.exbirMensagem(this, "Bem vindo " + user.getName());
+            DIALOG.exbirMensagem("Bem vindo " + user.getName());
         });
     }
 
@@ -56,7 +57,7 @@ public final class InicioView extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
         modelo.setRowCount(0);
 
-        List<Cliente> listaClientes = ClienteController.getCustomersController();
+        List<Cliente> listaClientes = getCustomersController();
 
         for (Cliente cliente : listaClientes) {
             String[] linha = {
@@ -117,7 +118,7 @@ public final class InicioView extends javax.swing.JFrame {
     }
 
     public void listarAniversariantes() {
-        List<AniversarianteDTO> listaAniversariante = ClienteController.getBirthdayCustomerController();
+        List<AniversarianteDTO> listaAniversariante = getBirthdayCustomerController();
 
         String linha = "";
         for (AniversarianteDTO aniversariante : listaAniversariante) {
@@ -127,8 +128,8 @@ public final class InicioView extends javax.swing.JFrame {
     }
 
     public void listarAlunosCadastradosContador() {
-        alunosCadastradosLabel.setText(String.valueOf(ClienteController.getCountRegisteredCustomersController()));
-        alunosStatusLabel.setText(String.valueOf(ClienteController.getCountActiveCustomersController()));
+        alunosCadastradosLabel.setText(String.valueOf(getCountRegisteredCustomersController()));
+        alunosStatusLabel.setText(String.valueOf(getCountActiveCustomersController()));
     }
 
     public void listarDadosPagamentoTabela() {
@@ -1832,7 +1833,7 @@ public final class InicioView extends javax.swing.JFrame {
         int linhaSelecionada = tabelaClientes.getSelectedRow();
 
         if (linhaSelecionada == -1) {
-            DIALOG.exbirMensagem(this, "Selecione um usuário para visualizar.");
+            DIALOG.exbirMensagem("Selecione um usuário para visualizar.");
         } else {
             new VisuCadastroDialog(this, rootPaneCheckingEnabled, user, (String) tabelaClientes.getValueAt(linhaSelecionada, 0)).setVisible(true);
         }
@@ -1863,12 +1864,25 @@ public final class InicioView extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarADMBtnActionPerformed
 
     private void cadastrarAlunoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoBtnActionPerformed
+        ClienteDTO clienteDTO = new ClienteDTO(
+                tfNomeCliente.getText(),
+                tfCPFCLiente.getText(),
+                tfdataNascimento.getText(),
+                tfEmailCliente.getText(),
+                (String) cbMatricula.getSelectedItem(),
+                tfTelefoneCliente.getText(),
+                tfTelefoneEmergenciaCliente.getText(),
+                tfEnderecoCliente.getText(),
+                Double.parseDouble(tfPesoAluno.getText()),
+                Double.parseDouble(tfAlturaCliente.getText()),
+                tfHistoricoSaudeCliente.getText()
+        );
 
-        ClienteController.postCustomerController(this, tfNomeCliente, tfCPFCLiente, tfdataNascimento, tfTelefoneCliente, tfTelefoneEmergenciaCliente, tfEmailCliente, tfEnderecoCliente, tfAlturaCliente, tfPesoAluno, tfHistoricoSaudeCliente, cbMatricula);
+        if ( postCustomerController(clienteDTO)) {
+            limparCamposCadastroAluno();
+            ListarCadastroClientes();
+        }
 
-        limparCamposCadastroAluno();
-        ListarCadastroClientes();
-        DIALOG.exbirMensagem(this, "Aluno cadastrado");
     }//GEN-LAST:event_cadastrarAlunoBtnActionPerformed
 
     private void limparCamposBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparCamposBtnActionPerformed

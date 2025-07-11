@@ -36,10 +36,10 @@ public class UserAccessRepository {
             em.getTransaction().begin();
             em.persist(usuario);
             em.getTransaction().commit();
-            DIALOG.exbirMensagem(null, "Usuário administrador adiconado!");
+            DIALOG.exbirMensagem("Usuário administrador adiconado!");
 
         } catch (Exception e) {
-            DIALOG.exbirMensagem(null, "Ocorreu um erro ao adicionar o ADM ao banco!");
+            DIALOG.exbirMensagem("Ocorreu um erro ao adicionar o ADM ao banco!");
         } finally {
             em.close();
         }
@@ -73,11 +73,11 @@ public class UserAccessRepository {
             em.getTransaction().begin();
             em.remove(user);
             em.getTransaction().commit();
-            DIALOG.exbirMensagem(null, "Usuário removido com sucesso!");
+            DIALOG.exbirMensagem("Usuário removido com sucesso!");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
-            DIALOG.exbirMensagem(null, "Ocorreu um erro ao apagar o administrador do banco!");
+            DIALOG.exbirMensagem("Ocorreu um erro ao apagar o administrador do banco!");
         } finally {
             em.close();
         }

@@ -214,7 +214,7 @@ public class VisualizarADMDialog extends java.awt.Dialog {
         int linhaSelecionada = tabelaADMs.getSelectedRow();
         
         if (linhaSelecionada == -1) {
-            DIALOG.exbirMensagem(null, "Escolha um usuário administrador");
+            DIALOG.exbirMensagem("Escolha um usuário administrador");
         } else {
             UserAccessController.deleteUserAccessController((String) tabelaADMs.getValueAt(linhaSelecionada, 0));
             ListarCadastroADMs();

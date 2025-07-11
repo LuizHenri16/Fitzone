@@ -12,7 +12,7 @@ public class CPF {
             validarCPF.assertValid(cpf);
             return true;
         } catch (InvalidStateException e ) {
-            DIALOG.exbirMensagem(null, "CPF inválido!");
+            DIALOG.exbirMensagem("CPF inválido!");
             return false;
         }
     }

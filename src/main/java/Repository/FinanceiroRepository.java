@@ -24,11 +24,11 @@ public class FinanceiroRepository {
             em.getTransaction().begin();
             em.persist(pagamento);
             em.getTransaction().commit();
-            DIALOG.exbirMensagem(null, "Pagamento do " + pagamento.getCliente().getNome() + "foi realizado");
+            DIALOG.exbirMensagem("Pagamento do " + pagamento.getCliente().getNome() + "foi realizado");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
-            DIALOG.exbirMensagem(null, "Ocorreu um erro ao adicionar o pagamento!");
+            DIALOG.exbirMensagem("Ocorreu um erro ao adicionar o pagamento!");
         } finally {
             em.close();
         }
@@ -61,7 +61,7 @@ public class FinanceiroRepository {
 
         } catch (Exception e) {
             System.out.println(e);
-            DIALOG.exbirMensagem(null, "Ocorreu um erro ao exibir os pagamentos");
+            DIALOG.exbirMensagem("Ocorreu um erro ao exibir os pagamentos");
             return lista;
         }
     }
@@ -73,19 +73,19 @@ public class FinanceiroRepository {
             em.getTransaction().begin();
             em.persist(despesa);
             em.getTransaction().commit();
-            DIALOG.exbirMensagem(null, "Despesa cadastrada");
+
+            DIALOG.exbirMensagem("Despesa cadastrada");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
-            System.out.println(e);
-            DIALOG.exbirMensagem(null, "Ocorreu um erro ao adicionar uma despesa!");
+            DIALOG.exbirMensagem("Ocorreu um erro ao adicionar uma despesa!");
         } finally {
             em.close();
         }
     }
 
     public static List<Despesa> ListarDespesasRepository(LocalDate dataAtual, LocalDate dataMenos30) {
-        List<Despesa> lista = new ArrayList<>();
+        List<Despesa> listaDespesas = new ArrayList<>();
         EntityManager em = JPAUtil.getEntityManager();
         Query query;
 
@@ -93,13 +93,13 @@ public class FinanceiroRepository {
             query = em.createNativeQuery("SELECT * from Despesa WHERE data_despesa > ? AND data_despesa < ?", Despesa.class);
             query.setParameter(1, dataMenos30);
             query.setParameter(2, dataAtual);
-            lista = query.getResultList();
+            listaDespesas = query.getResultList();
 
-            return lista;
+            return listaDespesas;
 
         } catch (Exception e) {
             System.out.println(e);
-            return lista;
+            return listaDespesas;
         } finally {
             em.close();
         }
