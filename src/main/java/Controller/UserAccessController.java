@@ -1,5 +1,6 @@
 package Controller;
 
+import DTO.UserAccessDTO;
 import Entity.UserAccess;
 import Validation.DIALOG;
 import javax.swing.*;
@@ -11,17 +12,15 @@ public class UserAccessController {
     public UserAccessController() {
     }
 
-    public static UserAccess loginController(JTextField userNameLogin, JPasswordField passwordFieldLogin) {
-        String password = new String(passwordFieldLogin.getPassword());
-
-        if (userNameLogin.getText().isBlank() && password.isBlank()) {
+    public static UserAccess loginController(UserAccessDTO userAccessDTO) {
+        if (userAccessDTO.getUsername().isBlank() && userAccessDTO.getUserPassword().isBlank()) {
             DIALOG.exbirMensagem("Digite seu login");
-        } else if (userNameLogin.getText().isBlank()) {
+        } else if (userAccessDTO.getUsername().isBlank()) {
             DIALOG.exbirMensagem("Digite o nome de usuário");
-        } else if (password.isBlank()) {
+        } else if (userAccessDTO.getUserPassword().isBlank()) {
             DIALOG.exbirMensagem("Digite a senha");
         } else {
-            return loginService(userNameLogin.getText(), password);
+            return loginService(userAccessDTO);
         }
         return null;
     }

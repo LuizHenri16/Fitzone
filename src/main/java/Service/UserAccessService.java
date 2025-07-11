@@ -1,5 +1,6 @@
 package Service;
 
+import DTO.UserAccessDTO;
 import Entity.UserAccess;
 import Repository.UserAccessRepository;
 import Validation.DIALOG;
@@ -10,15 +11,11 @@ import static Validation.CRIPTOGRAFAR.*;
 
 public class UserAccessService {
 
-    public static UserAccess loginService(String userName, String password) {
-        UserAccess usuario = loginRepository(userName, CRIPTOGRAFAR.toSHA256(password));
-
-        if (usuario == null) {
-            DIALOG.exbirMensagem("Usuário incorreto");
-        } else {
-            return usuario;
-        }
-        return usuario;
+    public static UserAccess loginService(UserAccessDTO userAccessDTO) {
+        return loginRepository(
+                userAccessDTO.getUsername(),
+                CRIPTOGRAFAR.toSHA256(userAccessDTO.getUserPassword()
+        ));
     }
 
     public static void postUserAccessService(String userName, String passwordConfirm, String accessType) {

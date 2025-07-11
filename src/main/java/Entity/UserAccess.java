@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "ADM_ACESSO")
-
 public class UserAccess {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

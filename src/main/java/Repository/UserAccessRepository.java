@@ -22,7 +22,6 @@ public class UserAccessRepository {
 
             return query.getSingleResult();
         } catch (Exception e) {
-            System.out.println(e);
             return null;
         } finally {
             JPAUtil.close();

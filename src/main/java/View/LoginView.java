@@ -1,6 +1,10 @@
 package View;
 
-import Controller.UserAccessController;
+import static Controller.UserAccessController.*;
+
+import DTO.UserAccessDTO;
+import Entity.UserAccess;
+import Validation.DIALOG;
 
 public class LoginView extends javax.swing.JFrame {
 
@@ -199,6 +203,8 @@ public class LoginView extends javax.swing.JFrame {
         if(userLogin != null){
             new InicioView(userLogin).setVisible(true);
             dispose();
+        } else {
+            DIALOG.exbirMensagem("Usuário ou senha incorretos");
         }
     }
     
