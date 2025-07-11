@@ -11,12 +11,14 @@ import java.util.List;
 
 public class UserAccessRepository {
 
+    private static EntityManager entityManager;
+
     public static UserAccess loginRepository(String userName, String passwordHash) {
-        EntityManager em = JPAUtil.getEntityManager();
+        entityManager = JPAUtil.getEntityManager();
         TypedQuery<UserAccess> query;
 
         try {
-            query = em.createQuery("SELECT u FROM UserAccess u where u.name = :usuario AND u.password = :senha", UserAccess.class);
+            query = entityManager.createQuery("SELECT u FROM UserAccess u where u.name = :usuario AND u.password = :senha", UserAccess.class);
             query.setParameter("usuario", userName);
             query.setParameter("senha", passwordHash);
 
@@ -29,29 +31,29 @@ public class UserAccessRepository {
     }
 
     public static void cadastrarRepository(UserAccess usuario) {
-        EntityManager em = JPAUtil.getEntityManager();
+        entityManager = JPAUtil.getEntityManager();
 
         try {
-            em.getTransaction().begin();
-            em.persist(usuario);
-            em.getTransaction().commit();
+            entityManager.getTransaction().begin();
+            entityManager.persist(usuario);
+            entityManager.getTransaction().commit();
             DIALOG.exbirMensagem("Usuário administrador adiconado!");
 
         } catch (Exception e) {
             DIALOG.exbirMensagem("Ocorreu um erro ao adicionar o ADM ao banco!");
         } finally {
-            em.close();
+            entityManager.close();
         }
     }
 
     public static List<UserAccess> getUserAccessRepository() {
-        EntityManager em = JPAUtil.getEntityManager();
+        entityManager = JPAUtil.getEntityManager();
         List<UserAccess> lista = null;
 
         Query query;
 
         try {
-            query = em.createQuery("SELECT a from UserAccess a");
+            query = entityManager.createQuery("SELECT a from UserAccess a");
             lista = query.getResultList();
 
             return lista;
@@ -59,27 +61,26 @@ public class UserAccessRepository {
         } catch (Exception e) {
             return lista;
         } finally {
-            em.close();
+            entityManager.close();
         }
     }
 
     public static void deleteUserAccessRepository(String id) {
-        EntityManager em = JPAUtil.getEntityManager();
+        entityManager = JPAUtil.getEntityManager();
 
         try {
-            UserAccess user = em.find(UserAccess.class, id);
+            UserAccess user = entityManager.find(UserAccess.class, id);
 
-            em.getTransaction().begin();
-            em.remove(user);
-            em.getTransaction().commit();
+            entityManager.getTransaction().begin();
+            entityManager.remove(user);
+            entityManager.getTransaction().commit();
             DIALOG.exbirMensagem("Usuário removido com sucesso!");
 
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            entityManager.getTransaction().rollback();
             DIALOG.exbirMensagem("Ocorreu um erro ao apagar o administrador do banco!");
         } finally {
-            em.close();
+            entityManager.close();
         }
     }
-
 }

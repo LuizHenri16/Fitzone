@@ -2,9 +2,7 @@ package Service;
 
 import DTO.AniversarianteDTO;
 import Entity.*;
-import Repository.ClienteRepository;
-import Validation.CRIPTOGRAFAR;
-import Validation.FORMAT;
+
 import java.util.List;
 import static Repository.ClienteRepository.*;
 import static Validation.FORMAT.*;
@@ -40,7 +38,7 @@ public class ClienteService {
     }
 
     public static LicenseType getRegistryService(String matricula) {
-        return listarMatriculasRepository(matricula);
+        return getRegistryRepository(matricula);
     }
 
     public static Integer getCountActiveCustomersService() {

@@ -47,7 +47,6 @@ public class UserAccessController {
             } else {
                 postUserAccessService(userNameLogin.getText(), passwordConfirm, (String) tipoUsuarioCombobox.getSelectedItem());
             }
-
         } catch (Exception e) {
             DIALOG.exbirMensagem("Ocorreu algum erro ao tentar adicionar o usuário");
         }

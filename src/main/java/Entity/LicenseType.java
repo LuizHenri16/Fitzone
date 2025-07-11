@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity()
-@Table(name = "tipo_matricula")
+@Table(name = "TipoMatricula")
 public class LicenseType {
 
     @Id

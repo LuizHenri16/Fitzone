@@ -9,7 +9,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "Despesa")
 public class Despesa {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
